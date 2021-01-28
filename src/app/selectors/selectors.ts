@@ -25,8 +25,8 @@ export const getPromocodesLoadedSelector = (state: StateType) => {
 
 //Prices 
 
-export const getPricesSelector = (state: StateType) => {
-    return state.PricesReducer.prices
+export const getPricesSelector = (state: StateType, product: "mixingAndMastering" | "stemMastering" | "stereoMastering" | "trackProduction" | "productionAssistance") => {
+    return state.PricesReducer.prices[product].item
 }
 
 export const getPricesErrorsSelector = (state: StateType) => {

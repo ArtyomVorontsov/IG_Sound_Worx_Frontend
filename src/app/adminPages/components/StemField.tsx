@@ -1,7 +1,7 @@
 import React from 'react'
-import { Form, Card, InputNumber, Input } from 'antd'
+import { Form, Card, InputNumber, Input, Button } from 'antd'
 
-export const StemMasteringField = ({stem, remove}) => {
+export const StemField = ({stem, remove}) => {
     
     return (
         <Card>
@@ -53,9 +53,8 @@ export const StemMasteringField = ({stem, remove}) => {
                 <Form.Item style={{ display: "none" }} name={["quantityOfStems", stem.id, "id"]}>
                     <Input type="number" />
                 </Form.Item>
-                <button onClick={() => remove(stem.id)}>remove</button>
+                <Button onClick={() => remove(stem.id)} htmlType="submit"  type="dashed">remove</Button>
             </div>
-
 
         </Card>
     )

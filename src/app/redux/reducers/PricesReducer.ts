@@ -10,6 +10,8 @@ type PricesStateType = {
         stereoMastering?: {isLoaded: boolean, item: PriceItemType | null},
         stemMastering?:  {isLoaded: boolean, item: PriceItemType | null},
         mixingAndMastering?:  {isLoaded: boolean, item: PriceItemType | null},
+        trackProduction?:  {isLoaded: boolean, item: PriceItemType | null},
+        productionAssistance?:  {isLoaded: boolean, item: PriceItemType | null},
     },
     errors: Array<ErrorType>,
     successes: Array<SuccessType>,
@@ -20,6 +22,8 @@ const defaultState: PricesStateType = {
         stereoMastering: {isLoaded: false, item: null},
         stemMastering:  {isLoaded: false, item: null},
         mixingAndMastering:  {isLoaded: false, item: null},
+        trackProduction:  {isLoaded: false, item: null},
+        productionAssistance:  {isLoaded: false, item: null}
     },
     errors: [],
     successes: [],
@@ -36,7 +40,6 @@ export const PricesReducer = (state = defaultState, action: ActionTypes) => {
                     ...state.prices,
                     [action.prices[0].name]: {item: action.prices[0], isLoaded: true}
                 },
-                isLoaded: true
             }
 
         case SET_PRICES_ERROR:
@@ -95,30 +98,13 @@ export const getPricesThunk = (path: PricesPathType) => async (dispatch: Dispatc
 
 export const setPricesThunk = (prices: PriceItemType, path: PricesPathType) => async (dispatch: Dispatch<{ type: string }>) => {
 
-
-    
-    // const stereoMasteringPrices: StereoMasteringType = {
-    //     features: [...prices.features],
-    //     EUR: prices.EUR,
-    //     USD: prices.USD,
-    //     additionalEdit: prices.additionalEdit
-    // }
-    
-    // const stemMasteringPrices: StemMasteringType = {
-    //     features: [...prices.features],
-    //     quantityOfStems: [
-    //         ...prices.quantityOfStems
-    //     ],
-    //     additionalEdit: prices.additionalEdit
-    // }
-
     let newPrices = prices;
 
     try {
 
         const response = await API.setPrices(newPrices, path);
         console.log(response);
-        const prices: Array<PriceItemType> = Object.values(response);
+        const prices: Array<PriceItemType> = [response];
         dispatch(setPricesAC(prices));
 
         const successMessage: SuccessType = {

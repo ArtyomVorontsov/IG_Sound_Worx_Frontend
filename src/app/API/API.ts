@@ -1,4 +1,4 @@
-import { PromocodeType, FAQType, PricesPathType } from './../types/interfaces';
+import { PromocodeType, FAQType, PricesPathType, PriceItemType } from './../types/interfaces';
 import axios from "axios";
 
 //const token = 
@@ -33,7 +33,7 @@ export const API = {
         }
     },
 
-    setPrices: async (prices: any, path: PricesPathType) => {
+    setPrices: async (prices: PriceItemType, path: PricesPathType) => {
         try {
             const response = await apiInstance.post("prices" + path, prices);
             console.log(response)

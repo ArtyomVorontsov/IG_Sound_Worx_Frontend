@@ -11,7 +11,7 @@ export type PriceItemType = {
     quantityOfStems?: Array<StemType>,
     EUR?: number,
     USD?: number,
-    additionalEdit: AdditionalEditType,
+    additionalEdit?: AdditionalEditType,
     features: Array<string>
 }
 
@@ -153,7 +153,7 @@ export type FormValuesType = {
 }
 
 
-export type PricesPathType = "/mixingAndMastering" | "/stemMastering" | "/stereoMastering";
+export type PricesPathType = "/mixingAndMastering" | "/stemMastering" | "/stereoMastering" | "/productionAssistance" | "/trackProduction";
 
 
 export type AdditionalEditType = {

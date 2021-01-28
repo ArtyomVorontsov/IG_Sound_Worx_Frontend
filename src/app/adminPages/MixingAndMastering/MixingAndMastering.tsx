@@ -7,7 +7,9 @@ import { getPricesThunk, setPricesThunk } from '../../redux/reducers/PricesReduc
 import { getPricesSelector, getPricesErrorsSelector, getPricesSuccessSelector } from '../../selectors/selectors';
 import { removePricesErrorAC, removePricesSuccessAC } from '../../redux/actionCreators/actionCreators';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { MixingAndMasteringField } from './MixingAndMasteringField';
+import { StemField } from '../components/StemField';
+import { stemFieldFiller } from '../utils/stemFieldFiller';
+import { Loader } from '../../components/Loader';
 
 
 
@@ -81,21 +83,6 @@ const MixingAndMastering = ({ mixingAndMastering, getPrices, setPrices,
         removePricesSuccess(id)
     }
 
-    const fieldFiller = () => {
-        const filledFields = []
-        fields.map((item: StemType) => {
-            filledFields.push(
-                { name: ["quantityOfStems", item.id, "id"], value: item.id },
-                { name: ["quantityOfStems", item.id, "quantity", "from"], value: item.quantity.from },
-                { name: ["quantityOfStems", item.id, "quantity", "to"], value: item.quantity.to },
-                { name: ["quantityOfStems", item.id, "EUR"], value: item.EUR },
-                { name: ["quantityOfStems", item.id, "USD"], value: item.USD }
-            )
-        })
-
-        return filledFields;
-    }
-
 
 
     return (
@@ -124,7 +111,7 @@ const MixingAndMastering = ({ mixingAndMastering, getPrices, setPrices,
                 <Divider />
 
                 {
-                    !isLoaded ? <p>loading</p> :
+                    !isLoaded ? <Loader/> :
 
 
                         <CardWrapper>
@@ -134,7 +121,7 @@ const MixingAndMastering = ({ mixingAndMastering, getPrices, setPrices,
                                     layout="vertical"
                                     fields={
                                         [
-                                            ...fieldFiller(),
+                                            ...stemFieldFiller(fields),
                                             { name: "features", value: mixingAndMastering.features },
                                             { name: ["additionalEdit", "features"], value: mixingAndMastering.additionalEdit.features },
                                             { name: ["additionalEdit", "EUR"], value: mixingAndMastering.additionalEdit.EUR },
@@ -151,7 +138,7 @@ const MixingAndMastering = ({ mixingAndMastering, getPrices, setPrices,
                                         <h3>Quantity of stems</h3>
 
                                         {fields.map((stem, index) => {
-                                            return <MixingAndMasteringField key={stem.id} remove={removeField} stem={stem} />
+                                            return <StemField key={stem.id} remove={removeField} stem={stem} />
                                         })}
 
                                         <Button
@@ -207,7 +194,7 @@ const MixingAndMastering = ({ mixingAndMastering, getPrices, setPrices,
 }
 const mapStateToProps = (state: StateType) => {
     return {
-        mixingAndMastering: getPricesSelector(state).mixingAndMastering.item,
+        mixingAndMastering: getPricesSelector(state, "mixingAndMastering"),
         errors: getPricesErrorsSelector(state),
         successes: getPricesSuccessSelector(state),
         isLoaded: state.PricesReducer.prices.mixingAndMastering.isLoaded

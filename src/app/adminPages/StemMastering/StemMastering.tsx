@@ -7,7 +7,9 @@ import { getPricesThunk, setPricesThunk } from '../../redux/reducers/PricesReduc
 import { getPricesSelector, getPricesErrorsSelector, getPricesSuccessSelector } from '../../selectors/selectors';
 import { removePricesErrorAC, removePricesSuccessAC } from '../../redux/actionCreators/actionCreators';
 import { PlusOutlined } from '@ant-design/icons';
-import { StemMasteringField } from './StemMasteringField';
+import { StemField } from '../components/StemField';
+import { stemFieldFiller } from '../utils/stemFieldFiller';
+import { Loader } from '../../components/Loader';
 
 
 
@@ -38,6 +40,20 @@ const MixingAndMastering = ({ stemMastering, getPrices, setPrices,
 
 
     const onFinish = (values: PriceItemType) => {
+
+        console.log(values)
+        //stems id correction
+
+        values.quantityOfStems = values.quantityOfStems.filter((stem)=>{
+            return stem !== undefined
+        })
+
+        let stems = values.quantityOfStems.map((stem, index) => {
+            stem.id = index;
+            return stem;
+        })
+
+        values.quantityOfStems = [...stems];
         values.additionalEdit.features = values.additionalEdit.features.toString().split(",");
         values.features = values.features.toString().split(",");
         setPrices(values, "/stemMastering");
@@ -49,27 +65,30 @@ const MixingAndMastering = ({ stemMastering, getPrices, setPrices,
         console.log("error")
     }
 
-    const [fields, setFieldToState] = useState([]);
+    const [quantityOfStemsFields, setQuantityOfStemsFields] = useState([]);
 
     const addField = () => {
-        const newFields = [...fields, { EUR: 0, USD: 0, id: fields.length, quantity: { from: 0, to: 0 } }]
-        setFieldToState(newFields);
+        const newFields = [...quantityOfStemsFields, { EUR: 0, USD: 0, id: quantityOfStemsFields[quantityOfStemsFields.length - 1].id + 1, quantity: { from: 0, to: 0 } }]
+        setQuantityOfStemsFields(newFields);
     }
 
+
     const removeField = (id: number) => {
-        const newFields = fields.filter((field) => {
+        const newFields = quantityOfStemsFields.filter((field) => {
             return id !== field.id
         })
 
-        setFieldToState(newFields);
+        setQuantityOfStemsFields(newFields);
     }
 
     useEffect(() => {
         if (!isLoaded)
             getPrices("/stemMastering");
 
-        if (isLoaded)
-            setFieldToState(stemMastering.quantityOfStems);
+        if (isLoaded) {
+            setQuantityOfStemsFields(stemMastering.quantityOfStems);
+        }
+
     }, [stemMastering]);
 
 
@@ -80,23 +99,6 @@ const MixingAndMastering = ({ stemMastering, getPrices, setPrices,
     const onCloseAlertSuccesses = (id: string) => {
         removePricesSuccess(id)
     }
-
-    const fieldFiller = () => {
-        const filledFields = []
-        fields.map((item: StemType) => {
-            filledFields.push(
-                { name: ["quantityOfStems", item.id, "id"], value: item.id },
-                { name: ["quantityOfStems", item.id, "quantity", "from"], value: item.quantity.from },
-                { name: ["quantityOfStems", item.id, "quantity", "to"], value: item.quantity.to },
-                { name: ["quantityOfStems", item.id, "EUR"], value: item.EUR },
-                { name: ["quantityOfStems", item.id, "USD"], value: item.USD }
-            )
-        })
-
-        return filledFields;
-    }
-
-
 
     return (
         <>
@@ -124,7 +126,7 @@ const MixingAndMastering = ({ stemMastering, getPrices, setPrices,
                 <Divider />
 
                 {
-                    !isLoaded ? <p>loading</p> :
+                    !isLoaded ? <Loader/> :
 
 
                         <CardWrapper>
@@ -134,7 +136,7 @@ const MixingAndMastering = ({ stemMastering, getPrices, setPrices,
                                     layout="vertical"
                                     fields={
                                         [
-                                            ...fieldFiller(),
+                                            ...stemFieldFiller(quantityOfStemsFields),
                                             { name: "features", value: stemMastering.features },
                                             { name: ["additionalEdit", "features"], value: stemMastering.additionalEdit.features },
                                             { name: ["additionalEdit", "EUR"], value: stemMastering.additionalEdit.EUR },
@@ -150,8 +152,8 @@ const MixingAndMastering = ({ stemMastering, getPrices, setPrices,
                                     <div>
                                         <h3>Quantity of stems</h3>
 
-                                        {fields.map((stem, index) => {
-                                            return <StemMasteringField key={stem.id} remove={removeField} stem={stem} />
+                                        {quantityOfStemsFields.map((stem, index) => {
+                                            return <StemField key={stem.id} remove={removeField} stem={stem} />
                                         })}
 
                                         <Button
@@ -208,7 +210,7 @@ const MixingAndMastering = ({ stemMastering, getPrices, setPrices,
 
 const mapStateToProps = (state: StateType) => {
     return {
-        stemMastering: getPricesSelector(state).stemMastering.item,
+        stemMastering: getPricesSelector(state, "stemMastering"),
         errors: getPricesErrorsSelector(state),
         successes: getPricesSuccessSelector(state),
         isLoaded: state.PricesReducer.prices.stemMastering.isLoaded

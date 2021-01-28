@@ -6,9 +6,7 @@ import { StateType, PriceItemType, ErrorType, SuccessType, PricesPathType, StemT
 import { getPricesThunk, setPricesThunk } from '../../redux/reducers/PricesReducer';
 import { getPricesSelector, getPricesErrorsSelector, getPricesSuccessSelector } from '../../selectors/selectors';
 import { removePricesErrorAC, removePricesSuccessAC } from '../../redux/actionCreators/actionCreators';
-import { PlusOutlined } from '@ant-design/icons';
 import { Loader } from '../../components/Loader';
-
 
 
 
@@ -19,7 +17,7 @@ type ownProps = {
 
 type mapStateProps = {
     isLoaded: boolean
-    stereoMastering: PriceItemType,
+    trackProduction: PriceItemType,
     errors: Array<ErrorType>
     successes: Array<SuccessType>
 }
@@ -31,15 +29,15 @@ type mapDispatchProps = {
     removePricesSuccess: (id: string) => void
 }
 
-type StereoMasteringProps = ownProps & mapStateProps & mapDispatchProps;
+type TrackProductionProps = ownProps & mapStateProps & mapDispatchProps;
 
-const StereoMastering = ({ stereoMastering, getPrices, setPrices,
+const TrackProduction = ({ trackProduction, getPrices, setPrices,
     children, errors, successes, removePricesError,
-    removePricesSuccess, isLoaded }: StereoMasteringProps) => {
+    removePricesSuccess, isLoaded }:TrackProductionProps) => {
 
     useEffect(() => {
         if (!isLoaded)
-            getPrices("/stereoMastering");
+            getPrices("/trackProduction");
     })
 
     const onCloseAlertErrors = (id: string) => {
@@ -52,9 +50,8 @@ const StereoMastering = ({ stereoMastering, getPrices, setPrices,
 
 
     const onFinish = (values: PriceItemType) => {
-        values.additionalEdit.features = values.additionalEdit.features.toString().split(",");
         values.features = values.features.toString().split(",");
-        setPrices(values, "/stereoMastering");
+        setPrices(values, "/trackProduction");
         console.log(values)
 
     }
@@ -82,7 +79,7 @@ const StereoMastering = ({ stereoMastering, getPrices, setPrices,
 
             <PageContent>
                 <PageHeader>
-                    <PageTitle>Stereo mastering</PageTitle>
+                    <PageTitle>Track production</PageTitle>
                 </PageHeader>
 
                 <Divider />
@@ -99,13 +96,9 @@ const StereoMastering = ({ stereoMastering, getPrices, setPrices,
                                     layout="vertical"
                                     fields={
                                         [
-                                            { name: "EUR", value: stereoMastering.EUR },
-                                            { name: "USD", value: stereoMastering.USD },
-                                            { name: "features", value: stereoMastering.features },
-                                            { name: ["additionalEdit","EUR"], value: stereoMastering.EUR },
-                                            { name: ["additionalEdit","USD"], value: stereoMastering.USD },
-                                            { name: ["additionalEdit","features"], value: stereoMastering.additionalEdit.features },
-                                            
+                                            { name: "EUR", value: trackProduction.EUR },
+                                            { name: "USD", value: trackProduction.USD },
+                                            { name: "features", value: trackProduction.features },  
                                         ]
                                     }
                                     name={"prices"}
@@ -131,24 +124,6 @@ const StereoMastering = ({ stereoMastering, getPrices, setPrices,
                                         <Input type="text" />
                                     </Form.Item>
 
-                                    <h3>Additional edit</h3>
-                                    <Form.Item
-                                        name={["additionalEdit", "EUR"]}
-                                        label={"EUR"}>
-                                        <InputNumber/>
-                                    </Form.Item>
-
-                                    <Form.Item
-                                        name={["additionalEdit", "USD"]}
-                                        label={"USD"}>
-                                        <InputNumber/>
-                                    </Form.Item>
-
-                                    <Form.Item
-                                        name={["additionalEdit","features"]}
-                                        label={"Additional Edit Features"}>
-                                        <Input type="text" />
-                                    </Form.Item>
                                     
 
                                     <Button htmlType="submit" type="primary">Submit changes</Button>
@@ -165,10 +140,10 @@ const StereoMastering = ({ stereoMastering, getPrices, setPrices,
 
 const mapStateToProps = (state: StateType) => {
     return {
-        stereoMastering: getPricesSelector(state, "stereoMastering"),
+        trackProduction: getPricesSelector(state, "trackProduction"),
         errors: getPricesErrorsSelector(state),
         successes: getPricesSuccessSelector(state),
-        isLoaded: state.PricesReducer.prices.stereoMastering.isLoaded
+        isLoaded: state.PricesReducer.prices.trackProduction.isLoaded
     }
 }
 
@@ -181,6 +156,6 @@ const mapDispatchToProps = (dispatch: any) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StereoMastering);
+export default connect(mapStateToProps, mapDispatchToProps)(TrackProduction);
 
 
