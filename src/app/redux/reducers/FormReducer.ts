@@ -16,11 +16,11 @@ const defaultState: FormValuesType = {
     total: 0,
     currency: "EUR",
     note_to_payer: "",
-    stereoMastering: { price: 0, count: 0 },
-    stemMastering: { price: 0, count: 0 },
-    additionalEdit: { price: 0, count: 0 },
-    productionAssistance: { price: 0, count: false },
-    trackProduction: { price: 0, count: false },
+    stereoMastering: { price: {EUR: 0, USD: 0}, count: 0 },
+    stemMastering: { price: {EUR: 0, USD: 0}, count: 0 },
+    additionalEdit: { price: {EUR: 0, USD: 0}, count: 0 },
+    productionAssistance: { price: {EUR: 0, USD: 0}, count: false },
+    trackProduction: { price: {EUR: 0, USD: 0}, count: false },
 }
 
 
@@ -38,14 +38,14 @@ export const FormReducer = (state = defaultState, action: ActionTypes) => {
     }
 }
 
-const countTotal = (formValues: FormValuesType, prices: PricesStateType) => {
+const countTotal = (formValues: FormValuesType, prices: PricesStateType, currency: CurrencyType) => {
 
     const price = { key: "price", value: 0 };
-    price.value = formValues.stereoMastering.price +
-        formValues.stemMastering.price +
-        formValues.additionalEdit.price +
-        formValues.productionAssistance.price +
-        formValues.trackProduction.price
+    price.value = formValues.stereoMastering.price[currency] +
+        formValues.stemMastering.price[currency] +
+        formValues.additionalEdit.price[currency] +
+        formValues.productionAssistance.price[currency] +
+        formValues.trackProduction.price[currency]
 
     const total = { key: "total", value: price.value }
 
@@ -59,7 +59,7 @@ export const setFormValuesThunk = (field: FieldType) => (dispatch: Dispatch<SetF
     dispatch(setFormValuesAC(field))
 
     const { FormReducer, PricesReducer } = getState()
-    const { total, price } = countTotal(FormReducer, PricesReducer)
+    const { total, price } = countTotal(FormReducer, PricesReducer, FormReducer.currency)
     dispatch(setFormValuesAC(total))
     dispatch(setFormValuesAC(price))
 }

@@ -24,8 +24,6 @@ export const StemMastering = ({ setFormValues, formValues, stemMastering, checko
 
     }
 
-    const currency = formValues.currency
-
     const contactFields = [
         { name: "full_name", label: "Full name" },
         { name: "email", label: "Email" },
@@ -90,7 +88,10 @@ export const StemMastering = ({ setFormValues, formValues, stemMastering, checko
                                         key: "stemMastering",
                                         value: {
                                             count: Number(stemMastering.item.quantityOfStems[Number(e)].quantity.to),
-                                            price: Number(stemMastering.item.quantityOfStems[Number(e)][currency])
+                                            price: {
+                                                EUR: Number(stemMastering.item.quantityOfStems[Number(e)].EUR),
+                                                USD: Number(stemMastering.item.quantityOfStems[Number(e)].USD),
+                                            }
                                         }
                                     })}>
                                     {
@@ -110,7 +111,10 @@ export const StemMastering = ({ setFormValues, formValues, stemMastering, checko
                                 <Input onChange={(e) => setFormValues({
                                     key: e.target.id,
                                     value: {
-                                        count: Number(e.target.value), price: Number(stemMastering.item.additionalEdit[currency]) * Number(e.target.value)
+                                        count: Number(e.target.value), price: {
+                                            EUR: Number(stemMastering.item.additionalEdit.EUR) * Number(e.target.value),
+                                            USD: Number(stemMastering.item.additionalEdit.USD) * Number(e.target.value)
+                                        }
                                     }
                                 })} min={0} type="number" />
                             </Form.Item>

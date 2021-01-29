@@ -134,12 +134,12 @@ export type FormValuesType = {
     email: string
     full_name: string
 
-    productionAssistance: { price: number, count: boolean }
-    trackProduction: { price: number, count: boolean },
+    productionAssistance: { price: {EUR: number, USD: number}, count: boolean }
+    trackProduction: { price: {EUR: number, USD: number}, count: boolean },
 
-    stemMastering: { price: number, count: number }
-    stereoMastering: { price: number, count: number }
-    additionalEdit: { price: number, count: number }
+    stemMastering: { price: {EUR: number, USD: number}, count: number }
+    stereoMastering: { price: {EUR: number, USD: number}, count: number }
+    additionalEdit: { price: {EUR: number, USD: number}, count: number }
 
 
     description: string,
@@ -176,4 +176,4 @@ export interface StereoMasteringType extends Prices {
     USD: number,
 }
 
-export interface FieldType { key: string, value: {count: number, price: number} | boolean | string | number | CurrencyType }
+export interface FieldType { key: string, value: {count: number, price: {EUR: number, USD: number}} | boolean | string | number | CurrencyType }
