@@ -5,7 +5,7 @@ import { Dispatch } from 'react';
 import { API } from '../../API/API';
 
 
-type PricesStateType = {
+export type PricesStateType = {
     prices: {
         stereoMastering?: {isLoaded: boolean, item: PriceItemType | null},
         stemMastering?:  {isLoaded: boolean, item: PriceItemType | null},
@@ -15,6 +15,7 @@ type PricesStateType = {
     },
     errors: Array<ErrorType>,
     successes: Array<SuccessType>,
+    isLoaded: boolean
 }
 
 const defaultState: PricesStateType = {
@@ -27,6 +28,7 @@ const defaultState: PricesStateType = {
     },
     errors: [],
     successes: [],
+    isLoaded: false
 }
 
 
@@ -40,6 +42,7 @@ export const PricesReducer = (state = defaultState, action: ActionTypes) => {
                     ...state.prices,
                     [action.prices[0].name]: {item: action.prices[0], isLoaded: true}
                 },
+                isLoaded: true
             }
 
         case SET_PRICES_ERROR:

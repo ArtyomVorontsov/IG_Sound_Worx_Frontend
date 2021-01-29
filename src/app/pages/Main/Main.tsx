@@ -4,14 +4,17 @@ import { NavigationBar, NavBarLi, NavigationLink } from '../../components/NavBar
 import logo from "../../components/logo/IGLogo.webp";
 import { NavLink, Route, Link } from "react-router-dom";
 import { PageContent } from '../../components/adminStyledComponents';
-import Order from '../../MainPages/Order/Order';
+import { Order } from '../../MainPages/Order/Order';
+import { StemMastering } from '../../MainPages/Order/StemMastering';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../components/theme';
 import { Footer } from 'antd/lib/layout/layout';
 import { connect } from 'react-redux';
-import { StateType } from '../../types/interfaces';
-import { getPricesThunk } from '../../redux/reducers/PricesReducer';
+import { StateType, PricesPathType, FieldType, FormValuesType } from '../../types/interfaces';
+import { getPricesThunk, PricesReducer } from '../../redux/reducers/PricesReducer';
 import { getPromocodesThunk } from '../../redux/reducers/PromocodeReducer';
+import { getPromocodesLoadedSelector, getPricesLoadedSelector, getFormValuesSelector } from "../../selectors/selectors"
+import { setFormValuesThunk, checkoutThunk } from '../../redux/reducers/FormReducer';
 
 
 
@@ -20,22 +23,34 @@ type ownProps = {
 }
 
 type mapStateProps = {
-    isPricesLoaded: boolean,
-    isPromocodesLoaded: boolean
+    isPromocodesLoaded: boolean,
+    formValues: FormValuesType,
+    stemMastering,
+    mixingAndMastering,
+    stereoMastering
 }
 
 type mapDispatchProps = {
-    getPrices: () => void
+    getPrices: (path: PricesPathType) => void
     getPromocodes: () => void
+    setFormValues: (field: FieldType) => void,
+    checkout: () => void
 }
 
 type MainProps = ownProps & mapStateProps & mapDispatchProps;
 
-export const Main = ({isPricesLoaded, getPrices, getPromocodes, isPromocodesLoaded}: MainProps) => {
+export const Main = ({ getPrices, getPromocodes, isPromocodesLoaded, setFormValues, formValues,
+    stemMastering,
+    mixingAndMastering,
+    stereoMastering,
+    checkout }: MainProps) => {
 
-    useEffect(()=>{
-        if(!isPricesLoaded) getPrices();
-        if(!isPromocodesLoaded) getPromocodes();
+    useEffect(() => {
+        if (!stemMastering.isLoaded) getPrices("/stemMastering");
+        if (!mixingAndMastering.isLoaded) getPrices("/mixingAndMastering");
+        if (!stereoMastering.isLoaded) getPrices("/stereoMastering");
+
+        if (!isPromocodesLoaded) getPromocodes();
     }, [])
 
     return (
@@ -52,7 +67,14 @@ export const Main = ({isPricesLoaded, getPrices, getPromocodes, isPromocodesLoad
 
 
                 <Route exact path={"/order"}><Order children /></Route>
-                <Footer style={{backgroundColor: "white", height: "100px"}}>
+                <Route exact path={"/order/stemMastering"}>
+                    <StemMastering
+                        formValues={formValues}
+                        setFormValues={setFormValues}
+                        stemMastering={stemMastering}
+                        checkout={checkout}
+                        children /></Route>
+                <Footer style={{ backgroundColor: "white", height: "100px" }}>
 
                 </Footer>
             </ThemeProvider>
@@ -63,15 +85,21 @@ export const Main = ({isPricesLoaded, getPrices, getPromocodes, isPromocodesLoad
 
 const mapStateToProps = (state: StateType) => {
     return {
-      isPricesLoaded: state.PricesReducer.isLoaded,
-      isPromocodesLoaded: state.PromocodesReducer.isLoaded
+        stemMastering: state.PricesReducer.prices.stemMastering,
+        mixingAndMastering: state.PricesReducer.prices.mixingAndMastering,
+        stereoMastering: state.PricesReducer.prices.stereoMastering,
+        isPromocodesLoaded: getPromocodesLoadedSelector(state),
+        formValues: getFormValuesSelector(state),
     }
 }
 
+
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        getPrices: () => dispatch(getPricesThunk()),
-        getPromocodes: () => dispatch(getPromocodesThunk())
+        getPrices: (path: PricesPathType) => dispatch(getPricesThunk(path)),
+        getPromocodes: () => dispatch(getPromocodesThunk()),
+        setFormValues: (field: FieldType) => dispatch(setFormValuesThunk(field)),
+        checkout: () => dispatch(checkoutThunk())
     }
 }
 

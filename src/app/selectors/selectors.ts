@@ -1,10 +1,11 @@
 import { StateType } from './../types/interfaces';
+import { $CombinedState } from 'redux';
 
 
 //Promocodes
 
 export const getPromocodesSelector = (state: StateType) => {
-   return state.PromocodesReducer.promocodes
+    return state.PromocodesReducer.promocodes
 }
 
 export const getOpenedPromocodesSelector = (state: StateType) => {
@@ -37,6 +38,10 @@ export const getPricesSuccessSelector = (state: StateType) => {
     return state.PricesReducer.successes
 }
 
+export const getPricesLoadedSelector = (state: StateType) => {
+    return state.PricesReducer.isLoaded
+}
+
 //Purchases
 export const getPurchasesSelector = (state: StateType) => {
     return state.PurchasesReducer.purchases
@@ -53,7 +58,7 @@ export const getLoginDataSelector = (state: StateType) => {
 
 //FAQ
 export const getFAQSelector = (state: StateType) => {
-   return state.FAQReducer.FAQ
+    return state.FAQReducer.FAQ
 }
 
 export const getIsLoadedFAQ = (state: StateType) => {
@@ -67,4 +72,10 @@ export const getUsersSelector = (state: StateType) => {
 
 export const getUsersLoadedSelector = (state: StateType) => {
     return state.UsersReducer.isLoaded
+}
+
+
+//Form 
+export const getFormValuesSelector = (state: StateType) => {
+    return state.FormReducer
 }

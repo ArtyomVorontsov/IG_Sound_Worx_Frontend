@@ -1,4 +1,4 @@
-import { PriceItemType, PromocodeType, PurchaseItemType, FAQType, UserType, ErrorType, SuccessType, FormValuesType } from './../../types/interfaces';
+import { PriceItemType, PromocodeType, PurchaseItemType, FAQType, UserType, ErrorType, SuccessType, FormValuesType, FieldType } from './../../types/interfaces';
 
 
 //Actions
@@ -216,10 +216,10 @@ export const setUsersAC = (users: Array<UserType>): SetUsersType => {
 //Form
 export type SetFormValuesType = {
     type: typeof SET_FORM_VALUES,
-    values: FormValuesType
+    values: FieldType
 }
 
-export const setFormValuesAC = (values: FormValuesType): SetFormValuesType => {
+export const setFormValuesAC = (values: FieldType): SetFormValuesType => {
     return { type: SET_FORM_VALUES, values }
 }
 

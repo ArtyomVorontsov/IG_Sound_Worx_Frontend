@@ -135,13 +135,11 @@ export type FormValuesType = {
     full_name: string
 
     productionAssistance: { price: number, count: boolean }
-    remixing: { price: number, count: boolean }
     trackProduction: { price: number, count: boolean },
 
-    additionalMix: { price: number, count: number }
-    additionalStem: { price: number, count: number }
     stemMastering: { price: number, count: number }
     stereoMastering: { price: number, count: number }
+    additionalEdit: { price: number, count: number }
 
 
     description: string,
@@ -167,7 +165,7 @@ interface Prices {
     additionalEdit: AdditionalEditType
 }
 
-export type StemType = { quantity: {from: number, to: number}, EUR: number, USD: number, id: number }
+export type StemType = { quantity: { from: number, to: number }, EUR: number, USD: number, id: number }
 
 export interface StemMasteringType extends Prices {
     quantityOfStems: Array<StemType>,
@@ -178,3 +176,4 @@ export interface StereoMasteringType extends Prices {
     USD: number,
 }
 
+export interface FieldType { key: string, value: {count: number, price: number} | boolean | string | number | CurrencyType }
