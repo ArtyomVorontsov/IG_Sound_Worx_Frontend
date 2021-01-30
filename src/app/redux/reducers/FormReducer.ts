@@ -3,11 +3,13 @@ import { FormValuesType, PriceItemType, CurrencyType, PromocodeType, FieldType }
 import { Dispatch } from 'react';
 import { ActionTypes, SET_FORM_VALUES, SetFormValuesType, setFormValuesAC } from './../actionCreators/actionCreators';
 import { StateType } from '../../types/interfaces';
+import { API } from '../../API/API';
 
 
 
 const defaultState: FormValuesType = {
     description: "",
+    link: "",
     email: "",
     full_name: "",
     promocode: "",
@@ -18,6 +20,7 @@ const defaultState: FormValuesType = {
     note_to_payer: "",
     stereoMastering: { price: {EUR: 0, USD: 0}, count: 0 },
     stemMastering: { price: {EUR: 0, USD: 0}, count: 0 },
+    mixingAndMastering: { price: {EUR: 0, USD: 0}, count: 0 },
     additionalEdit: { price: {EUR: 0, USD: 0}, count: 0 },
     productionAssistance: { price: {EUR: 0, USD: 0}, count: false },
     trackProduction: { price: {EUR: 0, USD: 0}, count: false },
@@ -42,6 +45,7 @@ const countTotal = (formValues: FormValuesType, prices: PricesStateType, currenc
 
     const price = { key: "price", value: 0 };
     price.value = formValues.stereoMastering.price[currency] +
+        formValues.mixingAndMastering.price[currency] + 
         formValues.stemMastering.price[currency] +
         formValues.additionalEdit.price[currency] +
         formValues.productionAssistance.price[currency] +
@@ -55,6 +59,7 @@ const countTotal = (formValues: FormValuesType, prices: PricesStateType, currenc
 
 
 export const setFormValuesThunk = (field: FieldType) => (dispatch: Dispatch<SetFormValuesType>, getState: () => StateType) => {
+
     field.key = field.key.replace("order_", "");
     dispatch(setFormValuesAC(field))
 
@@ -64,6 +69,14 @@ export const setFormValuesThunk = (field: FieldType) => (dispatch: Dispatch<SetF
     dispatch(setFormValuesAC(price))
 }
 
-export const checkoutThunk = () => (dispatch: any, getState: () => StateType) => {
-    console.log(getState().FormReducer)
+export const checkoutThunk = () => async (dispatch: any, getState: () => StateType) => {
+    const purchase = getState().FormReducer;
+    try {
+        const res = await API.addPurchase(purchase);
+        console.log(res);
+    } catch (error) {
+        throw error;
+    }
+    
+   
 }

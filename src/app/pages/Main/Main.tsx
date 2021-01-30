@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
 import { NavigationBar, NavBarLi, NavigationLink } from '../../components/NavBar'
-//@ts-ignore
-import logo from "../../components/logo/IGLogo.webp";
 import { NavLink, Route, Link } from "react-router-dom";
 import { PageContent } from '../../components/adminStyledComponents';
 import { Order } from '../../MainPages/Order/Order';
-import { StemMastering } from '../../MainPages/Order/StemMastering';
+import { StemMastering } from '../../MainPages/Order/StemMastring/StemMastering';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../components/theme';
 import { Footer } from 'antd/lib/layout/layout';
@@ -15,6 +13,8 @@ import { getPricesThunk, PricesReducer } from '../../redux/reducers/PricesReduce
 import { getPromocodesThunk } from '../../redux/reducers/PromocodeReducer';
 import { getPromocodesLoadedSelector, getPricesLoadedSelector, getFormValuesSelector } from "../../selectors/selectors"
 import { setFormValuesThunk, checkoutThunk } from '../../redux/reducers/FormReducer';
+import { StereoMastering } from '../../MainPages/Order/StereoMastering/StereoMastering';
+import { MixingAndMastring } from '../../MainPages/Order/MixingAndMastring/MixingAndMastring';
 
 
 
@@ -56,7 +56,7 @@ export const Main = ({ getPrices, getPromocodes, isPromocodesLoaded, setFormValu
     return (
         <>
             <ThemeProvider theme={theme}>
-                <NavigationBar logo={logo}>
+                <NavigationBar>
                     <NavigationLink to="/pricing">Pricing</NavigationLink>
                     <NavigationLink to="/ourWorx">OurWorx</NavigationLink>
                     <NavigationLink to="/faq">FAQ</NavigationLink>
@@ -67,13 +67,37 @@ export const Main = ({ getPrices, getPromocodes, isPromocodesLoaded, setFormValu
 
 
                 <Route exact path={"/order"}><Order children /></Route>
+
+
+                <Route exact path={"/order/stereoMastering"}>
+                    <StereoMastering
+                        formValues={formValues}
+                        setFormValues={setFormValues}
+                        stereoMastering={stereoMastering}
+                        checkout={checkout}
+                        children
+                    />
+                </Route>
+
                 <Route exact path={"/order/stemMastering"}>
                     <StemMastering
                         formValues={formValues}
                         setFormValues={setFormValues}
                         stemMastering={stemMastering}
                         checkout={checkout}
-                        children /></Route>
+                        children />
+                </Route>
+
+                <Route exact path={"/order/mixingAndMastering"}>
+                    <MixingAndMastring
+                    stemMastering={stemMastering}
+                        formValues={formValues}
+                        setFormValues={setFormValues}
+                        mixingAndMastering={mixingAndMastering}
+                        checkout={checkout}
+                        children />
+                </Route>
+
                 <Footer style={{ backgroundColor: "white", height: "100px" }}>
 
                 </Footer>

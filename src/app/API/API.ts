@@ -1,4 +1,4 @@
-import { PromocodeType, FAQType, PricesPathType, PriceItemType } from './../types/interfaces';
+import { PromocodeType, FAQType, PricesPathType, PriceItemType, FormValuesType } from './../types/interfaces';
 import axios from "axios";
 
 //const token = 
@@ -75,6 +75,16 @@ export const API = {
     getPurchases: async () => {
         try {
             const response = await apiInstance.get("purchase");
+            console.log(response.data)
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    addPurchase: async (purchase: FormValuesType) => {
+        try {
+            const response = await apiInstance.post("purchase", purchase);
             console.log(response.data)
             return response.data;
         } catch (error) {

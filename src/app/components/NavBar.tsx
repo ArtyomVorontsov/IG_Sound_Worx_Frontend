@@ -2,6 +2,8 @@ import React from 'react'
 import styled, { ThemeProvider } from "styled-components";
 import { NavLink } from 'react-router-dom';
 import { theme } from './theme';
+//@ts-ignore
+import logo from "../components/logo/IGLogo.webp";
 
 
 const NavBar = styled.nav`
@@ -64,7 +66,7 @@ export const NavigationLink = ({ to, children }: { to: string, children: React.R
     )
 }
 
-export const NavigationBar = ({ children, logo }: { children: React.ReactNode, logo: any }) => {
+export const NavigationBar = ({ children }: { children: React.ReactNode }) => {
     return (
         
             <NavBar>

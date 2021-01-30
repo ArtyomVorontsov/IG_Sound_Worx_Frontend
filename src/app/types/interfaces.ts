@@ -140,9 +140,10 @@ export type FormValuesType = {
     stemMastering: { price: {EUR: number, USD: number}, count: number }
     stereoMastering: { price: {EUR: number, USD: number}, count: number }
     additionalEdit: { price: {EUR: number, USD: number}, count: number }
-
+    mixingAndMastering: { price: {EUR: number, USD: number}, count: number }
 
     description: string,
+    link: string,
     promocode: string,
     discount: number,
     price: number,
