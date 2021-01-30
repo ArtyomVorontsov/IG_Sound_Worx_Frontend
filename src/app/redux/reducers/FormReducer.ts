@@ -1,5 +1,5 @@
 import { PricesStateType } from './PricesReducer';
-import { FormValuesType, PriceItemType, CurrencyType, PromocodeType, FieldType } from './../../types/interfaces';
+import { FormValuesType, PriceItemType, CurrencyType, PromocodeType, FieldType, ItemType } from './../../types/interfaces';
 import { Dispatch } from 'react';
 import { ActionTypes, SET_FORM_VALUES, SetFormValuesType, setFormValuesAC } from './../actionCreators/actionCreators';
 import { StateType } from '../../types/interfaces';
@@ -22,8 +22,8 @@ const defaultState: FormValuesType = {
     stemMastering: { price: {EUR: 0, USD: 0}, count: 0 },
     mixingAndMastering: { price: {EUR: 0, USD: 0}, count: 0 },
     additionalEdit: { price: {EUR: 0, USD: 0}, count: 0 },
-    productionAssistance: { price: {EUR: 0, USD: 0}, count: false },
-    trackProduction: { price: {EUR: 0, USD: 0}, count: false },
+    productionAssistance: { price: {EUR: 0, USD: 0}, count: 0 },
+    trackProduction: { price: {EUR: 0, USD: 0}, count: 0 },
 }
 
 
@@ -69,14 +69,46 @@ export const setFormValuesThunk = (field: FieldType) => (dispatch: Dispatch<SetF
     dispatch(setFormValuesAC(price))
 }
 
+
+
+
 export const checkoutThunk = () => async (dispatch: any, getState: () => StateType) => {
-    const purchase = getState().FormReducer;
+    const {description, email, full_name, 
+        discount, price, currency, 
+        note_to_payer, stereoMastering,
+        stemMastering, mixingAndMastering,
+        additionalEdit, productionAssistance,
+        trackProduction, link} = getState().FormReducer;
+
+    const fieldItems = {
+        stereoMastering,
+        stemMastering, mixingAndMastering,
+        additionalEdit, productionAssistance,
+        trackProduction
+    }
+
+    const items:Array<ItemType> = []
+    for (const key in fieldItems) {
+        items.push({quantity: fieldItems[key].count, price: fieldItems[key].price[currency], name: key})
+    }
+
+   
+
+    const purchase = {
+        description,
+        email,
+        full_name,
+        items,
+        discount,
+        price,
+        currency,
+        note_to_payer,
+        link
+    }
     try {
         const res = await API.addPurchase(purchase);
         console.log(res);
     } catch (error) {
         throw error;
     }
-    
-   
 }

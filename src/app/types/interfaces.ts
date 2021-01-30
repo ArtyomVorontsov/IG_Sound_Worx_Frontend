@@ -134,13 +134,13 @@ export type FormValuesType = {
     email: string
     full_name: string
 
-    productionAssistance: { price: {EUR: number, USD: number}, count: boolean }
-    trackProduction: { price: {EUR: number, USD: number}, count: boolean },
+    productionAssistance: { price: { EUR: number, USD: number }, count: number }
+    trackProduction: { price: { EUR: number, USD: number }, count: number },
 
-    stemMastering: { price: {EUR: number, USD: number}, count: number }
-    stereoMastering: { price: {EUR: number, USD: number}, count: number }
-    additionalEdit: { price: {EUR: number, USD: number}, count: number }
-    mixingAndMastering: { price: {EUR: number, USD: number}, count: number }
+    stemMastering: { price: { EUR: number, USD: number }, count: number }
+    stereoMastering: { price: { EUR: number, USD: number }, count: number }
+    additionalEdit: { price: { EUR: number, USD: number }, count: number }
+    mixingAndMastering: { price: { EUR: number, USD: number }, count: number }
 
     description: string,
     link: string,
@@ -177,4 +177,22 @@ export interface StereoMasteringType extends Prices {
     USD: number,
 }
 
-export interface FieldType { key: string, value: {count: number, price: {EUR: number, USD: number}} | boolean | string | number | CurrencyType }
+export interface FieldType { key: string, value: { count: number, price: { EUR: number, USD: number } } | boolean | string | number | CurrencyType }
+
+
+export type ItemType = {
+    quantity: number,
+    price: number,
+    name: string
+}
+
+export interface PurchaseType {
+    description: string, 
+    email: string, 
+    full_name: string,
+    discount: number,
+    price: number,
+    currency: CurrencyType,
+    note_to_payer: string,
+    items: Array<ItemType>
+}
