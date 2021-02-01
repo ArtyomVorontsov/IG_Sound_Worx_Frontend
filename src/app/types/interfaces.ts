@@ -29,11 +29,12 @@ export type CurrencyType = "EUR" | "USD"
 export type InvoiceItemType = {
     name: string,
     currency: CurrencyType,
+    description: string,
     unit_amount: {
         value: number,
         currency_code: CurrencyType
     },
-    quantity: number
+    quantity: number | string
 }
 
 export type PurchaseItemType = {

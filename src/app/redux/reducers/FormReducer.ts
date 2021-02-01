@@ -82,8 +82,10 @@ export const checkoutThunk = () => async (dispatch: any, getState: () => StateTy
 
     const fieldItems = {
         stereoMastering,
-        stemMastering, mixingAndMastering,
-        additionalEdit, productionAssistance,
+        stemMastering, 
+        mixingAndMastering,
+        additionalEdit,
+        productionAssistance,
         trackProduction
     }
 
@@ -91,8 +93,6 @@ export const checkoutThunk = () => async (dispatch: any, getState: () => StateTy
     for (const key in fieldItems) {
         items.push({quantity: fieldItems[key].count, price: fieldItems[key].price[currency], name: key})
     }
-
-   
 
     const purchase = {
         description,

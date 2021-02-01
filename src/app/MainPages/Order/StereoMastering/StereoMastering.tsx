@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { Content } from 'antd/lib/layout/layout';
 import { Form, Select, Card, Input, Divider } from "antd";
 import { FormValuesType, FieldType, PriceItemType } from '../../../types/interfaces';
@@ -11,6 +11,7 @@ import { FormLinkField } from '../../../components/FormLinkField';
 import { Loader } from "../../../components/Loader";
 
 
+
 type StereoMasteringProps = {
     children: React.ReactNode,
     formValues: FormValuesType
@@ -21,8 +22,13 @@ type StereoMasteringProps = {
 
 export const StereoMastering = ({ formValues, setFormValues, stereoMastering, checkout }: StereoMasteringProps) => {
 
+    const [isFinish, setFinish] = useState(false);
+    
+
+
     const onFinish = (formValues: FormValuesType) => {
-        checkout()
+        setFinish(true);
+        //checkout()
     }
 
     const onFinishFailed = () => {
@@ -33,6 +39,7 @@ export const StereoMastering = ({ formValues, setFormValues, stereoMastering, ch
 
 
         <Content>
+
 
             {!stereoMastering.isLoaded ? <Loader /> :
                 <Form
@@ -75,11 +82,15 @@ export const StereoMastering = ({ formValues, setFormValues, stereoMastering, ch
                             />
                         </div>
                         <FormCheckoutBlock
+                            formValues={formValues}
                             total={formValues.total}
                             price={formValues.price}
                             discount={formValues.discount}
                             currency={formValues.currency}
-                            setFormValues={setFormValues} />
+                            setFormValues={setFormValues}
+                            isFinish={isFinish}
+                            checkout={checkout}
+                        />
 
                     </FormWrapper>
                 </Form>

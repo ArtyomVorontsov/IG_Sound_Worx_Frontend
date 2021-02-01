@@ -92,6 +92,7 @@ export const API = {
         }
     },
 
+
     //FAQ
     getFAQ: async () => {
         try {
@@ -105,7 +106,7 @@ export const API = {
 
     addFAQ: async (body: string, title: string) => {
         try {
-            const response = await apiInstance.post("faq", {body, title});
+            const response = await apiInstance.post("faq", { body, title });
             console.log(response.data)
             return response.data;
         } catch (error) {
@@ -134,6 +135,7 @@ export const API = {
             throw error;
         }
     }
+
 
 
 
