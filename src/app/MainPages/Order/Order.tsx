@@ -14,6 +14,8 @@ export const Order = (props: OrderProps) => {
                 <Link to="/order/stereoMastering">Stereo mastering</Link>
                 <Link to="/order/stemMastering">Stem mastering</Link>
                 <Link to="/order/mixingAndMastering">Mixing and mastering</Link>
+                <Link to="/order/productionAssistance">Production assistance</Link>
+                <Link to="/order/trackProduction">Track production</Link>
             </div>
 
         </>

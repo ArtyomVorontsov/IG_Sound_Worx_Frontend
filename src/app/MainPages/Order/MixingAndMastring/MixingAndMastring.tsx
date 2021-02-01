@@ -19,10 +19,9 @@ type mixingAndMasteringProps = {
     setFormValues: (field: FieldType) => void
     mixingAndMastering: { isLoaded: boolean, item: PriceItemType },
     checkout: () => void
-    stemMastering
 }
 
-export const MixingAndMastring = ({ stemMastering, children, formValues, setFormValues, mixingAndMastering, checkout }: mixingAndMasteringProps) => {
+export const MixingAndMastring = ({children, formValues, setFormValues, mixingAndMastering, checkout }: mixingAndMasteringProps) => {
 
     const onFinish = () => {
 

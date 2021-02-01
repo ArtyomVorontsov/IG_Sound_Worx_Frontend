@@ -15,6 +15,8 @@ import { getPromocodesLoadedSelector, getPricesLoadedSelector, getFormValuesSele
 import { setFormValuesThunk, checkoutThunk } from '../../redux/reducers/FormReducer';
 import { StereoMastering } from '../../MainPages/Order/StereoMastering/StereoMastering';
 import { MixingAndMastring } from '../../MainPages/Order/MixingAndMastring/MixingAndMastring';
+import { ProductionAssistance } from '../../MainPages/Order/ProductionAssistance/ProductionAssistance';
+import { TrackProduction } from '../../MainPages/Order/TrackProduction/TrackProduction';
 
 
 
@@ -27,7 +29,9 @@ type mapStateProps = {
     formValues: FormValuesType,
     stemMastering,
     mixingAndMastering,
-    stereoMastering
+    stereoMastering,
+    productionAssistance,
+    trackProduction
 }
 
 type mapDispatchProps = {
@@ -39,16 +43,25 @@ type mapDispatchProps = {
 
 type MainProps = ownProps & mapStateProps & mapDispatchProps;
 
-export const Main = ({ getPrices, getPromocodes, isPromocodesLoaded, setFormValues, formValues,
+export const Main = ({ 
+    getPrices, 
+    getPromocodes, 
+    isPromocodesLoaded, 
+    setFormValues, 
+    formValues,
     stemMastering,
     mixingAndMastering,
     stereoMastering,
+    productionAssistance,
+    trackProduction,
     checkout }: MainProps) => {
 
     useEffect(() => {
         if (!stemMastering.isLoaded) getPrices("/stemMastering");
         if (!mixingAndMastering.isLoaded) getPrices("/mixingAndMastering");
         if (!stereoMastering.isLoaded) getPrices("/stereoMastering");
+        if (!stereoMastering.isLoaded) getPrices("/productionAssistance");
+        if (!stereoMastering.isLoaded) getPrices("/trackProduction");
 
         if (!isPromocodesLoaded) getPromocodes();
     }, [])
@@ -90,13 +103,34 @@ export const Main = ({ getPrices, getPromocodes, isPromocodesLoaded, setFormValu
 
                 <Route exact path={"/order/mixingAndMastering"}>
                     <MixingAndMastring
-                    stemMastering={stemMastering}
                         formValues={formValues}
                         setFormValues={setFormValues}
                         mixingAndMastering={mixingAndMastering}
                         checkout={checkout}
                         children />
                 </Route>
+
+                <Route exact path={"/order/productionAssistance"}>
+                    <ProductionAssistance
+                        formValues={formValues}
+                        setFormValues={setFormValues}
+                        productionAssistance={productionAssistance}
+                        checkout={checkout}
+                        children />
+                </Route>
+
+                <Route exact path={"/order/trackProduction"}>
+                    <TrackProduction
+                        formValues={formValues}
+                        setFormValues={setFormValues}
+                        trackProduction={trackProduction}
+                        checkout={checkout}
+                        children />
+                </Route>
+                
+
+
+             
 
                 <Footer style={{ backgroundColor: "white", height: "100px" }}>
 
@@ -112,6 +146,8 @@ const mapStateToProps = (state: StateType) => {
         stemMastering: state.PricesReducer.prices.stemMastering,
         mixingAndMastering: state.PricesReducer.prices.mixingAndMastering,
         stereoMastering: state.PricesReducer.prices.stereoMastering,
+        productionAssistance: state.PricesReducer.prices.productionAssistance,
+        trackProduction: state.PricesReducer.prices.trackProduction,
         isPromocodesLoaded: getPromocodesLoadedSelector(state),
         formValues: getFormValuesSelector(state),
     }
