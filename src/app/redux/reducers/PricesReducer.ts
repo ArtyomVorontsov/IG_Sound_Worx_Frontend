@@ -7,11 +7,11 @@ import { API } from '../../API/API';
 
 export type PricesStateType = {
     prices: {
-        stereoMastering?: {isLoaded: boolean, item: PriceItemType | null},
-        stemMastering?:  {isLoaded: boolean, item: PriceItemType | null},
-        mixingAndMastering?:  {isLoaded: boolean, item: PriceItemType | null},
-        trackProduction?:  {isLoaded: boolean, item: PriceItemType | null},
-        productionAssistance?:  {isLoaded: boolean, item: PriceItemType | null},
+        stereoMastering?: { isLoaded: boolean, item: PriceItemType | null },
+        stemMastering?: { isLoaded: boolean, item: PriceItemType | null },
+        mixingAndMastering?: { isLoaded: boolean, item: PriceItemType | null },
+        trackProduction?: { isLoaded: boolean, item: PriceItemType | null },
+        productionAssistance?: { isLoaded: boolean, item: PriceItemType | null },
     },
     errors: Array<ErrorType>,
     successes: Array<SuccessType>,
@@ -20,11 +20,11 @@ export type PricesStateType = {
 
 const defaultState: PricesStateType = {
     prices: {
-        stereoMastering: {isLoaded: false, item: null},
-        stemMastering:  {isLoaded: false, item: null},
-        mixingAndMastering:  {isLoaded: false, item: null},
-        trackProduction:  {isLoaded: false, item: null},
-        productionAssistance:  {isLoaded: false, item: null}
+        stereoMastering: { isLoaded: false, item: null },
+        stemMastering: { isLoaded: false, item: null },
+        mixingAndMastering: { isLoaded: false, item: null },
+        trackProduction: { isLoaded: false, item: null },
+        productionAssistance: { isLoaded: false, item: null }
     },
     errors: [],
     successes: [],
@@ -36,11 +36,15 @@ export const PricesReducer = (state = defaultState, action: ActionTypes) => {
     switch (action.type) {
 
         case SET_PRICES:
+
+            
             return {
                 ...state,
                 prices: {
                     ...state.prices,
-                    [action.prices[0].name]: {item: action.prices[0], isLoaded: true}
+                    ...action.prices
+                    //newPrices
+                    //[action.prices[0].name]: { item: action.prices[0], isLoaded: true }
                 },
                 isLoaded: true
             }
@@ -89,8 +93,13 @@ export const PricesReducer = (state = defaultState, action: ActionTypes) => {
 export const getPricesThunk = (path: PricesPathType) => async (dispatch: Dispatch<SetPricesType | SetPricesErrorType>) => {
     try {
         const prices = await API.getPrices(path);
+        const newPrices = {};
         
-        dispatch(setPricesAC(prices));
+        prices.forEach((element, index) => {
+            newPrices[prices[index].name] = ({ item: prices[index], isLoaded: true })
+        });
+
+        dispatch(setPricesAC(newPrices));
     } catch (error) {
         dispatch(setPricesErrorAC(error))
     }

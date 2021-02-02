@@ -16,11 +16,11 @@ type ProductionAssistanceProps = {
     children: React.ReactNode,
     formValues: FormValuesType
     setFormValues: (field: FieldType) => void
-    productionAssistance: { isLoaded: boolean, item: PriceItemType },
+    product: { isLoaded: boolean, item: PriceItemType },
     checkout: () => void
 }
 
-export const ProductionAssistance = ({ productionAssistance, children, formValues, setFormValues, checkout }: ProductionAssistanceProps) => {
+export const ProductionAssistance = ({ product, children, formValues, setFormValues, checkout }: ProductionAssistanceProps) => {
 
     const onFinish = () => {
         checkout();
@@ -33,7 +33,7 @@ export const ProductionAssistance = ({ productionAssistance, children, formValue
     return (
         <Content>
 
-            {!productionAssistance.isLoaded ? <Loader /> :
+            {!product.isLoaded ? <Loader /> :
                 <Form
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}

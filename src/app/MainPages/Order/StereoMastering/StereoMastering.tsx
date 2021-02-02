@@ -16,11 +16,11 @@ type StereoMasteringProps = {
     children: React.ReactNode,
     formValues: FormValuesType
     setFormValues: (field: FieldType) => void
-    stereoMastering: { isLoaded: boolean, item: PriceItemType },
+    product: { isLoaded: boolean, item: PriceItemType },
     checkout: () => void
 }
 
-export const StereoMastering = ({ formValues, setFormValues, stereoMastering, checkout }: StereoMasteringProps) => {
+export const StereoMastering = ({ formValues, setFormValues, product, checkout }: StereoMasteringProps) => {
 
     const [isFinish, setFinish] = useState(false);
     
@@ -41,7 +41,7 @@ export const StereoMastering = ({ formValues, setFormValues, stereoMastering, ch
         <Content>
 
 
-            {!stereoMastering.isLoaded ? <Loader /> :
+            {!product.isLoaded ? <Loader /> :
                 <Form
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
@@ -67,7 +67,7 @@ export const StereoMastering = ({ formValues, setFormValues, stereoMastering, ch
                             <FormLinkField setFormValues={setFormValues} />
 
                             <FormNumberField
-                                formData={stereoMastering.item}
+                                formData={product.item}
                                 setFormValues={setFormValues}
                                 name={"stereoMastering"}
                                 label={"Quantity of songs"} />
@@ -75,7 +75,7 @@ export const StereoMastering = ({ formValues, setFormValues, stereoMastering, ch
                             <Divider />
 
                             <FormNumberField
-                                formData={stereoMastering.item.additionalEdit}
+                                formData={product.item.additionalEdit}
                                 setFormValues={setFormValues}
                                 name={"additionalEdit"}
                                 label={"Additional editing"}

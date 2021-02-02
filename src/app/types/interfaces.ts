@@ -153,8 +153,8 @@ export type FormValuesType = {
 }
 
 
-export type PricesPathType = "/mixingAndMastering" | "/stemMastering" | "/stereoMastering" | "/productionAssistance" | "/trackProduction";
-
+export type PricesPathType = "/mixingAndMastering" | "/stemMastering" | "/stereoMastering" | "/productionAssistance" | "/trackProduction" | "/all";
+export type PricesProductsNamesType = "mixingAndMastering" | "stemMastering" | "stereoMastering" | "productionAssistance" | "trackProduction";
 
 export type AdditionalEditType = {
     EUR: number,

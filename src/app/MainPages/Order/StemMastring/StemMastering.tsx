@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Input, Switch, Divider, Button, Card, Select } from 'antd'
 import { Content, Footer } from 'antd/lib/layout/layout'
 import { FormWrapper, FieldGroup } from '../../../components/FormComponents'
@@ -17,11 +17,12 @@ type StemMasteringProps = {
     children: React.ReactNode;
     setFormValues: (field: FieldType) => void
     formValues: FormValuesType
-    stemMastering: { isLoaded: boolean, item: PriceItemType },
+    product: { isLoaded: boolean, item: PriceItemType },
     checkout: () => void
 }
 
-export const StemMastering = ({ setFormValues, formValues, stemMastering, checkout }: StemMasteringProps) => {
+export const StemMastering = ({ setFormValues, formValues, product, checkout }: StemMasteringProps) => {
+
     const onFinish = (formValues: FormValuesType) => {
         checkout()
     }
@@ -30,10 +31,10 @@ export const StemMastering = ({ setFormValues, formValues, stemMastering, checko
 
     }
 
-
+    const [isFinish, setFinish] = useState(false);
 
     return (
-        !stemMastering.isLoaded ? <Loader/>:
+        !product.isLoaded ? <Loader/>:
             <Content>
               
                 <Form
@@ -76,10 +77,10 @@ export const StemMastering = ({ setFormValues, formValues, stemMastering, checko
                                 {
                                     key: "stemMastering",
                                     value: {
-                                        count: Number(stemMastering.item.quantityOfStems[Number(e)].quantity.to),
+                                        count: Number(product.item.quantityOfStems[Number(e)].quantity.to),
                                         price: {
-                                            EUR: Number(stemMastering.item.quantityOfStems[Number(e)].EUR),
-                                            USD: Number(stemMastering.item.quantityOfStems[Number(e)].USD),
+                                            EUR: Number(product.item.quantityOfStems[Number(e)].EUR),
+                                            USD: Number(product.item.quantityOfStems[Number(e)].USD),
                                         }
                                     }
                                 })}
@@ -88,7 +89,7 @@ export const StemMastering = ({ setFormValues, formValues, stemMastering, checko
                             >
 
                                 {
-                                    stemMastering.item.quantityOfStems.map((stem, index) => {
+                                    product.item.quantityOfStems.map((stem, index) => {
                                         return <Option
                                             key={stem.id} value={index}>{`${stem.quantity.from} - ${stem.quantity.to}`}</Option>
                                     })
@@ -97,7 +98,7 @@ export const StemMastering = ({ setFormValues, formValues, stemMastering, checko
 
 
                             <FormNumberField
-                                formData={stemMastering.item.additionalEdit}
+                                formData={product.item.additionalEdit}
                                 setFormValues={setFormValues}
                                 name={"additionalEdit"}
                                 label={"Additional edit"}
@@ -110,7 +111,11 @@ export const StemMastering = ({ setFormValues, formValues, stemMastering, checko
                             price={formValues.price}
                             total={formValues.total}
                             discount={formValues.discount}
-                            currency={formValues.currency} />
+                            currency={formValues.currency}
+                            formValues={formValues}
+                            isFinish={isFinish}
+                            checkout={checkout}
+                             />
                     </FormWrapper>
                 </Form>
             </Content>

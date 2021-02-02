@@ -1,5 +1,4 @@
-import { StateType } from './../types/interfaces';
-import { $CombinedState } from 'redux';
+import { StateType, PricesProductsNamesType } from './../types/interfaces';
 
 
 //Promocodes
@@ -26,7 +25,19 @@ export const getPromocodesLoadedSelector = (state: StateType) => {
 
 //Prices 
 
-export const getPricesSelector = (state: StateType, product: "mixingAndMastering" | "stemMastering" | "stereoMastering" | "trackProduction" | "productionAssistance") => {
+export const getAllPricesSelector = (state: StateType) => {
+
+    const prices = state.PricesReducer.prices;
+    const allPrices = {};
+    for (const key in prices) {
+        if (prices[key] as PricesProductsNamesType) {
+            allPrices[key] = prices[key]
+        }
+    }
+    return allPrices
+}
+
+export const getPricesSelector = (state: StateType, product: PricesProductsNamesType) => {
     return state.PricesReducer.prices[product].item
 }
 

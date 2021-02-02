@@ -59,9 +59,9 @@ export const signInAC = (email: string, password: string): SignInType => {
 //Prices reducer
 export type SetPricesType = {
     type: typeof SET_PRICES,
-    prices: Array<PriceItemType>
+    prices: Object
 }
-export const setPricesAC = (prices: Array<PriceItemType>): SetPricesType => {
+export const setPricesAC = (prices: Object): SetPricesType => {
     return { type: SET_PRICES, prices }
 }
 

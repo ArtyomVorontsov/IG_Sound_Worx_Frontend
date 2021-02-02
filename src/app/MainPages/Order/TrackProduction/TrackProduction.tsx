@@ -16,11 +16,11 @@ type TrackProductionProps = {
     children: React.ReactNode,
     formValues: FormValuesType
     setFormValues: (field: FieldType) => void
-    trackProduction: { isLoaded: boolean, item: PriceItemType },
+    product: { isLoaded: boolean, item: PriceItemType },
     checkout: () => void
 }
 
-export const TrackProduction = ({ trackProduction, children, formValues, setFormValues, checkout }: TrackProductionProps) => {
+export const TrackProduction = ({ product, children, formValues, setFormValues, checkout }: TrackProductionProps) => {
 
     const onFinish = () => {
         checkout();
@@ -33,7 +33,7 @@ export const TrackProduction = ({ trackProduction, children, formValues, setForm
     return (
         <Content>
 
-            {!trackProduction.isLoaded ? <Loader /> :
+            {!product.isLoaded ? <Loader /> :
                 <Form
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}

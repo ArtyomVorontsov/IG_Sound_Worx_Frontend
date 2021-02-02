@@ -83,6 +83,7 @@ export const FormCheckoutBlock = ({ formValues, total, price, discount, setFormV
     //load paypal button with dynamic currency
     if (document.getElementById(`pp${formValues.currency}`) === null) {
         const script = document.createElement("script");
+        
         script.src = `https://www.paypal.com/sdk/js?client-id=Abf8fFqf6rsloMXkIbuyvTCGVuGvcsvTHT4AzDRxYo90e8YbNlf1Ph0lj3BL1-Gr9XiRGJB64yKtS_kt&currency=${formValues.currency}`
         script.id = `pp${formValues.currency}`;
         document.body.appendChild(script);

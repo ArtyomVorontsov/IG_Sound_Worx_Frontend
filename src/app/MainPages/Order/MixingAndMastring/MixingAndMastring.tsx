@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Content } from 'antd/lib/layout/layout'
 import { Form, Select, Divider } from 'antd'
 import { Loader } from '../../../components/Loader'
@@ -17,11 +17,11 @@ type mixingAndMasteringProps = {
     children: React.ReactNode,
     formValues: FormValuesType
     setFormValues: (field: FieldType) => void
-    mixingAndMastering: { isLoaded: boolean, item: PriceItemType },
+    product: { isLoaded: boolean, item: PriceItemType },
     checkout: () => void
 }
 
-export const MixingAndMastring = ({children, formValues, setFormValues, mixingAndMastering, checkout }: mixingAndMasteringProps) => {
+export const MixingAndMastring = ({children, formValues, setFormValues, product, checkout }: mixingAndMasteringProps) => {
 
     const onFinish = () => {
 
@@ -31,10 +31,12 @@ export const MixingAndMastring = ({children, formValues, setFormValues, mixingAn
 
     }
 
+    const [isFinish, setFinish] = useState(false);
+
     return (
         <Content>
 
-            {!mixingAndMastering.isLoaded ? <Loader /> :
+            {!product.isLoaded ? <Loader /> :
                 <Form
                     //name="order"
                     onFinish={onFinish}
@@ -61,10 +63,10 @@ export const MixingAndMastring = ({children, formValues, setFormValues, mixingAn
                                 {
                                     key: "mixingAndMastering",
                                     value: {
-                                        count: Number(mixingAndMastering.item.quantityOfStems[Number(e)].quantity.to),
+                                        count: Number(product.item.quantityOfStems[Number(e)].quantity.to),
                                         price: {
-                                            EUR: Number(mixingAndMastering.item.quantityOfStems[Number(e)].EUR),
-                                            USD: Number(mixingAndMastering.item.quantityOfStems[Number(e)].USD),
+                                            EUR: Number(product.item.quantityOfStems[Number(e)].EUR),
+                                            USD: Number(product.item.quantityOfStems[Number(e)].USD),
                                         }
                                     }
                                 })}
@@ -72,7 +74,7 @@ export const MixingAndMastring = ({children, formValues, setFormValues, mixingAn
                                 label={"Mixing and mastering"}
                             >
                                 {
-                                    mixingAndMastering.item.quantityOfStems.map((stem, index) => {
+                                    product.item.quantityOfStems.map((stem, index) => {
                                         return <Option
                                             key={stem.id} value={index}>{`${stem.quantity.from} - ${stem.quantity.to}`}</Option>
                                     })
@@ -81,7 +83,7 @@ export const MixingAndMastring = ({children, formValues, setFormValues, mixingAn
                             
                             <Divider/>
                                 <FormNumberField
-                                    formData={mixingAndMastering.item.additionalEdit}
+                                    formData={product.item.additionalEdit}
                                     name="additionalEdit"
                                     label={"Additional edit"}
                                     setFormValues={setFormValues}
@@ -97,6 +99,9 @@ export const MixingAndMastring = ({children, formValues, setFormValues, mixingAn
                             discount={formValues.discount}
                             currency={formValues.currency}
                             setFormValues={setFormValues}
+                            formValues={formValues}
+                            isFinish={isFinish}
+                            checkout={checkout}
                         />
                     </FormWrapper>
                 </Form>
