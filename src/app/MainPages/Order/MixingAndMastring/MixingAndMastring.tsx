@@ -5,12 +5,13 @@ import { Form, Select, Divider } from 'antd'
 import { Loader } from '../../../components/Loader'
 import { FormValuesType, FieldType, PriceItemType } from '../../../types/interfaces'
 import { FormWrapper } from '../../../components/FormComponents'
-import { FormCheckoutBlock } from '../../../components/FormCheckoutBlock'
+import FormCheckoutBlock from '../../../components/FormCheckoutBlock'
 import { NameEmailFields } from '../../../components/NameEmailFields'
 import { FormSelectField } from '../../../components/FormSelectField'
 import { FormLinkField } from '../../../components/FormLinkField'
-import {TextArea} from '../../../components/TextArea'
+import { TextArea } from '../../../components/TextArea'
 import { FormNumberField } from '../../../components/FormNumberField'
+import { Link } from 'react-router-dom'
 const { Option } = Select
 
 type mixingAndMasteringProps = {
@@ -21,7 +22,7 @@ type mixingAndMasteringProps = {
     checkout: () => void
 }
 
-export const MixingAndMastring = ({children, formValues, setFormValues, product, checkout }: mixingAndMasteringProps) => {
+export const MixingAndMastring = ({ children, formValues, setFormValues, product, checkout }: mixingAndMasteringProps) => {
 
     const [isCheckoutBlockOpen, setIsCheckoutBlockOpen] = useState(false);
 
@@ -39,7 +40,6 @@ export const MixingAndMastring = ({children, formValues, setFormValues, product,
 
     return (
         <Content>
-
             {!product.isLoaded ? <Loader /> :
                 <Form
                     //name="order"
@@ -84,14 +84,14 @@ export const MixingAndMastring = ({children, formValues, setFormValues, product,
                                     })
                                 }
                             </FormSelectField>
-                            
-                            <Divider/>
-                                <FormNumberField
-                                    formData={product.item.additionalEdit}
-                                    name="additionalEdit"
-                                    label={"Additional edit"}
-                                    setFormValues={setFormValues}
-                                />
+
+                            <Divider />
+                            <FormNumberField
+                                formData={product.item.additionalEdit}
+                                name="additionalEdit"
+                                label={"Additional edit"}
+                                setFormValues={setFormValues}
+                            />
 
 
 

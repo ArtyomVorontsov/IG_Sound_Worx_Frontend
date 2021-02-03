@@ -39,6 +39,7 @@ const MixingAndMastering = ({ mixingAndMastering, getPrices, setPrices,
     removePricesSuccess, isLoaded }: MixingAndMasteringProps) => {
 
 
+
     const onFinish = (values: PriceItemType) => {
         values.additionalEdit.features = values.additionalEdit.features.toString().split(",");
         values.features = values.features.toString().split(",");
@@ -111,12 +112,13 @@ const MixingAndMastering = ({ mixingAndMastering, getPrices, setPrices,
                 <Divider />
 
                 {
-                    !isLoaded ? <Loader/> :
+                    !isLoaded ? <Loader /> :
 
 
                         <CardWrapper>
-
+                           
                             <Card style={{ width: "90%" }}>
+                           
                                 <Form
                                     layout="vertical"
                                     fields={
@@ -188,6 +190,7 @@ const MixingAndMastering = ({ mixingAndMastering, getPrices, setPrices,
                         </CardWrapper>
 
                 }
+
             </PageContent>
         </>
     )

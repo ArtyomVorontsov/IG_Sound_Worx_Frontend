@@ -4,6 +4,7 @@ import { FormValuesType, FieldType, PricesProductsNamesType } from '../types/int
 import { Table} from 'antd';
 import Modal from 'antd/lib/modal/Modal';
 import { renderPayPalButton } from './PayPalButton';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 const { Option } = Select;
 
@@ -15,12 +16,14 @@ type FormCheckoutProps = {
     currentProduct: PricesProductsNamesType,
     checkout: () => void
     isCheckoutBlockOpen: boolean
+    history
 }
 
 
-export const FormCheckoutBlock = ({ formValues,
-    setFormValues, close, checkout, currentProduct, isCheckoutBlockOpen }: FormCheckoutProps) => {
+const FormCheckoutBlock: React.FC<RouteComponentProps & FormCheckoutProps> = ({ formValues,
+    setFormValues, close, checkout, currentProduct, isCheckoutBlockOpen, history }: FormCheckoutProps) => {
 
+   
     //load paypal button with dynamic currency
     if (document.getElementById(`pp${formValues.currency}`) === null) {
         const script = document.createElement("script");
@@ -31,7 +34,7 @@ export const FormCheckoutBlock = ({ formValues,
 
     useEffect(() => {
         if (isCheckoutBlockOpen)
-            renderPayPalButton(formValues, checkout);
+            renderPayPalButton(formValues, checkout, history);
     }, [isCheckoutBlockOpen])
 
     const handleClose = () => {
@@ -108,3 +111,5 @@ export const FormCheckoutBlock = ({ formValues,
         </>
     )
 }
+
+export default withRouter(FormCheckoutBlock);

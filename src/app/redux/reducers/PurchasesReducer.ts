@@ -4,7 +4,7 @@ import { ActionTypes, SET_PURCHASES } from "../actionCreators/actionCreators"
 import { API } from '../../API/API';
 import { notifyCreator } from '../../../utils/notifyCreator';
 
-type PurchaseStateType = {
+export type PurchaseStateType = {
     purchases: Array<PurchaseItemType>,
     isLoaded: boolean
 }
@@ -17,6 +17,7 @@ const defaultState: PurchaseStateType = {
 export const PurchasesReducer = (state = defaultState, action: ActionTypes) => {
     switch (action.type) {
 
+        
         case SET_PURCHASES:
             return {
                 purchases: [

@@ -1,5 +1,4 @@
 /// <reference path='../.d.ts'/>
-
 import React, { useEffect } from 'react';
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
@@ -10,6 +9,9 @@ import Admin from './pages/Admin/Admin';
 import Main from "./pages/Main/Main";
 
 import "./Styles/Styles.css"
+import PurchaseFinish from './pages/PurchaseFinish/PurchaseFinish';
+
+
 
 export const Context = React.createContext(store);
 
@@ -21,6 +23,7 @@ export const App = () => {
                 <Switch>
                     <Route path={"/admin"}><Admin /></Route>
                     <Route path={"/signIn"}><SignIn children /></Route>
+                    <Route exact path={"/purchaseFinish"}><PurchaseFinish children /></Route>
                     <Route path={"/"}><Main children/></Route>
                 </Switch>
             </Router>

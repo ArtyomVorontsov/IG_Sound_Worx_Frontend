@@ -1,7 +1,7 @@
 import { PricesStateType } from './PricesReducer';
 import { FormValuesType, PriceItemType, CurrencyType, PromocodeType, FieldType, ItemType } from './../../types/interfaces';
 import { Dispatch } from 'react';
-import { ActionTypes, SET_FORM_VALUES, SetFormValuesType, setFormValuesAC } from './../actionCreators/actionCreators';
+import { ActionTypes, SET_FORM_VALUES, SetFormValuesType, setFormValuesAC, setPurchaseAC } from './../actionCreators/actionCreators';
 import { StateType } from '../../types/interfaces';
 import { API } from '../../API/API';
 
@@ -107,6 +107,7 @@ export const checkoutThunk = () => async (dispatch: any, getState: () => StateTy
     }
     try {
         const res = await API.addPurchase(purchase);
+        dispatch(setPurchaseAC([res.purchase]))
         console.log(res);
     } catch (error) {
         throw error;

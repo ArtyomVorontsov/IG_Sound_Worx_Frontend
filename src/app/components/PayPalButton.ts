@@ -1,7 +1,7 @@
 import { invoiceGenerator } from './../../utils/invoiceGenerator';
 import { FormValuesType } from "../types/interfaces";
 
-export const renderPayPalButton = (formValues: FormValuesType, checkout) => {
+export const renderPayPalButton = (formValues: FormValuesType, checkout, history) => {
 
     const items = {
         "mixingAndMastering": formValues.mixingAndMastering,
@@ -42,7 +42,8 @@ export const renderPayPalButton = (formValues: FormValuesType, checkout) => {
             onApprove: async (data, actions) => {
                 const order = await actions.order.capture();
                 console.log(order);
-                checkout();
+                await checkout();
+                history.push("/purchaseFinish")
             },
             onError: err => {
                 console.error(err);

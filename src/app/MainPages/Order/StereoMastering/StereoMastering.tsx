@@ -3,7 +3,7 @@ import { Content } from 'antd/lib/layout/layout';
 import { Form, Select, Card, Input, Divider } from "antd";
 import { FormValuesType, FieldType, PriceItemType } from '../../../types/interfaces';
 import { FormWrapper } from '../../../components/FormComponents';
-import { FormCheckoutBlock } from '../../../components/FormCheckoutBlock';
+import FormCheckoutBlock from '../../../components/FormCheckoutBlock';
 import { NameEmailFields } from '../../../components/NameEmailFields';
 import { FormNumberField } from '../../../components/FormNumberField';
 import { TextArea } from "../../../components/TextArea";
