@@ -22,17 +22,19 @@ type StereoMasteringProps = {
 
 export const StereoMastering = ({ formValues, setFormValues, product, checkout }: StereoMasteringProps) => {
 
-    const [isFinish, setFinish] = useState(false);
+    const [isCheckoutBlockOpen, setIsCheckoutBlockOpen] = useState(false);
     
 
+    const closeCheckoutBlock = () => {
+        setIsCheckoutBlockOpen(false)
+    }
 
-    const onFinish = (formValues: FormValuesType) => {
-        setFinish(true);
-        //checkout()
+    const onFinish = () => {
+        setIsCheckoutBlockOpen(true);
     }
 
     const onFinishFailed = () => {
-
+        setIsCheckoutBlockOpen(false)
     }
 
     return (
@@ -83,12 +85,10 @@ export const StereoMastering = ({ formValues, setFormValues, product, checkout }
                         </div>
                         <FormCheckoutBlock
                             formValues={formValues}
-                            total={formValues.total}
-                            price={formValues.price}
-                            discount={formValues.discount}
-                            currency={formValues.currency}
                             setFormValues={setFormValues}
-                            isFinish={isFinish}
+                            close={closeCheckoutBlock}
+                            isCheckoutBlockOpen={isCheckoutBlockOpen}
+                            currentProduct={"stereoMastering"}
                             checkout={checkout}
                         />
 

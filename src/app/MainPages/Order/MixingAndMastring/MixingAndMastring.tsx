@@ -23,15 +23,19 @@ type mixingAndMasteringProps = {
 
 export const MixingAndMastring = ({children, formValues, setFormValues, product, checkout }: mixingAndMasteringProps) => {
 
-    const onFinish = () => {
+    const [isCheckoutBlockOpen, setIsCheckoutBlockOpen] = useState(false);
 
+    const closeCheckoutBlock = () => {
+        setIsCheckoutBlockOpen(false)
+    }
+
+    const onFinish = (formValues: FormValuesType) => {
+        setIsCheckoutBlockOpen(true);
     }
 
     const onFinishFailed = () => {
-
+        setIsCheckoutBlockOpen(false)
     }
-
-    const [isFinish, setFinish] = useState(false);
 
     return (
         <Content>
@@ -94,13 +98,11 @@ export const MixingAndMastring = ({children, formValues, setFormValues, product,
 
                         </div>
                         <FormCheckoutBlock
-                            total={formValues.total}
-                            price={formValues.total}
-                            discount={formValues.discount}
-                            currency={formValues.currency}
                             setFormValues={setFormValues}
                             formValues={formValues}
-                            isFinish={isFinish}
+                            currentProduct={"mixingAndMastering"}
+                            isCheckoutBlockOpen={isCheckoutBlockOpen}
+                            close={closeCheckoutBlock}
                             checkout={checkout}
                         />
                     </FormWrapper>

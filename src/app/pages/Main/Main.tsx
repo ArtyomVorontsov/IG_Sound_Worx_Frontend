@@ -51,7 +51,6 @@ export const Main = ({
 
     useEffect(() => {
         if (!isAllPricesLoaded) getPrices("/all")
-
         if (!isPromocodesLoaded) getPromocodes();
     }, [])
 

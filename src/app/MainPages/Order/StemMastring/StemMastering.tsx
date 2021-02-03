@@ -23,20 +23,24 @@ type StemMasteringProps = {
 
 export const StemMastering = ({ setFormValues, formValues, product, checkout }: StemMasteringProps) => {
 
+    const [isCheckoutBlockOpen, setIsCheckoutBlockOpen] = useState(false);
+
     const onFinish = (formValues: FormValuesType) => {
-        checkout()
+        setIsCheckoutBlockOpen(true)
     }
 
     const onFinishFailed = () => {
-
+        setIsCheckoutBlockOpen(false)
     }
 
-    const [isFinish, setFinish] = useState(false);
-
+    const closeCheckoutBlock = () => {
+        setIsCheckoutBlockOpen(false)
+    }
+    
     return (
-        !product.isLoaded ? <Loader/>:
+        !product.isLoaded ? <Loader /> :
             <Content>
-              
+
                 <Form
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
@@ -50,15 +54,15 @@ export const StemMastering = ({ setFormValues, formValues, product, checkout }: 
 
                             { name: "stemMastering", value: formValues.stemMastering.count },
                             { name: "additionalEdit", value: formValues.additionalEdit.count },
-                            { name: "link", value: formValues.link}
+                            { name: "link", value: formValues.link }
                         ]
                     }
 
                 >
                     <FormWrapper>
                         <div style={{ flex: 2 }}>
-                        <h1>Stem mastering</h1>
-                           <NameEmailFields setFormValues={setFormValues}/>
+                            <h1>Stem mastering</h1>
+                            <NameEmailFields setFormValues={setFormValues} />
 
                             <Form.Item
                                 name={"description"}
@@ -67,7 +71,7 @@ export const StemMastering = ({ setFormValues, formValues, product, checkout }: 
                                 <TextArea onChange={(e) => setFormValues({ key: e.target.id, value: e.target.value })} />
                             </Form.Item>
 
-                            <FormLinkField setFormValues={setFormValues}/>
+                            <FormLinkField setFormValues={setFormValues} />
 
                             <Divider />
 
@@ -107,15 +111,13 @@ export const StemMastering = ({ setFormValues, formValues, product, checkout }: 
 
                         </div>
                         <FormCheckoutBlock
+                            close={closeCheckoutBlock}
+                            isCheckoutBlockOpen={isCheckoutBlockOpen}
                             setFormValues={setFormValues}
-                            price={formValues.price}
-                            total={formValues.total}
-                            discount={formValues.discount}
-                            currency={formValues.currency}
                             formValues={formValues}
-                            isFinish={isFinish}
+                            currentProduct={"stemMastering"}
                             checkout={checkout}
-                             />
+                        />
                     </FormWrapper>
                 </Form>
             </Content>
