@@ -18,7 +18,7 @@ module.exports = {
             },
 
             {
-                test: /\.webp$/i,
+                test: /\.webp|jpg$/i,
                 use: [{
                     loader: "file-loader",
                     options: {

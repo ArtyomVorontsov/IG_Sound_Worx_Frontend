@@ -18,6 +18,7 @@ import { ProductionAssistance } from '../../MainPages/Order/ProductionAssistance
 import { TrackProduction } from '../../MainPages/Order/TrackProduction/TrackProduction';
 import { clearFormValuesAC } from '../../redux/actionCreators/actionCreators';
 import { checkLoginnedThunk } from '../../redux/reducers/LoginReducer';
+import { Services } from '../Services/Services';
 
 
 
@@ -83,7 +84,7 @@ export const Main = ({
                 </NavigationBar>
 
 
-
+                <Route exact path={"/services"}><Services/></Route>
                 <Route exact path={"/order"}><Order children /></Route>
 
                 <Route exact path={"/order/stereoMastering"}>
