@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Layout, Menu, Alert } from 'antd'
 import Sider from 'antd/lib/layout/Sider'
 import { Content, Header } from 'antd/lib/layout/layout'
 import { Route, NavLink } from 'react-router-dom'
-import { withRouter } from "react-router"
+import { withRouter, Redirect } from "react-router"
 import Purchases from '../../adminPages/Purchases/Purchases'
 import FAQ from "../../adminPages/FAQ/FAQ"
 import Promocodes from '../../adminPages/Promocodes/Promocodes'
@@ -25,7 +25,8 @@ type OwnProps = {
 }
 
 type MapStateProps = {
-    errors: Array<ErrorType>
+    errors: Array<ErrorType>,
+    isLoginned: boolean
 }
 
 type MapDispatchProps = {
@@ -39,6 +40,8 @@ const Admin = (props: AdminProps) => {
 
     let currentPage = props.location.pathname.replace("/admin/", "");;
     console.log(currentPage)
+
+
     return (
         <>
             {
@@ -46,6 +49,9 @@ const Admin = (props: AdminProps) => {
                     return <Alert key={error.id} type="error" closable message={`${error.data} Status: ${error.status}`} />
                 }) : null
             }
+
+            {
+                !props.isLoginned ? <Redirect to="/signIn"/> :
             <Layout style={{ display: "flex", flexDirection: "row", height: "100vh" }}>
                 <Sider>
                     <Menu selectedKeys={[currentPage]} theme="dark" mode="inline">
@@ -73,7 +79,7 @@ const Admin = (props: AdminProps) => {
                     <Route exact path={"/admin/productionAssistance"}> <ProductionAssistance children />  </Route>
                     
                 </Content>
-            </Layout>
+            </Layout>}
         </>
     )
 }
@@ -81,7 +87,8 @@ const Admin = (props: AdminProps) => {
 
 const mapStateToProps = (state: StateType) => {
     return {
-        errors: state.AppReducer.errors
+        errors: state.AppReducer.errors,
+        isLoginned: state.LoginReducer.isLoginned
     }
 }
 

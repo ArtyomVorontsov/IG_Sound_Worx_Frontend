@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState, useEffect } from 'react';
 import { Content } from 'antd/lib/layout/layout';
 import { Form, Select, Card, Input, Divider } from "antd";
 import { FormValuesType, FieldType, PriceItemType } from '../../../types/interfaces';
@@ -18,9 +18,10 @@ type StereoMasteringProps = {
     setFormValues: (field: FieldType) => void
     product: { isLoaded: boolean, item: PriceItemType },
     checkout: () => void
+    clearFormValues: () => void
 }
 
-export const StereoMastering = ({ formValues, setFormValues, product, checkout }: StereoMasteringProps) => {
+export const StereoMastering = ({clearFormValues, formValues, setFormValues, product, checkout }: StereoMasteringProps) => {
 
     const [isCheckoutBlockOpen, setIsCheckoutBlockOpen] = useState(false);
     
@@ -36,6 +37,10 @@ export const StereoMastering = ({ formValues, setFormValues, product, checkout }
     const onFinishFailed = () => {
         setIsCheckoutBlockOpen(false)
     }
+
+    useEffect(()=>{
+        clearFormValues()
+    },[])
 
     return (
 

@@ -33,6 +33,7 @@ export const REMOVE_PROMOCODE_ERROR = "REMOVE_PROMOCODE_ERROR";
 
 //Form
 export const SET_FORM_VALUES = "SET_FORM_VALUES";
+export const CLEAR_FORM_VALUES = "CLEAR_FORM_VALUES";
 
 //App
 export const SET_APP_ERROR = "SET_APP_ERROR"
@@ -49,11 +50,11 @@ export const setAppErrorAC = (error: ErrorType): SetAppErrorType => {
 
 //Login reducer
 export type SignInType = {
-    type: "SIGN_IN", email: string, password: string
+    type: "SIGN_IN", email: string
 }
 
-export const signInAC = (email: string, password: string): SignInType => {
-    return { type: "SIGN_IN", email, password }
+export const signInAC = (email: string): SignInType => {
+    return { type: "SIGN_IN", email }
 }
 
 //Prices reducer
@@ -223,11 +224,19 @@ export const setFormValuesAC = (values: FieldType): SetFormValuesType => {
     return { type: SET_FORM_VALUES, values }
 }
 
+export type ClearFormValuesType = {
+    type: typeof CLEAR_FORM_VALUES
+}
+
+export const clearFormValuesAC = (): ClearFormValuesType => {
+    return {type: CLEAR_FORM_VALUES}
+}
+
 //Action types
 export type ActionTypes = SignInType | SetPricesType
     | SetPromocodeType | DetetePromocodeType | SetPromocodesType
     | SetPurchasesType | SetFAQType | AddFAQType | DeleteFAQType | SetUsersType
     | SetPricesErrorType | SetPricesSucessType | RemovePricesErrorType | RemovePricesSuccessType
     | SetPromocodeSuccessType | RemovePromocodeSuccessType | SetPromocodeErrorType
-    | RemovePromocodeErrorType | SetAppErrorType | SetFormValuesType
+    | RemovePromocodeErrorType | SetAppErrorType | SetFormValuesType | ClearFormValuesType
 

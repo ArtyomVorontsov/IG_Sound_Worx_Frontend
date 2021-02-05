@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Content } from 'antd/lib/layout/layout'
 import { Form, Select, Divider, Button } from 'antd'
 import { Loader } from '../../../components/Loader'
@@ -17,9 +17,10 @@ type ProductionAssistanceProps = {
     setFormValues: (field: FieldType) => void
     product: { isLoaded: boolean, item: PriceItemType },
     checkout: () => void
+    clearFormValues: () => void
 }
 
-export const ProductionAssistance = ({ product, children, formValues, setFormValues, checkout }: ProductionAssistanceProps) => {
+export const ProductionAssistance = ({clearFormValues, product, children, formValues, setFormValues, checkout }: ProductionAssistanceProps) => {
 
     const onFinish = () => {
         checkout();
@@ -28,6 +29,10 @@ export const ProductionAssistance = ({ product, children, formValues, setFormVal
     const onFinishFailed = () => {
 
     }
+
+    useEffect(() => {
+        clearFormValues();
+      }, [])
 
     return (
         <Content>

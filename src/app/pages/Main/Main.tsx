@@ -16,6 +16,8 @@ import { StereoMastering } from '../../MainPages/Order/StereoMastering/StereoMas
 import { MixingAndMastring } from '../../MainPages/Order/MixingAndMastring/MixingAndMastring';
 import { ProductionAssistance } from '../../MainPages/Order/ProductionAssistance/ProductionAssistance';
 import { TrackProduction } from '../../MainPages/Order/TrackProduction/TrackProduction';
+import { clearFormValuesAC } from '../../redux/actionCreators/actionCreators';
+import { checkLoginnedThunk } from '../../redux/reducers/LoginReducer';
 
 
 
@@ -27,7 +29,8 @@ type mapStateProps = {
     isPromocodesLoaded: boolean,
     formValues: FormValuesType,
     allPrices,
-    isAllPricesLoaded
+    isAllPricesLoaded,
+    
 }
 
 type mapDispatchProps = {
@@ -35,6 +38,8 @@ type mapDispatchProps = {
     getPromocodes: () => void
     setFormValues: (field: FieldType) => void,
     checkout: () => void
+    clearFormValues: () => void
+    checkLoginned: () => void
 }
 
 type MainProps = ownProps & mapStateProps & mapDispatchProps;
@@ -47,18 +52,24 @@ export const Main = ({
     formValues,
     allPrices,
     checkout,
-    isAllPricesLoaded }: MainProps) => {
+    isAllPricesLoaded,
+    clearFormValues,
+    checkLoginned }: MainProps) => {
 
     useEffect(() => {
         if (!isAllPricesLoaded) getPrices("/all")
         if (!isPromocodesLoaded) getPromocodes();
+        checkLoginned()
     }, [])
 
     const RouteProps = {
         formValues,
         setFormValues,
         checkout,
+        clearFormValues
     }
+
+   
 
     return (
         <>
@@ -119,7 +130,9 @@ const mapDispatchToProps = (dispatch: any) => {
         getPrices: (path: PricesPathType) => dispatch(getPricesThunk(path)),
         getPromocodes: () => dispatch(getPromocodesThunk()),
         setFormValues: (field: FieldType) => dispatch(setFormValuesThunk(field)),
-        checkout: () => dispatch(checkoutThunk())
+        checkout: () => dispatch(checkoutThunk()),
+        clearFormValues: ()=> dispatch(clearFormValuesAC()),
+        checkLoginned: () => dispatch(checkLoginnedThunk())
     }
 }
 

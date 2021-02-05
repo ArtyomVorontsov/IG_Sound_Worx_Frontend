@@ -1,7 +1,7 @@
 import { PricesStateType } from './PricesReducer';
 import { FormValuesType, PriceItemType, CurrencyType, PromocodeType, FieldType, ItemType } from './../../types/interfaces';
 import { Dispatch } from 'react';
-import { ActionTypes, SET_FORM_VALUES, SetFormValuesType, setFormValuesAC, setPurchaseAC } from './../actionCreators/actionCreators';
+import { ActionTypes, SET_FORM_VALUES, SetFormValuesType, setFormValuesAC, setPurchaseAC, CLEAR_FORM_VALUES } from './../actionCreators/actionCreators';
 import { StateType } from '../../types/interfaces';
 import { API } from '../../API/API';
 
@@ -36,12 +36,17 @@ export const FormReducer = (state = defaultState, action: ActionTypes) => {
                 [action.values.key]: action.values.value
             }
 
+        case CLEAR_FORM_VALUES:
+            return {
+                ...defaultState
+            }
+
         default:
             return state;
     }
 }
 
-const countTotal = (formValues: FormValuesType, prices: PricesStateType, currency: CurrencyType) => {
+const countTotal = (formValues: FormValuesType, currency: CurrencyType) => {
 
     const price = { key: "price", value: 0 };
     price.value = formValues.stereoMastering.price[currency] +
@@ -64,7 +69,7 @@ export const setFormValuesThunk = (field: FieldType) => (dispatch: Dispatch<SetF
     dispatch(setFormValuesAC(field))
 
     const { FormReducer, PricesReducer } = getState()
-    const { total, price } = countTotal(FormReducer, PricesReducer, FormReducer.currency)
+    const { total, price } = countTotal(FormReducer, FormReducer.currency)
     dispatch(setFormValuesAC(total))
     dispatch(setFormValuesAC(price))
 }

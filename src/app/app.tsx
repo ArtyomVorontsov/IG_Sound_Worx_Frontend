@@ -17,6 +17,8 @@ export const Context = React.createContext(store);
 
 export const App = () => {
 
+    
+
     return (
         <Provider store={store}>
             <Router>

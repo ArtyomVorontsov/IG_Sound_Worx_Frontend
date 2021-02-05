@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Content } from 'antd/lib/layout/layout'
 import { Form, Select, Divider } from 'antd'
 import { Loader } from '../../../components/Loader'
@@ -18,11 +17,12 @@ type mixingAndMasteringProps = {
     children: React.ReactNode,
     formValues: FormValuesType
     setFormValues: (field: FieldType) => void
-    product: { isLoaded: boolean, item: PriceItemType },
+    product: { isLoaded: boolean, item: PriceItemType }
     checkout: () => void
+    clearFormValues: () => void
 }
 
-export const MixingAndMastring = ({ children, formValues, setFormValues, product, checkout }: mixingAndMasteringProps) => {
+export const MixingAndMastring = ({ clearFormValues, children, formValues, setFormValues, product, checkout }: mixingAndMasteringProps) => {
 
     const [isCheckoutBlockOpen, setIsCheckoutBlockOpen] = useState(false);
 
@@ -38,11 +38,14 @@ export const MixingAndMastring = ({ children, formValues, setFormValues, product
         setIsCheckoutBlockOpen(false)
     }
 
+    useEffect(() => {
+      clearFormValues();
+    }, [])
+
     return (
         <Content>
             {!product.isLoaded ? <Loader /> :
                 <Form
-                    //name="order"
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                     layout="vertical"
@@ -92,10 +95,6 @@ export const MixingAndMastring = ({ children, formValues, setFormValues, product
                                 label={"Additional edit"}
                                 setFormValues={setFormValues}
                             />
-
-
-
-
                         </div>
                         <FormCheckoutBlock
                             setFormValues={setFormValues}

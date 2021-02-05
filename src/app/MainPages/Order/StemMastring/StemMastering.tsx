@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Input, Switch, Divider, Button, Card, Select } from 'antd'
 import { Content, Footer } from 'antd/lib/layout/layout'
 import { FormWrapper, FieldGroup } from '../../../components/FormComponents'
@@ -19,9 +19,10 @@ type StemMasteringProps = {
     formValues: FormValuesType
     product: { isLoaded: boolean, item: PriceItemType },
     checkout: () => void
+    clearFormValues: () => void
 }
 
-export const StemMastering = ({ setFormValues, formValues, product, checkout }: StemMasteringProps) => {
+export const StemMastering = ({ clearFormValues, setFormValues, formValues, product, checkout }: StemMasteringProps) => {
 
     const [isCheckoutBlockOpen, setIsCheckoutBlockOpen] = useState(false);
 
@@ -36,6 +37,10 @@ export const StemMastering = ({ setFormValues, formValues, product, checkout }: 
     const closeCheckoutBlock = () => {
         setIsCheckoutBlockOpen(false)
     }
+
+    useEffect(()=>{
+        clearFormValues()
+    },[])
     
     return (
         !product.isLoaded ? <Loader /> :
