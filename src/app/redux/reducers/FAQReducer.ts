@@ -28,7 +28,7 @@ export const FAQReducer = (state = defaultState, action: ActionTypes) => {
             return {
                 ...state,
                 FAQ: [
-                    action.FAQ,
+                    action.FAQ, ...state.FAQ
                 ]
             }
 

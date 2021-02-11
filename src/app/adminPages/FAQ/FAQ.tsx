@@ -39,12 +39,21 @@ const FAQ = ({ FAQ, getFAQ, addFAQ, deleteFAQ, isLoaded }: FAQProps) => {
 
     }
 
+    const [titleValue, setTitleValue] = useState("");
+    const [bodyValue, setBodyValue] = useState("");
+
     
-
-
     useEffect(() => {
         if (!isLoaded) getFAQ()
     }, [])
+
+    useEffect(()=>{
+        setBodyValue("");
+        setTitleValue("");
+        console.log("hi")
+    }, [FAQ])
+
+    console.log(titleValue)
 
     return (
         <Layout>
@@ -61,19 +70,30 @@ const FAQ = ({ FAQ, getFAQ, addFAQ, deleteFAQ, isLoaded }: FAQProps) => {
                                 name="faq"
                                 onFinish={onFinish}
                                 onFinishFailed={onFinishFailed}
+                                fields = {
+                                    [
+                                        {name: "title", value: titleValue},
+                                        {name: "body", value: bodyValue}
+                                    ]
+                                    
+                                }
                             >
                                 <Form.Item
                                     name={"title"}
                                     label={"Title"}
                                     rules={[{ required: true, message: "Field is required." }]}
                                 >
-                                    <Input />
+                                    <Input 
+                                    onChange={e => setTitleValue(e.target.value)} />
                                 </Form.Item>
                                 <Form.Item
                                     required name={"body"}
                                     label={"Body"}
                                     rules={[{ required: true, message: "Field is required." }]}>
-                                    <TextArea draggable={false} rows={4} />
+                                    <TextArea 
+                                    onChange={e => setBodyValue(e.target.value)} 
+                                    draggable={false} 
+                                    rows={4} />
                                 </Form.Item>
                                 <Button htmlType="submit" type="primary">Submit</Button>
                             </Form>

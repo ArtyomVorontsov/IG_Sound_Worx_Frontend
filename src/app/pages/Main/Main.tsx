@@ -7,10 +7,10 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../../components/theme';
 import { Footer } from 'antd/lib/layout/layout';
 import { connect } from 'react-redux';
-import { StateType, PricesPathType, FieldType, FormValuesType } from '../../types/interfaces';
+import { StateType, PricesPathType, FieldType, FormValuesType, FAQType, PriceItemType } from '../../types/interfaces';
 import { getPricesThunk } from '../../redux/reducers/PricesReducer';
 import { getPromocodesThunk } from '../../redux/reducers/PromocodeReducer';
-import { getPromocodesLoadedSelector, getFormValuesSelector, getAllPricesSelector } from "../../selectors/selectors"
+import { getPromocodesLoadedSelector, getFormValuesSelector, getAllPricesSelector, getFAQSelector, getIsLoadedFAQ } from "../../selectors/selectors"
 import { setFormValuesThunk, checkoutThunk } from '../../redux/reducers/FormReducer';
 import { StereoMastering } from '../../MainPages/Order/StereoMastering/StereoMastering';
 import { MixingAndMastring } from '../../MainPages/Order/MixingAndMastring/MixingAndMastring';
@@ -19,6 +19,9 @@ import { TrackProduction } from '../../MainPages/Order/TrackProduction/TrackProd
 import { clearFormValuesAC } from '../../redux/actionCreators/actionCreators';
 import { checkLoginnedThunk } from '../../redux/reducers/LoginReducer';
 import { Services } from '../Services/Services';
+import { FAQ } from '../../MainPages/FAQ/FAQ';
+import { getFAQThunk } from '../../redux/reducers/FAQReducer';
+import { Pricing } from '../Pricing/Pricing';
 
 
 
@@ -30,8 +33,10 @@ type mapStateProps = {
     isPromocodesLoaded: boolean,
     formValues: FormValuesType,
     allPrices,
-    isAllPricesLoaded,
-    
+    isAllPricesLoaded: boolean,
+    faq: Array<FAQType>,
+    isFaqLoaded: boolean
+
 }
 
 type mapDispatchProps = {
@@ -41,11 +46,13 @@ type mapDispatchProps = {
     checkout: () => void
     clearFormValues: () => void
     checkLoginned: () => void
+    getFaq: () => void
 }
 
 type MainProps = ownProps & mapStateProps & mapDispatchProps;
 
 export const Main = ({
+    faq,
     getPrices,
     getPromocodes,
     isPromocodesLoaded,
@@ -55,7 +62,9 @@ export const Main = ({
     checkout,
     isAllPricesLoaded,
     clearFormValues,
-    checkLoginned }: MainProps) => {
+    checkLoginned,
+    isFaqLoaded,
+    getFaq }: MainProps) => {
 
     useEffect(() => {
         if (!isAllPricesLoaded) getPrices("/all")
@@ -70,22 +79,30 @@ export const Main = ({
         clearFormValues
     }
 
-   
+
 
     return (
         <>
             <ThemeProvider theme={theme}>
                 <NavigationBar>
+                    <NavigationLink to="/services">Services</NavigationLink>
                     <NavigationLink to="/pricing">Pricing</NavigationLink>
-                    <NavigationLink to="/ourWorx">OurWorx</NavigationLink>
                     <NavigationLink to="/faq">FAQ</NavigationLink>
                     <NavigationLink to="/contacts">Contacts</NavigationLink>
-                    <NavigationLink to="/order">Order</NavigationLink>
+                    {/* <NavigationLink to="/order">Order</NavigationLink> */}
                 </NavigationBar>
 
 
-                <Route exact path={"/services"}><Services/></Route>
+                <Route exact path={"/services"}><Services /></Route>
                 <Route exact path={"/order"}><Order children /></Route>
+                <Route exact path={"/faq"}>
+                    <FAQ children
+                        faq={faq}
+                        isFaqLoaded={isFaqLoaded}
+                        getFaq={getFaq} />
+                </Route>
+                <Route exact path={"/pricing"}><Pricing children /></Route>
+
 
                 <Route exact path={"/order/stereoMastering"}>
                     <StereoMastering {...RouteProps} children product={allPrices.stereoMastering} />
@@ -122,6 +139,8 @@ const mapStateToProps = (state: StateType) => {
         isAllPricesLoaded: state.PricesReducer.isLoaded,
         isPromocodesLoaded: getPromocodesLoadedSelector(state),
         formValues: getFormValuesSelector(state),
+        faq: getFAQSelector(state),
+        isFaqLoaded: getIsLoadedFAQ(state)
     }
 }
 
@@ -129,10 +148,11 @@ const mapStateToProps = (state: StateType) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         getPrices: (path: PricesPathType) => dispatch(getPricesThunk(path)),
+        getFaq: () => dispatch(getFAQThunk()),
         getPromocodes: () => dispatch(getPromocodesThunk()),
         setFormValues: (field: FieldType) => dispatch(setFormValuesThunk(field)),
         checkout: () => dispatch(checkoutThunk()),
-        clearFormValues: ()=> dispatch(clearFormValuesAC()),
+        clearFormValues: () => dispatch(clearFormValuesAC()),
         checkLoginned: () => dispatch(checkLoginnedThunk())
     }
 }

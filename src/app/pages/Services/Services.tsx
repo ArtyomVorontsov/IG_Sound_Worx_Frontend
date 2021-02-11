@@ -1,11 +1,22 @@
 import React, { useEffect } from 'react'
 import Styled from "styled-components";
 //@ts-ignore
-import bgImage from "../../../images/bgImage.jpg";
+import mixer from "../../../images/mixer.jpg";
+
+console.log(mixer)
+
+type SectionProps = {
+    backgroundImage?: string
+    backgroundPosition?: string
+    backgroundImageSize?: string
+}
 
 const Section = Styled.section`
     overflow: hidden;
     position: relative;
+    ${(props: SectionProps) => props.backgroundImage ? `background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${props.backgroundImage});` : null}
+    background-position: ${(props: SectionProps) => props.backgroundPosition ? props.backgroundPosition : "center"}; 
+    background-size: ${(props: SectionProps) => props.backgroundImageSize ? props.backgroundImageSize : "cover"};
     background-color: ${(props) => props.color};
     height: 80vh;
     width: 100%;
@@ -26,7 +37,7 @@ const Header1 = Styled.h1`
 `
 
 const Header2 = Styled.h2`
-    color: ${(props) => props.color};
+    color: ${(props: { color: string }) => props.color};
     width: 50vw;
     text-align: center;
     font-size: 50px;
@@ -63,6 +74,7 @@ const StyledLink = Styled.a`
     border: solid 2px ${(props) => props.color};
     border-radius: 5px;
     padding: 10px;
+    margin: 40px;
     z-index: 1;
 `
 
@@ -72,6 +84,7 @@ const MainInSection = Styled.div`
     flex-direction: column;
     align-items: center;
     height: 60vh;
+    ${(props: { backgroundColor?: string }) => props.backgroundColor ? `background-color: ${props.backgroundColor};` : null}
 `
 
 
@@ -80,10 +93,27 @@ const MainInSection = Styled.div`
 export const Services = () => {
     useEffect(() => {
         canvasFunc();
-        
+
     }, [])
 
     const canvasFunc = () => {
+
+        const colors = [
+            "#5361e0", "#d63838", "#cc31bf", "#ffc226"
+        ]
+
+        const randomColor = () => {
+            const color = colors[Math.floor(Math.random() * colors.length)]
+            return color;
+        }
+
+
+        const color = ["#5361e0"];
+
+        setInterval(() => {
+            color[0] = randomColor();
+        }, 1000)
+
         var c = document.getElementById("canvas"); // Grab canvas object
         //@ts-ignore
         var ctx = c.getContext("2d"); // Define canvas context
@@ -99,7 +129,7 @@ export const Services = () => {
             ctx.clearRect(0, 0, w, h * 2);
 
             ctx.beginPath();
-            ctx.strokeStyle = "#5361e0";
+            ctx.strokeStyle = color[0]
             for (var i = 0; i < x; i++) {
                 if (i / 3 == Math.round(i / 3)) {
                     var y = calcSineY(i);
@@ -124,7 +154,7 @@ export const Services = () => {
     return (
         <>
             <Section color="black">
-                <canvas style={{ position: "absolute", zIndex: 0 }} id="canvas" width={window.innerWidth} height={window.innerHeight} />
+                <canvas style={{ position: "absolute", zIndex: 0 }} id="canvas" width={window.innerWidth} height={"500"} />
                 <MainInSection>
                     <Header1>ELECTRONIC DANCE MUSIC MIXING / MASTERING AND PRODUCTION SERVICE</Header1>
                     <StyledSpanWhite>Let us help you at the final stages of music production by delivering a professional sound.</StyledSpanWhite>
@@ -133,17 +163,47 @@ export const Services = () => {
             </Section>
 
 
-            <Section color="white">
-                <MainInSection>
-                    <Header2 color="black">STEREO MASTERING</Header2>
-                    <SubtitleBlack>Last touch to make it perfect</SubtitleBlack>
+           
+
+            <Section backgroundImage={"../../../images/stemMastering.jpg"} color="black">
+                <MainInSection backgroundColor={"white"}>
+                    <Header2 color="black">STEM MASTEING</Header2>
+                    <SubtitleBlack>Deep Mastetering with Mixing touches</SubtitleBlack>
 
                     <StyledSpanBlack>
                         Turnaround time: 2 working days <br />
                     Revisions included: 2 <br />
                     Mastering to a reference track <br />
                     </StyledSpanBlack>
-                    <p>
+                    <StyledSpanBlack>
+                        Advanced M/S EQ
+                        Compression
+                        Multiband compression
+                        M/S compression (dynamic)
+                        Exiting
+                        Stereo imaging
+                        Mono compatibility
+                        Loudness control
+                        Finalizing
+                </StyledSpanBlack>
+                <StyledLink color="black" href="/contact">Order now</StyledLink>
+                </MainInSection>
+              
+
+            </Section>
+
+            <Section backgroundImage={"../../../images/radio.jpg"}
+                backgroundPosition={"left"} backgroundImageSize={"cover"} color="white">
+                <MainInSection backgroundColor={"black"}>
+                    <Header2 color="white">STEREO MASTERING</Header2>
+                    <SubtitleWhite>Last touch to make it perfect</SubtitleWhite>
+
+                    <StyledSpanWhite>
+                        Turnaround time: 2 working days <br />
+                    Revisions included: 2 <br />
+                    Mastering to a reference track <br />
+                    </StyledSpanWhite>
+                    <StyledSpanWhite>
                         EQ
                         Compression
                         Multiband compression
@@ -152,41 +212,16 @@ export const Services = () => {
                         Mono compatibility
                         Loudness
                         Finalizing (final control)
-                </p>
-                </MainInSection>
-                <StyledLink color="black" href="/contact">Order now</StyledLink>
-
-            </Section>
-
-            <Section color="black">
-                <MainInSection>
-                    <Header2 color="white">STEM MASTEING</Header2>
-                    <SubtitleWhite>Deep Mastetering with Mixing touches</SubtitleWhite>
-
-                    <StyledSpanWhite>
-                        Turnaround time: 2 working days <br />
-                    Revisions included: 2 <br />
-                    Mastering to a reference track <br />
                     </StyledSpanWhite>
-                    <p style={{ color: "white" }}>
-                        Advanced M/S EQ
-                        Compression
-                        Multiband compression
-                        M/S compression (dynamic)
-                        Exiting
-                        Stereo imaging
-                        Mono compatibility
-                        Loudness control
-                        Finalizing
-                </p>
+                    <StyledLink color="white" href="/contact">Order now</StyledLink>
                 </MainInSection>
-                <StyledLink color="white" href="/contact">Order now</StyledLink>
+
 
             </Section>
 
-            <Section color="white">
+            <Section backgroundPosition={"left"} backgroundImageSize={"300px"} backgroundImage={"../../../images/vinil.jpg"} color="white">
 
-                <MainInSection>
+                <MainInSection backgroundColor={"white"}>
                     <Header2 color="black">MIXING AND MASTERING</Header2>
                     <SubtitleBlack>Full mixing and mastering. From A to Z.</SubtitleBlack>
 
@@ -195,7 +230,7 @@ export const Services = () => {
                     Revisions included: UNLIMITED <br />
                     Mixing Mastering to a reference track <br />
                     </StyledSpanBlack>
-                    <p style={{ color: "black" }}>
+                    <StyledSpanBlack>
                         Advanced M/S EQ
                         Compression
                         Multiband compression
@@ -205,9 +240,10 @@ export const Services = () => {
                         Mono compatibility
                         Loudness control
                         Finalizing
-                </p>
+                    </StyledSpanBlack>
+                    <StyledLink color="black">Order now</StyledLink>
                 </MainInSection>
-                <StyledLink color="black">Order now</StyledLink>
+
             </Section>
 
 
