@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../../components/theme';
 import { Footer } from 'antd/lib/layout/layout';
 import { connect } from 'react-redux';
-import { StateType, PricesPathType, FieldType, FormValuesType, FAQType, PriceItemType } from '../../types/interfaces';
+import { StateType, PricesPathType, FieldType, FormValuesType, FAQType, PriceItemType, AllPricesType } from '../../types/interfaces';
 import { getPricesThunk } from '../../redux/reducers/PricesReducer';
 import { getPromocodesThunk } from '../../redux/reducers/PromocodeReducer';
 import { getPromocodesLoadedSelector, getFormValuesSelector, getAllPricesSelector, getFAQSelector, getIsLoadedFAQ } from "../../selectors/selectors"
@@ -32,7 +32,7 @@ type ownProps = {
 type mapStateProps = {
     isPromocodesLoaded: boolean,
     formValues: FormValuesType,
-    allPrices,
+    allPrices: AllPricesType,
     isAllPricesLoaded: boolean,
     faq: Array<FAQType>,
     isFaqLoaded: boolean
@@ -79,7 +79,7 @@ export const Main = ({
         clearFormValues
     }
 
-
+    console.log(allPrices)
 
     return (
         <>
@@ -101,7 +101,11 @@ export const Main = ({
                         isFaqLoaded={isFaqLoaded}
                         getFaq={getFaq} />
                 </Route>
-                <Route exact path={"/pricing"}><Pricing children /></Route>
+                <Route exact path={"/pricing"}>
+                    <Pricing children
+                        allPrices={allPrices}
+                        isAllPricesLoaded={isAllPricesLoaded} />
+                </Route>
 
 
                 <Route exact path={"/order/stereoMastering"}>

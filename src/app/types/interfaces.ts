@@ -4,6 +4,15 @@ const state = store.getState();
 export type StateType = typeof state;
 
 
+export type AllPricesType = {
+    mixingAndMastering: { isLoaded: boolean, item: PriceItemType },
+    productionAssistance: { isLoaded: boolean, item: PriceItemType },
+    stemMastering: { isLoaded: boolean, item: PriceItemType },
+    stereoMastering: { isLoaded: boolean, item: PriceItemType },
+    trackProduction: { isLoaded: boolean, item: PriceItemType },
+}
+
+
 export type PriceItemType = {
     title?: string,
     name?: string

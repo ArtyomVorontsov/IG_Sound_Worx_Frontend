@@ -4,7 +4,6 @@ import { Collapse } from 'antd';
 import { Loader } from '../../components/Loader';
 const { Panel } = Collapse;
 import Styled from "styled-components";
-import Layout, { Header } from 'antd/lib/layout/layout';
 
 
 
