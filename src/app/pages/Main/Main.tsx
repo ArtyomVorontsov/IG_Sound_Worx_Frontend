@@ -5,7 +5,7 @@ import { Order } from '../../MainPages/Order/Order';
 import { StemMastering } from '../../MainPages/Order/StemMastring/StemMastering';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../components/theme';
-import { Footer } from 'antd/lib/layout/layout';
+import { Footer } from '../../components/Footer.jsx';
 import { connect } from 'react-redux';
 import { StateType, PricesPathType, FieldType, FormValuesType, FAQType, PriceItemType, AllPricesType } from '../../types/interfaces';
 import { getPricesThunk } from '../../redux/reducers/PricesReducer';
@@ -84,8 +84,9 @@ export const Main = ({
 
     return (
         <>
-            <main style={{height: "auto"}}>
-                <ThemeProvider theme={theme}>
+
+            <ThemeProvider theme={theme}>
+                <main style={{ height: "auto", overflow: "hidden", position: "relative" }}>
                     <NavigationBar>
                         {/* <NavigationLink to="/">Services</NavigationLink> */}
                         <NavigationLink to="/pricing">Pricing</NavigationLink>
@@ -116,8 +117,8 @@ export const Main = ({
                             isAllPricesLoaded={isAllPricesLoaded} />
                     </Route>
 
-                    <Route>
-                        <Contacts children/>
+                    <Route exact path={"/contact"}>
+                        <Contacts children />
                     </Route>
 
 
@@ -141,13 +142,11 @@ export const Main = ({
                         <TrackProduction {...RouteProps} children product={allPrices.trackProduction} />
                     </Route>
 
+                </main>
 
-                </ThemeProvider>
-            </main>
+                <Footer />
+            </ThemeProvider>
 
-            <footer style={{ backgroundColor: "white", height: "100px" }}>
-
-            </footer>
         </>
     )
 }

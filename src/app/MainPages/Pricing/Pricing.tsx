@@ -5,15 +5,11 @@ import { Loader } from '../../components/Loader';
 const { Panel } = Collapse;
 import Styled from "styled-components";
 import { AllPricesType } from '../../types/interfaces';
+import { Section } from '../../components/Section';
 
 
 
-const Section = Styled.section`
-    ${props => props.theme.flexStyles("column", "center", "center")}
-    height: auto;
-    width: 80%;
-    margin: auto;
-`
+
 
 
 type ownProps = {

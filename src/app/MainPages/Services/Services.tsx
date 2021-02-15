@@ -35,6 +35,11 @@ const Header1 = Styled.h1`
     font-size: 50px;
     font-weight: bold;
     z-index: 1;
+
+    @media only screen and (max-width: 600px) {
+        font-size: 35px;
+        width: 80vw;
+    }
 `
 
 const Header2 = Styled.h2`
@@ -44,31 +49,57 @@ const Header2 = Styled.h2`
     font-size: 50px;
     font-weight: bold;
 
+    @media only screen and (max-width: 600px) {
+        font-size: 35px;
+    }
+
 `
 
 const SubtitleBlack = Styled.h3`
     color: black;
     font-size: 30px;
+    text-align: center;
+
+    @media only screen and (max-width: 600px) {
+        font-size: 15px;
+        width: 80vw;
+    }
 `
 
 const SubtitleWhite = Styled.h3`
     color: white;
     font-size: 30px;
+    text-align: center;
+
+    @media only screen and (max-width: 600px) {
+        font-size: 15px;
+        width: 80vw;
+    }
 `
 
 
 const StyledSpanBlack = Styled.span`
     color: black;
     text-align: center;
-    width: 80vh;
+    width: 80vw;
     z-index: 1;
+
+    @media only screen and (max-width: 600px) {
+        font-size: 15px;
+        width: 80vw;
+    }
 `
 
 const StyledSpanWhite = Styled.span`
     color: white;
     text-align: center;
-    width: 80vh;
+    width: 80vw;
     z-index: 1;
+
+    @media only screen and (max-width: 600px) {
+        font-size: 15px;
+        width: 80vw;
+    }
 `
 const StyledLink = Styled.div`
 margin: 40px;
@@ -89,6 +120,8 @@ const MainInSection = Styled.div`
     flex-direction: column;
     align-items: center;
     height: 60vh;
+    padding: 20px;
+    box-sizing:border-box;
     ${(props: { backgroundColor?: string }) => props.backgroundColor ? `background-color: ${props.backgroundColor};` : null}
 `
 
@@ -165,7 +198,7 @@ export const Services = () => {
                     <StyledSpanWhite>Let us help you at the final stages of music production by delivering a professional sound.</StyledSpanWhite>
                 </MainInSection>
                 <StyledLink color="orange">
-                        <Link to="/order">Order now</Link>
+                    <Link to="/order">Order now</Link>
                 </StyledLink>
             </Section>
 
@@ -192,7 +225,7 @@ export const Services = () => {
                         Mono compatibility
                         Loudness control
                         Finalizing
-                </StyledSpanBlack>
+                    </StyledSpanBlack>
 
                     <StyledLink color="orange">
                         <Link to="/order/stemMastering">Order now</Link>
@@ -273,7 +306,7 @@ export const Services = () => {
                     Revisions included: 2 <br />
                     Mastering to a reference track <br />
                     </StyledSpanWhite>
-                    <p style={{ color: "white" }}>
+                    <StyledSpanWhite>
                         Sample pack production
                         Full track production
                         Remixing
@@ -283,11 +316,11 @@ export const Services = () => {
                         Bassline rework
                         FX rework e.t.c
 
-                </p>
+                </StyledSpanWhite>
                 </MainInSection>
-                    <StyledLink color="orange">
-                        <Link to="/order/productionAssistance">Order now</Link>
-                    </StyledLink>
+                <StyledLink color="orange">
+                    <Link to="/order/productionAssistance">Order now</Link>
+                </StyledLink>
             </Section>
         </>
     )

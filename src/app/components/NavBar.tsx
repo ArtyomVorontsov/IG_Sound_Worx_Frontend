@@ -1,12 +1,16 @@
-import React from 'react'
-import styled, { ThemeProvider } from "styled-components";
+import React, { useState } from 'react'
+import Styled, { ThemeProvider } from "styled-components";
 import { NavLink, Link } from 'react-router-dom';
 import { theme } from './theme';
 //@ts-ignore
 import logo from "../components/logo/IGLogo.webp";
 
 
-const NavBar = styled.nav`
+type NavbarProps = {
+    isOpen: boolean
+}
+
+const NavBar = Styled.nav`
     width:100%;
     box-sizing: border-box;
     padding: 0 10% 0 10%;
@@ -14,9 +18,42 @@ const NavBar = styled.nav`
     display: flex;
     height: 60px;
     ${props => props.theme.flexStyles("row", "center", "center")}
+
+    @media only screen and (max-width: 600px) {
+        transition: all 0.3s;
+        top: 0;
+        z-index: 10;
+        height: 100vh;
+        overflow: hidden;
+
+        ${props => props.theme.flexStyles("column", "center", "center")}
+
+        ${
+            (props:NavbarProps) => props.isOpen ? `
+                transform: translateX(0);
+                position: sticky;
+               
+            ` : `
+                transform: translateX(100%);
+                position: absolute;
+               
+            `
+        }
+
+        a div{
+            flex: 1;
+            height: 200px;
+        }
+
+
+        ul{
+            ${props => props.theme.flexStyles("column", "center", "space-between")}
+            flex: 1;
+        } 
+    }
 `
 
-const NavBarUl = styled.ul`
+const NavBarUl = Styled.ul`
     flex: 7;
     ${props => props.theme.flexStyles("row", "center", "space-between")}
     padding: 0;
@@ -24,7 +61,7 @@ const NavBarUl = styled.ul`
     margin: 0;
 `
 
-export const NavBarLi = styled.li`
+export const NavBarLi = Styled.li`
     list-style-type: none;
     margin: 0;
     ${props => props.theme.flexStyles("row", "center", "center")}
@@ -44,6 +81,21 @@ export const NavBarLi = styled.li`
             color: orange;
         }
     }
+
+    @media only screen and (max-width: 600px) {
+        font-size: 20px;
+    }
+`
+
+const Burger = Styled.button`
+    display: none;
+    @media only screen and (max-width: 600px) {
+        display: block;
+        position: absolute;
+        top: 20px;
+        left: 90%;
+        z-index: 11;
+    }
 `
 
 const activeStyle = {
@@ -51,7 +103,7 @@ const activeStyle = {
 }
 
 
-export const Logo = styled.div`
+export const Logo = Styled.div`
     ${props => props.theme.flexStyles("row", "center", "flex-start")}
     flex: 3;
 `
@@ -67,17 +119,24 @@ export const NavigationLink = ({ to, children }: { to: string, children: React.R
 }
 
 export const NavigationBar = ({ children }: { children: React.ReactNode }) => {
-    return (
 
-        <NavBar>
+    const [isOpen, setOpen] = useState(false);
+
+    console.log(isOpen)
+
+    return (
+        <>
+        <Burger onClick={() => isOpen ? setOpen(false) : setOpen(true)} id="burger">open</Burger>
+        <NavBar isOpen={isOpen}>
             <Link to="/">
-                <Logo>
+                <Logo onClick={() => setOpen(false)}>
                     <img width="150" src={logo} alt="logo" />
                 </Logo>
             </Link>
-            <NavBarUl>
+            <NavBarUl onClick={() => setOpen(false)}>
                 {children}
             </NavBarUl>
         </NavBar>
+        </>
     )
 }
