@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import Styled from "styled-components";
 //@ts-ignore
 import mixer from "../../../images/mixer.jpg";
+import { Link } from 'react-router-dom';
 
 console.log(mixer)
 
@@ -69,13 +70,16 @@ const StyledSpanWhite = Styled.span`
     width: 80vh;
     z-index: 1;
 `
-const StyledLink = Styled.a`
+const StyledLink = Styled.div`
+margin: 40px;
+a{
     color: ${(props) => props.color};
     border: solid 2px ${(props) => props.color};
     border-radius: 5px;
     padding: 10px;
-    margin: 40px;
     z-index: 1;
+}
+   
 `
 
 const MainInSection = Styled.div`
@@ -108,11 +112,11 @@ export const Services = () => {
         }
 
 
-        const color = ["#5361e0"];
+        // const color = ["#5361e0"];
 
-        setInterval(() => {
-            color[0] = randomColor();
-        }, 1000)
+        // setInterval(() => {
+        //     color[0] = randomColor();
+        // }, 1000)
 
         var c = document.getElementById("canvas"); // Grab canvas object
         //@ts-ignore
@@ -129,7 +133,7 @@ export const Services = () => {
             ctx.clearRect(0, 0, w, h * 2);
 
             ctx.beginPath();
-            ctx.strokeStyle = color[0]
+            ctx.strokeStyle = "#5361e0"
             for (var i = 0; i < x; i++) {
                 if (i / 3 == Math.round(i / 3)) {
                     var y = calcSineY(i);
@@ -159,13 +163,15 @@ export const Services = () => {
                     <Header1>ELECTRONIC DANCE MUSIC MIXING / MASTERING AND PRODUCTION SERVICE</Header1>
                     <StyledSpanWhite>Let us help you at the final stages of music production by delivering a professional sound.</StyledSpanWhite>
                 </MainInSection>
-                <StyledLink color="white" href="/contact">CONTACT US</StyledLink>
+                <StyledLink>
+                        <Link to="/order">Order now</Link>
+                </StyledLink>
             </Section>
 
 
-           
 
-            <Section backgroundImage={"../../../images/stemMastering.jpg"} color="black">
+
+            <Section /* backgroundImage={"../../../images/stemMastering.jpg"} */ color="black">
                 <MainInSection backgroundColor={"white"}>
                     <Header2 color="black">STEM MASTEING</Header2>
                     <SubtitleBlack>Deep Mastetering with Mixing touches</SubtitleBlack>
@@ -186,13 +192,16 @@ export const Services = () => {
                         Loudness control
                         Finalizing
                 </StyledSpanBlack>
-                <StyledLink color="black" href="/contact">Order now</StyledLink>
+
+                    <StyledLink>
+                        <Link to="/order/stemMastering">Order now</Link>
+                    </StyledLink>
                 </MainInSection>
-              
+
 
             </Section>
 
-            <Section backgroundImage={"../../../images/radio.jpg"}
+            <Section /* backgroundImage={"../../../images/radio.jpg"} */
                 backgroundPosition={"left"} backgroundImageSize={"cover"} color="white">
                 <MainInSection backgroundColor={"black"}>
                     <Header2 color="white">STEREO MASTERING</Header2>
@@ -213,13 +222,17 @@ export const Services = () => {
                         Loudness
                         Finalizing (final control)
                     </StyledSpanWhite>
-                    <StyledLink color="white" href="/contact">Order now</StyledLink>
+
+                    <StyledLink>
+                        <Link to="/order/stereoMastering">Order now</Link>
+                    </StyledLink>
+
                 </MainInSection>
 
 
             </Section>
 
-            <Section backgroundPosition={"left"} backgroundImageSize={"300px"} backgroundImage={"../../../images/vinil.jpg"} color="white">
+            <Section backgroundPosition={"left"} /* backgroundImageSize={"300px"} backgroundImage={"../../../images/vinil.jpg"} */ color="black">
 
                 <MainInSection backgroundColor={"white"}>
                     <Header2 color="black">MIXING AND MASTERING</Header2>
@@ -241,7 +254,9 @@ export const Services = () => {
                         Loudness control
                         Finalizing
                     </StyledSpanBlack>
-                    <StyledLink color="black">Order now</StyledLink>
+                    <StyledLink>
+                        <Link to="/order/mixingAndMastering">Order now</Link>
+                    </StyledLink>
                 </MainInSection>
 
             </Section>
@@ -269,7 +284,9 @@ export const Services = () => {
 
                 </p>
                 </MainInSection>
-                <StyledLink color="white">Order now</StyledLink>
+                <StyledLink>
+                        <Link to="/order/productionAssistance">Order now</Link>
+                    </StyledLink>
             </Section>
         </>
     )

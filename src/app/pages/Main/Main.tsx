@@ -18,10 +18,10 @@ import { ProductionAssistance } from '../../MainPages/Order/ProductionAssistance
 import { TrackProduction } from '../../MainPages/Order/TrackProduction/TrackProduction';
 import { clearFormValuesAC } from '../../redux/actionCreators/actionCreators';
 import { checkLoginnedThunk } from '../../redux/reducers/LoginReducer';
-import { Services } from '../Services/Services';
+import { Services } from '../../MainPages/Services/Services';
 import { FAQ } from '../../MainPages/FAQ/FAQ';
 import { getFAQThunk } from '../../redux/reducers/FAQReducer';
-import { Pricing } from '../Pricing/Pricing';
+import { Pricing } from '../../MainPages/Pricing/Pricing';
 
 
 
@@ -83,55 +83,60 @@ export const Main = ({
 
     return (
         <>
-            <ThemeProvider theme={theme}>
-                <NavigationBar>
-                    <NavigationLink to="/services">Services</NavigationLink>
-                    <NavigationLink to="/pricing">Pricing</NavigationLink>
-                    <NavigationLink to="/faq">FAQ</NavigationLink>
-                    <NavigationLink to="/contacts">Contacts</NavigationLink>
-                    {/* <NavigationLink to="/order">Order</NavigationLink> */}
-                </NavigationBar>
+            <main style={{height: "auto"}}>
+                <ThemeProvider theme={theme}>
+                    <NavigationBar>
+                        <NavigationLink to="/services">Services</NavigationLink>
+                        <NavigationLink to="/pricing">Pricing</NavigationLink>
+                        <NavigationLink to="/faq">FAQ</NavigationLink>
+                        <NavigationLink to="/contacts">Contacts</NavigationLink>
+                        {/* <NavigationLink to="/order">Order</NavigationLink> */}
+                    </NavigationBar>
 
 
-                <Route exact path={"/services"}><Services /></Route>
-                <Route exact path={"/order"}><Order children /></Route>
-                <Route exact path={"/faq"}>
-                    <FAQ children
-                        faq={faq}
-                        isFaqLoaded={isFaqLoaded}
-                        getFaq={getFaq} />
-                </Route>
-                <Route exact path={"/pricing"}>
-                    <Pricing children
-                        allPrices={allPrices}
-                        isAllPricesLoaded={isAllPricesLoaded} />
-                </Route>
+                    <Route exact path={"/services"}><Services /></Route>
+                    <Route exact path={"/order"}><Order children /></Route>
+                    <Route exact path={"/faq"}>
+                        <FAQ children
+                            faq={faq}
+                            isFaqLoaded={isFaqLoaded}
+                            getFaq={getFaq} />
+                    </Route>
+
+                    <Route exact path={"/pricing"}>
+                        <Pricing children
+                            allPrices={allPrices}
+                            isAllPricesLoaded={isAllPricesLoaded} />
+                    </Route>
 
 
-                <Route exact path={"/order/stereoMastering"}>
-                    <StereoMastering {...RouteProps} children product={allPrices.stereoMastering} />
-                </Route>
+                    <Route exact path={"/order/stereoMastering"}>
+                        <StereoMastering {...RouteProps} children product={allPrices.stereoMastering} />
+                    </Route>
 
-                <Route exact path={"/order/stemMastering"}>
-                    <StemMastering {...RouteProps} children product={allPrices.stemMastering} />
-                </Route>
+                    <Route exact path={"/order/stemMastering"}>
+                        <StemMastering {...RouteProps} children product={allPrices.stemMastering} />
+                    </Route>
 
-                <Route exact path={"/order/mixingAndMastering"}>
-                    <MixingAndMastring {...RouteProps} children product={allPrices.mixingAndMastering} />
-                </Route>
+                    <Route exact path={"/order/mixingAndMastering"}>
+                        <MixingAndMastring {...RouteProps} children product={allPrices.mixingAndMastering} />
+                    </Route>
 
-                <Route exact path={"/order/productionAssistance"}>
-                    <ProductionAssistance {...RouteProps} children product={allPrices.productionAssistance} />
-                </Route>
+                    <Route exact path={"/order/productionAssistance"}>
+                        <ProductionAssistance {...RouteProps} children product={allPrices.productionAssistance} />
+                    </Route>
 
-                <Route exact path={"/order/trackProduction"}>
-                    <TrackProduction {...RouteProps} children product={allPrices.trackProduction} />
-                </Route>
+                    <Route exact path={"/order/trackProduction"}>
+                        <TrackProduction {...RouteProps} children product={allPrices.trackProduction} />
+                    </Route>
 
-                <Footer style={{ backgroundColor: "white", height: "100px" }}>
 
-                </Footer>
-            </ThemeProvider>
+                </ThemeProvider>
+            </main>
+
+            <footer style={{ backgroundColor: "white", height: "100px" }}>
+
+            </footer>
         </>
     )
 }

@@ -45,7 +45,7 @@ export const FAQ = ({ faq, isFaqLoaded, getFaq }: FAQProps) => {
         <>
         
         <Section>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: 'flex-start', justifyContent: "center", width: "100%" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: 'flex-start', justifyContent: "center", width: "100%", margin: "20px 0 20px 0" }}>
                 <h1 style={{fontSize: "40px"}}>FAQ</h1>
             </div>
            
