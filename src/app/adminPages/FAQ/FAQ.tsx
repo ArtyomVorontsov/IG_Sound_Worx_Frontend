@@ -91,6 +91,7 @@ const FAQ = ({ FAQ, getFAQ, addFAQ, deleteFAQ, isLoaded }: FAQProps) => {
                                     label={"Body"}
                                     rules={[{ required: true, message: "Field is required." }]}>
                                     <TextArea 
+                                    style={{whiteSpace: "pre-line"}}
                                     onChange={e => setBodyValue(e.target.value)} 
                                     draggable={false} 
                                     rows={4} />

@@ -57,14 +57,14 @@ export const FAQ = ({ faq, isFaqLoaded, getFaq }: FAQProps) => {
                 {faq.map((faq) => {
                     return (
                             <Panel key={faq.id} header={faq.title}>
-                                {faq.body}
+                                <div dangerouslySetInnerHTML={{__html: faq.body.replace(/(?:\n)/g, "<br/>")}}></div>
                             </Panel>
                       
                     )})}
                  </Collapse> : <Loader/>
             }
             </CollapseWrapper>
-           
+          
         </Section>
         </>
     )

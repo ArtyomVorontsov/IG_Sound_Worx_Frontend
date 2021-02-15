@@ -147,7 +147,7 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
 
                             <Descriptions.Item span={3} label={"Production assistance"}>
                                 <div>
-                                    <b>Prices</b>
+                                    <b>Prices starting at:</b>
                                     <p>EUR: {allPrices.productionAssistance.item.EUR}</p>
                                     <p>USD: {allPrices.productionAssistance.item.USD}</p>
                                 </div>
@@ -158,11 +158,15 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                                         {allPrices.productionAssistance.item.features.join(", ")}
                                     </p>
                                 </div>
+
+                                <div>
+                                    <p><b>For more info:</b> igsw@mail.com</p>
+                                </div>
                             </Descriptions.Item>
 
-                            <Descriptions.Item span={3} label={"Stereo mastering"}>
+                            <Descriptions.Item span={3} label={"Track production"}>
                                 <div>
-                                    <b>Prices</b>
+                                    <b>Prices starting at:</b>
                                     <p>EUR: {allPrices.trackProduction.item.EUR}</p>
                                     <p>USD: {allPrices.trackProduction.item.USD}</p>
                                 </div>
@@ -172,6 +176,10 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                                     <p>
                                         {allPrices.trackProduction.item.features.join(", ")}
                                     </p>
+                                </div>
+
+                                <div>
+                                    <p><b>For more info:</b> igsw@mail.com</p>
                                 </div>
                             </Descriptions.Item>
                         </Descriptions>

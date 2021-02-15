@@ -86,7 +86,7 @@ export const Main = ({
             <main style={{height: "auto"}}>
                 <ThemeProvider theme={theme}>
                     <NavigationBar>
-                        <NavigationLink to="/services">Services</NavigationLink>
+                        <NavigationLink to="/">Services</NavigationLink>
                         <NavigationLink to="/pricing">Pricing</NavigationLink>
                         <NavigationLink to="/faq">FAQ</NavigationLink>
                         <NavigationLink to="/contacts">Contacts</NavigationLink>
@@ -94,7 +94,7 @@ export const Main = ({
                     </NavigationBar>
 
 
-                    <Route exact path={"/services"}><Services /></Route>
+                    <Route exact path={"/"}><Services /></Route>
                     <Route exact path={"/order"}><Order children /></Route>
                     <Route exact path={"/faq"}>
                         <FAQ children
