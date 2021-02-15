@@ -6,7 +6,7 @@ import { FieldType } from '../types/interfaces'
 
 
 type NameEmailFieldsProps = {
-    setFormValues: (field: FieldType) => void
+    setFormValues?: (field: FieldType) => void
 }
 
 export const NameEmailFields = ({setFormValues}: NameEmailFieldsProps) => {

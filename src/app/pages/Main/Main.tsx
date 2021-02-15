@@ -22,6 +22,7 @@ import { Services } from '../../MainPages/Services/Services';
 import { FAQ } from '../../MainPages/FAQ/FAQ';
 import { getFAQThunk } from '../../redux/reducers/FAQReducer';
 import { Pricing } from '../../MainPages/Pricing/Pricing';
+import { Contacts } from '../../MainPages/Contacts/Contacts';
 
 
 
@@ -86,7 +87,7 @@ export const Main = ({
             <main style={{height: "auto"}}>
                 <ThemeProvider theme={theme}>
                     <NavigationBar>
-                        <NavigationLink to="/">Services</NavigationLink>
+                        {/* <NavigationLink to="/">Services</NavigationLink> */}
                         <NavigationLink to="/pricing">Pricing</NavigationLink>
                         <NavigationLink to="/faq">FAQ</NavigationLink>
                         <NavigationLink to="/contacts">Contacts</NavigationLink>
@@ -94,8 +95,14 @@ export const Main = ({
                     </NavigationBar>
 
 
-                    <Route exact path={"/"}><Services /></Route>
-                    <Route exact path={"/order"}><Order children /></Route>
+                    <Route exact path={"/"}>
+                        <Services />
+                    </Route>
+
+                    <Route exact path={"/order"}>
+                        <Order children />
+                    </Route>
+
                     <Route exact path={"/faq"}>
                         <FAQ children
                             faq={faq}
@@ -107,6 +114,10 @@ export const Main = ({
                         <Pricing children
                             allPrices={allPrices}
                             isAllPricesLoaded={isAllPricesLoaded} />
+                    </Route>
+
+                    <Route>
+                        <Contacts children/>
                     </Route>
 
 

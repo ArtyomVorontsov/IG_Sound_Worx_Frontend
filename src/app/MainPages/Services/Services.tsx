@@ -72,12 +72,13 @@ const StyledSpanWhite = Styled.span`
 `
 const StyledLink = Styled.div`
 margin: 40px;
+z-index: 2;
 a{
     color: ${(props) => props.color};
     border: solid 2px ${(props) => props.color};
     border-radius: 5px;
     padding: 10px;
-    z-index: 1;
+   
 }
    
 `
@@ -163,7 +164,7 @@ export const Services = () => {
                     <Header1>ELECTRONIC DANCE MUSIC MIXING / MASTERING AND PRODUCTION SERVICE</Header1>
                     <StyledSpanWhite>Let us help you at the final stages of music production by delivering a professional sound.</StyledSpanWhite>
                 </MainInSection>
-                <StyledLink>
+                <StyledLink color="orange">
                         <Link to="/order">Order now</Link>
                 </StyledLink>
             </Section>
@@ -173,7 +174,7 @@ export const Services = () => {
 
             <Section /* backgroundImage={"../../../images/stemMastering.jpg"} */ color="black">
                 <MainInSection backgroundColor={"white"}>
-                    <Header2 color="black">STEM MASTEING</Header2>
+                    <Header2 color="orange">STEM MASTEING</Header2>
                     <SubtitleBlack>Deep Mastetering with Mixing touches</SubtitleBlack>
 
                     <StyledSpanBlack>
@@ -193,7 +194,7 @@ export const Services = () => {
                         Finalizing
                 </StyledSpanBlack>
 
-                    <StyledLink>
+                    <StyledLink color="orange">
                         <Link to="/order/stemMastering">Order now</Link>
                     </StyledLink>
                 </MainInSection>
@@ -202,9 +203,9 @@ export const Services = () => {
             </Section>
 
             <Section /* backgroundImage={"../../../images/radio.jpg"} */
-                backgroundPosition={"left"} backgroundImageSize={"cover"} color="white">
+                backgroundPosition={"left"} backgroundImageSize={"cover"} color="#5361e0">
                 <MainInSection backgroundColor={"black"}>
-                    <Header2 color="white">STEREO MASTERING</Header2>
+                    <Header2 color="#5361e0">STEREO MASTERING</Header2>
                     <SubtitleWhite>Last touch to make it perfect</SubtitleWhite>
 
                     <StyledSpanWhite>
@@ -223,7 +224,7 @@ export const Services = () => {
                         Finalizing (final control)
                     </StyledSpanWhite>
 
-                    <StyledLink>
+                    <StyledLink color="#5361e0">
                         <Link to="/order/stereoMastering">Order now</Link>
                     </StyledLink>
 
@@ -235,7 +236,7 @@ export const Services = () => {
             <Section backgroundPosition={"left"} /* backgroundImageSize={"300px"} backgroundImage={"../../../images/vinil.jpg"} */ color="black">
 
                 <MainInSection backgroundColor={"white"}>
-                    <Header2 color="black">MIXING AND MASTERING</Header2>
+                    <Header2 color="orange">MIXING AND MASTERING</Header2>
                     <SubtitleBlack>Full mixing and mastering. From A to Z.</SubtitleBlack>
 
                     <StyledSpanBlack>
@@ -254,7 +255,7 @@ export const Services = () => {
                         Loudness control
                         Finalizing
                     </StyledSpanBlack>
-                    <StyledLink>
+                    <StyledLink color="orange">
                         <Link to="/order/mixingAndMastering">Order now</Link>
                     </StyledLink>
                 </MainInSection>
@@ -284,7 +285,7 @@ export const Services = () => {
 
                 </p>
                 </MainInSection>
-                <StyledLink>
+                    <StyledLink color="orange">
                         <Link to="/order/productionAssistance">Order now</Link>
                     </StyledLink>
             </Section>

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { ThemeProvider } from "styled-components";
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { theme } from './theme';
 //@ts-ignore
 import logo from "../components/logo/IGLogo.webp";
@@ -68,14 +68,16 @@ export const NavigationLink = ({ to, children }: { to: string, children: React.R
 
 export const NavigationBar = ({ children }: { children: React.ReactNode }) => {
     return (
-        
-            <NavBar>
+
+        <NavBar>
+            <Link to="/">
                 <Logo>
                     <img width="150" src={logo} alt="logo" />
                 </Logo>
-                <NavBarUl>
-                    {children}
-                </NavBarUl>
-            </NavBar>
+            </Link>
+            <NavBarUl>
+                {children}
+            </NavBarUl>
+        </NavBar>
     )
 }

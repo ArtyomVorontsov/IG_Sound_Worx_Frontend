@@ -4,15 +4,9 @@ import { Collapse } from 'antd';
 import { Loader } from '../../components/Loader';
 const { Panel } = Collapse;
 import Styled from "styled-components";
+import { Section } from '../../components/Section';
 
 
-
-const Section = Styled.section`
-    ${props => props.theme.flexStyles("column", "center", "center")}
-    height: 100vh;
-    width: 80%;
-    margin: auto;
-`
 
 const CollapseWrapper = Styled.div`
     ${props => props.theme.flexStyles("column", "center", "flex-start")}
@@ -37,35 +31,36 @@ type mapDispatchProps = {
 type FAQProps = ownProps & mapStateProps & mapDispatchProps;
 
 export const FAQ = ({ faq, isFaqLoaded, getFaq }: FAQProps) => {
-    useEffect(()=>{
+    useEffect(() => {
         getFaq()
     }, [])
 
     return (
         <>
-        
-        <Section>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: 'flex-start', justifyContent: "center", width: "100%", margin: "20px 0 20px 0" }}>
-                <h1 style={{fontSize: "40px"}}>FAQ</h1>
-            </div>
-           
-            <CollapseWrapper>
-            
-            {
-                isFaqLoaded ?
-                <Collapse style={{width: "100%"}}>
-                {faq.map((faq) => {
-                    return (
-                            <Panel key={faq.id} header={faq.title}>
-                                <div dangerouslySetInnerHTML={{__html: faq.body.replace(/(?:\n)/g, "<br/>")}}></div>
-                            </Panel>
-                      
-                    )})}
-                 </Collapse> : <Loader/>
-            }
-            </CollapseWrapper>
-          
-        </Section>
+
+            <Section>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: 'flex-start', justifyContent: "center", width: "100%", margin: "20px 0 20px 0" }}>
+                    <h1 style={{ fontSize: "40px" }}>FAQ</h1>
+                </div>
+
+                <CollapseWrapper>
+
+                    {
+                        isFaqLoaded ?
+                            <Collapse style={{ width: "100%" }}>
+                                {faq.map((faq) => {
+                                    return (
+                                        <Panel key={faq.id} header={faq.title}>
+                                            <div dangerouslySetInnerHTML={{ __html: faq.body.replace(/(?:\n)/g, "<br/>") }}></div>
+                                        </Panel>
+
+                                    )
+                                })}
+                            </Collapse> : <Loader />
+                    }
+                </CollapseWrapper>
+
+            </Section>
         </>
     )
 }
