@@ -38,94 +38,97 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
         setIsCheckoutBlockOpen(false)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         clearFormValues()
-    },[])
-    
+    }, [])
+
     return (
-        !product.isLoaded ? <Loader /> :
-            <Content>
 
-                <Form
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                    layout="vertical"
-                    name="order"
-                    fields={
-                        [
-                            { name: "full_name", value: formValues.full_name },
-                            { name: "email", value: formValues.email },
-                            { name: "description", value: formValues.description },
+        <Content>
+            <Form
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                layout="vertical"
+                name="order"
+                fields={
+                    [
+                        { name: "full_name", value: formValues.full_name },
+                        { name: "email", value: formValues.email },
+                        { name: "description", value: formValues.description },
 
-                            { name: "stemMastering", value: formValues.stemMastering.count },
-                            { name: "additionalEdit", value: formValues.additionalEdit.count },
-                            { name: "link", value: formValues.link }
-                        ]
-                    }
+                        { name: "stemMastering", value: formValues.stemMastering.count },
+                        { name: "additionalEdit", value: formValues.additionalEdit.count },
+                        { name: "link", value: formValues.link }
+                    ]
+                }
 
-                >
-                    <FormWrapper>
-                        <div style={{ flex: 2 }}>
-                            <h1>Stem mastering</h1>
-                            <NameEmailFields setFormValues={setFormValues} />
+            >
+                <FormWrapper>
+                    {!product.isLoaded ? <Loader /> :
+                        <>
+                            <div style={{ flex: 2 }}>
+                                <h1>Stem mastering</h1>
+                                <NameEmailFields setFormValues={setFormValues} />
 
-                            <Form.Item
-                                name={"description"}
-                                label={"Description"}
-                                rules={[{ required: true, message: "Field is required" }]}>
-                                <TextArea onChange={(e) => setFormValues({ key: e.target.id, value: e.target.value })} />
-                            </Form.Item>
+                                <Form.Item
+                                    name={"description"}
+                                    label={"Description"}
+                                    rules={[{ required: true, message: "Field is required" }]}>
+                                    <TextArea onChange={(e) => setFormValues({ key: e.target.id, value: e.target.value })} />
+                                </Form.Item>
 
-                            <FormLinkField setFormValues={setFormValues} />
+                                <FormLinkField setFormValues={setFormValues} />
 
-                            <Divider />
+                                <Divider />
 
 
 
-                            <FormSelectField setFormValues={(e: string) => setFormValues(
-                                {
-                                    key: "stemMastering",
-                                    value: {
-                                        count: Number(product.item.quantityOfStems[Number(e)].quantity.to),
-                                        price: {
-                                            EUR: Number(product.item.quantityOfStems[Number(e)].EUR),
-                                            USD: Number(product.item.quantityOfStems[Number(e)].USD),
+                                <FormSelectField setFormValues={(e: string) => setFormValues(
+                                    {
+                                        key: "stemMastering",
+                                        value: {
+                                            count: Number(product.item.quantityOfStems[Number(e)].quantity.to),
+                                            price: {
+                                                EUR: Number(product.item.quantityOfStems[Number(e)].EUR),
+                                                USD: Number(product.item.quantityOfStems[Number(e)].USD),
+                                            }
                                         }
+                                    })}
+                                    name={"stemMastering"}
+                                    label={"Stem mastering"}
+                                >
+
+                                    {
+                                        product.item.quantityOfStems.map((stem, index) => {
+                                            return <Option
+                                                key={stem.id} value={index}>{`${stem.quantity.from} - ${stem.quantity.to}`}</Option>
+                                        })
                                     }
-                                })}
-                                name={"stemMastering"}
-                                label={"Stem mastering"}
-                            >
-
-                                {
-                                    product.item.quantityOfStems.map((stem, index) => {
-                                        return <Option
-                                            key={stem.id} value={index}>{`${stem.quantity.from} - ${stem.quantity.to}`}</Option>
-                                    })
-                                }
-                            </FormSelectField>
+                                </FormSelectField>
 
 
-                            <FormNumberField
-                                formData={product.item.additionalEdit}
+                                <FormNumberField
+                                    formData={product.item.additionalEdit}
+                                    setFormValues={setFormValues}
+                                    name={"additionalEdit"}
+                                    label={"Additional edit"}
+                                />
+
+
+                            </div>
+                            <FormCheckoutBlock
+                                close={closeCheckoutBlock}
+                                isCheckoutBlockOpen={isCheckoutBlockOpen}
                                 setFormValues={setFormValues}
-                                name={"additionalEdit"}
-                                label={"Additional edit"}
+                                formValues={formValues}
+                                currentProduct={"stemMastering"}
+                                checkout={checkout}
                             />
-
-
-                        </div>
-                        <FormCheckoutBlock
-                            close={closeCheckoutBlock}
-                            isCheckoutBlockOpen={isCheckoutBlockOpen}
-                            setFormValues={setFormValues}
-                            formValues={formValues}
-                            currentProduct={"stemMastering"}
-                            checkout={checkout}
-                        />
-                    </FormWrapper>
-                </Form>
-            </Content>
+                        </>
+                    }
+                </FormWrapper>
+            </Form>
+        </Content>
 
     )
 }

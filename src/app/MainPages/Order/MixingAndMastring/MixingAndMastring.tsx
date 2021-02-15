@@ -44,7 +44,7 @@ export const MixingAndMastring = ({ clearFormValues, children, formValues, setFo
 
     return (
         <Content>
-            {!product.isLoaded ? <Loader /> :
+            
                 <Form
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
@@ -60,6 +60,8 @@ export const MixingAndMastring = ({ clearFormValues, children, formValues, setFo
                     }
                 >
                     <FormWrapper>
+                        {!product.isLoaded ? <Loader /> :
+                        <>
                         <div style={{ flex: 2 }}>
                             <h1>Mixing and mastring</h1>
                             <NameEmailFields setFormValues={setFormValues} />
@@ -104,9 +106,11 @@ export const MixingAndMastring = ({ clearFormValues, children, formValues, setFo
                             close={closeCheckoutBlock}
                             checkout={checkout}
                         />
+                        </>
+                        }
                     </FormWrapper>
                 </Form>
-            }
+            
         </Content>
 
     )

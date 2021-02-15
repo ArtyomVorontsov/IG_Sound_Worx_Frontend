@@ -87,7 +87,7 @@ const FormCheckoutBlock: React.FC<RouteComponentProps & FormCheckoutProps> = ({ 
                 </div>
 
             </Modal>
-            <Card style={{ height: "300px", flex: 1, marginLeft: "50px" }}>
+            <Card style={{ height: "300px", marginLeft: "50px", width: "300px", border: 0 }}>
                 <h2>Total: {formValues.total} {`${formValues.currency}`}</h2>
                 <p>Price: {formValues.price}</p>
                 <p>Discount: {formValues.discount}</p>

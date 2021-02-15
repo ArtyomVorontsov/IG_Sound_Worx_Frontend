@@ -3,7 +3,9 @@ import Styled, { ThemeProvider } from "styled-components";
 import { NavLink, Link } from 'react-router-dom';
 import { theme } from './theme';
 //@ts-ignore
-import logo from "../components/logo/IGLogo.webp";
+import logo from "../components/logo/IGLogo.jpg";
+//@ts-ignore
+import menu from "../icons/menu.svg";
 
 
 type NavbarProps = {
@@ -20,7 +22,7 @@ const NavBar = Styled.nav`
     ${props => props.theme.flexStyles("row", "center", "center")}
 
     @media only screen and (max-width: 600px) {
-        transition: all 0.3s;
+        transition: all 0.3s ease;
         top: 0;
         z-index: 10;
         height: 100vh;
@@ -31,7 +33,7 @@ const NavBar = Styled.nav`
         ${
             (props:NavbarProps) => props.isOpen ? `
                 transform: translateX(0);
-                position: sticky;
+                position: fixed;
                
             ` : `
                 transform: translateX(100%);
@@ -91,10 +93,12 @@ const Burger = Styled.button`
     display: none;
     @media only screen and (max-width: 600px) {
         display: block;
-        position: absolute;
+        position: fixed;
         top: 20px;
-        left: 90%;
+        left: 85%;
         z-index: 11;
+        background: transparent;
+        border: none;
     }
 `
 
@@ -126,7 +130,10 @@ export const NavigationBar = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <>
-        <Burger onClick={() => isOpen ? setOpen(false) : setOpen(true)} id="burger">open</Burger>
+        <Burger style={{width: 50, height: 50}} onClick={() => isOpen ? setOpen(false) : setOpen(true)} id="burger">
+            <img width={30} src={menu} alt=""/>
+        </Burger>
+       
         <NavBar isOpen={isOpen}>
             <Link to="/">
                 <Logo onClick={() => setOpen(false)}>

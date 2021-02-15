@@ -7,7 +7,7 @@ import { FormWrapper } from '../../../components/FormComponents'
 import { NameEmailFields } from '../../../components/NameEmailFields'
 import { FormSelectField } from '../../../components/FormSelectField'
 import { FormLinkField } from '../../../components/FormLinkField'
-import {TextArea} from '../../../components/TextArea'
+import { TextArea } from '../../../components/TextArea'
 import { FormNumberField } from '../../../components/FormNumberField'
 const { Option } = Select
 
@@ -20,7 +20,7 @@ type TrackProductionProps = {
     clearFormValues: () => void
 }
 
-export const TrackProduction = ({clearFormValues, product, children, formValues, setFormValues, checkout }: TrackProductionProps) => {
+export const TrackProduction = ({ clearFormValues, product, children, formValues, setFormValues, checkout }: TrackProductionProps) => {
 
     const onFinish = () => {
         checkout();
@@ -30,28 +30,29 @@ export const TrackProduction = ({clearFormValues, product, children, formValues,
 
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         clearFormValues()
-    },[])
+    }, [])
 
     return (
         <Content>
 
-            {!product.isLoaded ? <Loader /> :
-                <Form
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                    layout="vertical"
-                    fields={
-                        [
-                            { name: "full_name", value: formValues.full_name },
-                            { name: "email", value: formValues.email },
-                            { name: "description", value: formValues.description },
-                            { name: "link", value: formValues.link },
-                        ]
-                    }
-                >
-                    <FormWrapper>
+
+            <Form
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                layout="vertical"
+                fields={
+                    [
+                        { name: "full_name", value: formValues.full_name },
+                        { name: "email", value: formValues.email },
+                        { name: "description", value: formValues.description },
+                        { name: "link", value: formValues.link },
+                    ]
+                }
+            >
+                <FormWrapper>
+                    {!product.isLoaded ? <Loader /> :
                         <div style={{ flex: 2 }}>
                             <h1>Track production</h1>
                             <NameEmailFields setFormValues={setFormValues} />
@@ -59,9 +60,9 @@ export const TrackProduction = ({clearFormValues, product, children, formValues,
                             <FormLinkField setFormValues={setFormValues} />
                             <Button htmlType="submit">Order now</Button>
                         </div>
-                      
-                    </FormWrapper>
-                </Form>
+                    }
+                </FormWrapper>
+            </Form>
             }
         </Content>
 
