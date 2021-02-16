@@ -9,7 +9,8 @@ console.log(mixer)
 type SectionProps = {
     backgroundImage?: string
     backgroundPosition?: string
-    backgroundImageSize?: string
+    backgroundImageSize?: string,
+    height?: string
 }
 
 const Section = Styled.section`
@@ -19,7 +20,7 @@ const Section = Styled.section`
     background-position: ${(props: SectionProps) => props.backgroundPosition ? props.backgroundPosition : "center"}; 
     background-size: ${(props: SectionProps) => props.backgroundImageSize ? props.backgroundImageSize : "cover"};
     background-color: ${(props) => props.color};
-    height: 80vh;
+    height: ${(props: SectionProps) => props.height ? props.height : "80vh"};
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -42,10 +43,15 @@ const Header1 = Styled.h1`
     }
 `
 
-const Header2 = Styled.h2`
-    color: ${(props: { color: string }) => props.color};
+type Header2Props = {
+    color: string,
+    textAlign?: string
+}
+
+export const Header2 = Styled.h2`
+    color: ${(props:  Header2Props) => props.color};
     width: 50vw;
-    text-align: center;
+    text-align: ${(props: Header2Props) => props.textAlign ? props.textAlign : "center" };
     font-size: 50px;
     font-weight: bold;
 
@@ -119,7 +125,7 @@ const MainInSection = Styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 60vh;
+    height: auto;
     padding: 20px;
     box-sizing:border-box;
     ${(props: { backgroundColor?: string }) => props.backgroundColor ? `background-color: ${props.backgroundColor};` : null}
@@ -191,7 +197,7 @@ export const Services = () => {
 
     return (
         <>
-            <Section color="black">
+            <Section height={"100vh"} color="black">
                 <canvas style={{ position: "absolute", zIndex: 0 }} id="canvas" width={window.innerWidth} height={"500"} />
                 <MainInSection>
                     <Header1>ELECTRONIC DANCE MUSIC MIXING / MASTERING AND PRODUCTION SERVICE</Header1>

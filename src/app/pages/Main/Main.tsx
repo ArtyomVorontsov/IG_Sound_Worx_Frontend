@@ -86,7 +86,7 @@ export const Main = ({
         <>
 
             <ThemeProvider theme={theme}>
-                <main style={{ height: "auto", overflow: "hidden", position: "relative" }}>
+                <main style={{ height: "auto", overflow: "hidden", position: "relative", display: "flex", flexDirection: "column" }}>
                     <NavigationBar>
                         {/* <NavigationLink to="/">Services</NavigationLink> */}
                         <NavigationLink to="/pricing">Pricing</NavigationLink>
@@ -117,7 +117,7 @@ export const Main = ({
                             isAllPricesLoaded={isAllPricesLoaded} />
                     </Route>
 
-                    <Route exact path={"/contact"}>
+                    <Route exact path={"/contacts"}>
                         <Contacts children />
                     </Route>
 

@@ -11,7 +11,7 @@ import { Section } from '../../components/Section';
 const CollapseWrapper = Styled.div`
     ${props => props.theme.flexStyles("column", "center", "flex-start")}
     width: 100%;
-    height: 80vh;
+    min-height: 80vh;
 `
 
 type ownProps = {
