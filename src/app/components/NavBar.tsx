@@ -27,6 +27,7 @@ const NavBar = Styled.nav`
         z-index: 10;
         height: 100vh;
         overflow: hidden;
+        position: relative;
 
         ${props => props.theme.flexStyles("column", "center", "center")}
 

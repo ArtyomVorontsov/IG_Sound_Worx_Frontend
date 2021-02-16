@@ -2,7 +2,7 @@ import React from 'react';
 import Styled from "styled-components";
 import { Logo } from './NavBar';
 //@ts-ignore
-import logo from "../components/logo/IGLogo.webp";
+import logo from "../components/logo/IGLogo.jpg";
 
 const FooterStyled = Styled.footer`
     width: 100%;

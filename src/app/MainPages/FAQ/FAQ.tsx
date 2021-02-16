@@ -47,7 +47,7 @@ export const FAQ = ({ faq, isFaqLoaded, getFaq }: FAQProps) => {
 
                     {
                         isFaqLoaded ?
-                            <Collapse style={{ width: "100%" }}>
+                            <Collapse style={{ width: "100%", border: "none", backgroundColor: "white" }}>
                                 {faq.map((faq) => {
                                     return (
                                         <Panel key={faq.id} header={faq.title}>

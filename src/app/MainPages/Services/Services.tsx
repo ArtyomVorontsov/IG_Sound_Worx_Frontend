@@ -37,7 +37,7 @@ const Header1 = Styled.h1`
     font-weight: bold;
     z-index: 1;
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 780px) {
         font-size: 35px;
         width: 80vw;
     }
