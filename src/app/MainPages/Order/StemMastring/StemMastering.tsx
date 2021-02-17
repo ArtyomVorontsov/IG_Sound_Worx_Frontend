@@ -57,7 +57,7 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
                         { name: "description", value: formValues.description },
 
                         { name: "stemMastering", value: formValues.stemMastering.count },
-                        { name: "additionalEdit", value: formValues.additionalEdit.count },
+                        { name: "additionalEdit", value: formValues.additionalEdit.count === 0 ? "" : formValues.additionalEdit.count},
                         { name: "link", value: formValues.link }
                     ]
                 }

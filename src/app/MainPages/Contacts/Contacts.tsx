@@ -36,8 +36,9 @@ export const Contacts = ({ }: ContactsProps) => {
 
         setLoading(true);
 
-       
-        emailjs.sendForm(emailJsPrivateData.service, 
+        debugger
+        emailjs.sendForm(
+            emailJsPrivateData.service, 
             emailJsPrivateData.templateId, 
              //@ts-ignore
             e.target, 
@@ -75,7 +76,19 @@ export const Contacts = ({ }: ContactsProps) => {
                 <div style={{ display: "flex", flexDirection: "column", alignItems: 'flex-start', justifyContent: "center", width: "100%", margin: "20px 0 20px 0" }}>
                     <h1 style={{ fontSize: "40px" }}>Contacts</h1>
                 </div>
-                {isLoading ? <Loader /> :
+
+                {/* <form id="contact-form">
+        <input type="hidden" name="contact_number">
+        <label>Name</label>
+        <input type="text" name="user_name">
+        <label>Email</label>
+        <input type="email" name="user_email">
+        <label>Message</label>
+        <textarea name="message"></textarea>
+        <input type="submit" value="Send">
+    </form> */}
+
+                {/* {isLoading ? <Loader /> :
 
                     isSended ? <div>
                         <h1>Your message is received, thank you.</h1>
@@ -110,7 +123,7 @@ export const Contacts = ({ }: ContactsProps) => {
                             </Form.Item>
                             <Button htmlType={"submit"} type={"primary"}>Submit</Button>
                         </Form>
-                }
+                } */}
             </Section>
         </>
 

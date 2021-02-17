@@ -55,7 +55,7 @@ export const MixingAndMastring = ({ clearFormValues, children, formValues, setFo
                             { name: "email", value: formValues.email },
                             { name: "description", value: formValues.description },
                             { name: "link", value: formValues.link },
-                            { name: "additionalEdit", value: formValues.additionalEdit.count },
+                            { name: "additionalEdit", value:  formValues.additionalEdit.count === 0 ? "" : formValues.additionalEdit.count },
                         ]
                     }
                 >

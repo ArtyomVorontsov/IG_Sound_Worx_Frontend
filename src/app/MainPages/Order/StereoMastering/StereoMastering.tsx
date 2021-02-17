@@ -61,7 +61,7 @@ export const StereoMastering = ({clearFormValues, formValues, setFormValues, pro
                             { name: "link", value: formValues.link },
 
                             { name: "stereoMastering", value: formValues.stereoMastering.count },
-                            { name: "additionalEdit", value: formValues.additionalEdit.count },
+                            { name: "additionalEdit", value: formValues.additionalEdit.count === 0 ? "" : formValues.additionalEdit.count },
                         ]
                     }
                 >
