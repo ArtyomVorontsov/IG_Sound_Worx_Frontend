@@ -25,7 +25,7 @@ const NavBar = Styled.nav`
         transition: all 0.3s ease;
         top: 0;
         z-index: 10;
-        height: 100vh;
+        height: 100%;
         overflow: hidden;
         position: relative;
 
