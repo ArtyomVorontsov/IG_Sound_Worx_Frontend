@@ -31,17 +31,17 @@ export const Contacts = ({ }: ContactsProps) => {
     const [isLoading, setLoading] = useState(false);
     const [isSended, setSended] = useState(false);
 
-    function sendEmail(e: React.FormEvent<HTMLFormElement>) {
+    function sendEmail(e) {
         e.preventDefault();
 
         setLoading(true);
 
         debugger
         emailjs.sendForm(
-            emailJsPrivateData.service, 
-            emailJsPrivateData.templateId, 
-             //@ts-ignore
-            e.target, 
+            emailJsPrivateData.service,
+            emailJsPrivateData.templateId,
+            
+            e.target,
             emailJsPrivateData.userId)
             .then((result) => {
                 setLoading(false);
@@ -57,12 +57,38 @@ export const Contacts = ({ }: ContactsProps) => {
     const onFinish = (e) => {
         console.log(e)
 
-        if (!e.target.message.value ||
-            !e.target.user_name.value ||
-            !e.target.user_email.value) {
-            return
-        }
-        sendEmail(e)
+        if (!e.message || !e.user_name || !e.user_email) return 
+
+        const form = document.createElement("form");
+
+        const nameInput = document.createElement("input");
+        nameInput.name = "user_name";
+        nameInput.value = e.user_name;
+
+        const emailInput = document.createElement("input");
+        emailInput.name = "user_email";
+        emailInput.value = e.user_email;
+
+        const messageTextArea = document.createElement("textarea");
+        messageTextArea.name = "message"
+        messageTextArea.value = e.message;
+
+        const submitInput = document.createElement("input");
+        submitInput.type = "submit";
+
+        form.appendChild(nameInput);
+        form.appendChild(emailInput);
+        form.appendChild(messageTextArea);
+        form.appendChild(submitInput);
+
+        form.onsubmit = sendEmail;
+        form.style.display = "none";
+
+        const fieldGroup = document.getElementById("fieldGroup");
+        fieldGroup.appendChild(form);
+
+        submitInput.click();
+        
     }
 
     const onFinishFailed = () => {
@@ -77,25 +103,18 @@ export const Contacts = ({ }: ContactsProps) => {
                     <h1 style={{ fontSize: "40px" }}>Contacts</h1>
                 </div>
 
-                {/* <form id="contact-form">
-        <input type="hidden" name="contact_number">
-        <label>Name</label>
-        <input type="text" name="user_name">
-        <label>Email</label>
-        <input type="email" name="user_email">
-        <label>Message</label>
-        <textarea name="message"></textarea>
-        <input type="submit" value="Send">
-    </form> */}
+                <div id="fieldGroup">
 
-                {/* {isLoading ? <Loader /> :
+                </div>
+
+                {isLoading ? <Loader /> :
 
                     isSended ? <div>
                         <h1>Your message is received, thank you.</h1>
                     </div>
                         :
-                        <Form onSubmitCapture={onFinish}
-                            //onFinish={onFinish}
+                        <Form 
+                            onFinish={onFinish}
                             onFinishFailed={onFinishFailed}
                             layout="vertical"
                             style={{ width: "100%" }}
@@ -123,7 +142,7 @@ export const Contacts = ({ }: ContactsProps) => {
                             </Form.Item>
                             <Button htmlType={"submit"} type={"primary"}>Submit</Button>
                         </Form>
-                } */}
+                }
             </Section>
         </>
 
