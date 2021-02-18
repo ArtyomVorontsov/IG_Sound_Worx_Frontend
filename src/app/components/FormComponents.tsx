@@ -16,6 +16,6 @@ export const FormWrapper = styled.div`
 
 export const FieldGroup = styled.div`
     width: 100%;
-    ${props => props.theme.flexStyles("row", "flex-start", "flex-start")}
+    ${props => props.theme.flexStyles("row", "flex-start", "space-around")}
 
 `

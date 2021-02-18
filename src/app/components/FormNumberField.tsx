@@ -49,7 +49,8 @@ export const FormNumberField = ({ formData, setFormValues, name, label }: FormNu
             <Input onChange={(e) => setFormValues({
                 key: e.target.id,
                 value: {
-                    count: Number(e.target.value), price: {
+                    count: Number(e.target.value), 
+                    price: {
                         EUR: Number(formData.EUR) * Number(e.target.value),
                         USD: Number(formData.USD) * Number(e.target.value)
                     }
