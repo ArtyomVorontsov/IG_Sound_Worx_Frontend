@@ -5,7 +5,7 @@ import { Order } from '../../MainPages/Order/Order';
 import { StemMastering } from '../../MainPages/Order/StemMastring/StemMastering';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../components/theme';
-import { Footer } from '../../components/Footer.jsx';
+import { Footer } from '../../components/Footer';
 import { connect } from 'react-redux';
 import { StateType, PricesPathType, FieldType, FormValuesType, FAQType, PriceItemType, AllPricesType } from '../../types/interfaces';
 import { getPricesThunk } from '../../redux/reducers/PricesReducer';

@@ -5,14 +5,9 @@ import { Loader } from '../../components/Loader';
 const { Panel } = Collapse;
 import Styled from "styled-components";
 import { Section } from '../../components/Section';
+import { SectionHeader } from '../../components/SectionHeader';
 
 
-
-const CollapseWrapper = Styled.div`
-    ${props => props.theme.flexStyles("column", "center", "flex-start")}
-    width: 100%;
-    min-height: 80vh;
-`
 
 type ownProps = {
     children: React.ReactNode;
@@ -39,9 +34,9 @@ export const FAQ = ({ faq, isFaqLoaded, getFaq }: FAQProps) => {
         <>
 
             <Section height={"100vh"} justify={"flex-start"} width={"80%"}>
-                <div style={{ display: "flex", flexDirection: "column", alignItems: 'flex-start', justifyContent: "center", width: "100%", margin: "20px 0 20px 0" }}>
-                    <h1 style={{ fontSize: "40px" }}>FAQ</h1>
-                </div>
+                <SectionHeader>
+                    FAQ
+                </SectionHeader>
 
                 
 

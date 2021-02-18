@@ -8,6 +8,7 @@ import { FieldGroup } from '../../components/FormComponents';
 import { Loader } from "../../components/Loader";
 
 import emailJsPrivateData from "../../../privateData/emailJs"
+import { SectionHeader } from '../../components/SectionHeader';
 
 type ownProps = {
     children: React.ReactNode;
@@ -103,9 +104,9 @@ export const Contacts = ({ }: ContactsProps) => {
     return (
         <>
             <Section height={"100vh"} width={"80%"} justify="flex-start">
-                <div style={{ display: "flex", flexDirection: "column", alignItems: 'flex-start', justifyContent: "center", width: "100%", margin: "20px 0 20px 0" }}>
-                    <h1 style={{ fontSize: "40px" }}>Contacts</h1>
-                </div>
+                <SectionHeader>
+                    Contacts
+                </SectionHeader>
 
                 <div id="fieldGroup">
 

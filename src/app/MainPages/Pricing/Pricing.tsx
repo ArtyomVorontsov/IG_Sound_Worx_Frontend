@@ -7,6 +7,7 @@ import Styled from "styled-components";
 import { AllPricesType } from '../../types/interfaces';
 import { Section } from '../../components/Section';
 import { Header2 } from "../Services/Services"
+import { SectionHeader } from '../../components/SectionHeader';
 
 
 
@@ -33,9 +34,9 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
 
     return (
         <Section height={"100vh"} width={"80%"} justify={"flex-start"}>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: 'flex-start', justifyContent: "center", width: "100%", margin: "25px 0 25px 0" }}>
-                <h1 style={{ fontSize: "40px" }}>Pricing</h1>
-            </div>
+            <SectionHeader>
+                Pricing
+            </SectionHeader>
 
 
             {
@@ -50,13 +51,13 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                                 <b>Price</b>
 
                                 <p>EUR: {allPrices.stereoMastering.item.EUR}</p>
-                                <p>USD: {allPrices.stereoMastering.item.USD}</p>
+                                {/* <p>USD: {allPrices.stereoMastering.item.USD}</p> */}
                             </div>
 
                             <div>
                                 <b>Additional edit</b>
                                 <p>EUR: {allPrices.stereoMastering.item.additionalEdit.EUR}</p>
-                                <p>USD: {allPrices.stereoMastering.item.additionalEdit.USD}</p>
+                                {/* <p>USD: {allPrices.stereoMastering.item.additionalEdit.USD}</p> */}
                             </div>
 
                             <div>
@@ -87,13 +88,13 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                                     {<div style={{ display: "flex", width: "200px", alignItems: "flex-start", justifyContent: "center", flexDirection: "column", }}>
                                         <p>Quantity: {allPrices.stemMastering.item.quantityOfStems[selectedStemMasteringId].quantity.from} - {allPrices.stemMastering.item.quantityOfStems[selectedStemMasteringId].quantity.to}</p>
                                         <p>EUR: {allPrices.stemMastering.item.quantityOfStems[selectedStemMasteringId].EUR}</p>
-                                        <p>USD: {allPrices.stemMastering.item.quantityOfStems[selectedStemMasteringId].USD}</p>
+                                        {/* <p>USD: {allPrices.stemMastering.item.quantityOfStems[selectedStemMasteringId].USD}</p> */}
                                     </div>}
                                 </div>
                                 <div>
                                     <b>Additional edit</b>
                                     <p>EUR: {allPrices.stemMastering.item.additionalEdit.EUR}</p>
-                                    <p>USD: {allPrices.stemMastering.item.additionalEdit.USD}</p>
+                                    {/* <p>USD: {allPrices.stemMastering.item.additionalEdit.USD}</p> */}
                                 </div>
                                 <div>
                                     <b>Features</b>
@@ -125,13 +126,13 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                                     {<div style={{ display: "flex", flexDirection: "column", width: "200px", alignItems: "flex-start", justifyContent: "center" }}>
                                         <p>Quantity: {allPrices.mixingAndMastering.item.quantityOfStems[selectedMixingAndMasteringId].quantity.from} - {allPrices.mixingAndMastering.item.quantityOfStems[selectedMixingAndMasteringId].quantity.to}</p>
                                         <p>EUR: {allPrices.mixingAndMastering.item.quantityOfStems[selectedMixingAndMasteringId].EUR}</p>
-                                        <p>USD: {allPrices.mixingAndMastering.item.quantityOfStems[selectedMixingAndMasteringId].USD}</p>
+                                        {/* <p>USD: {allPrices.mixingAndMastering.item.quantityOfStems[selectedMixingAndMasteringId].USD}</p> */}
                                     </div>}
                                 </div>
                                 <div>
                                     <b>Additional edit</b>
                                     <p>EUR: {allPrices.mixingAndMastering.item.additionalEdit.EUR}</p>
-                                    <p>USD: {allPrices.mixingAndMastering.item.additionalEdit.USD}</p>
+                                    {/* <p>USD: {allPrices.mixingAndMastering.item.additionalEdit.USD}</p> */}
                                 </div>
                                 <div>
                                     <b>Features</b>
@@ -149,7 +150,7 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                             <div>
                                 <b>Prices starting at:</b>
                                 <p>EUR: {allPrices.productionAssistance.item.EUR}</p>
-                                <p>USD: {allPrices.productionAssistance.item.USD}</p>
+                                {/* <p>USD: {allPrices.productionAssistance.item.USD}</p> */}
                             </div>
 
                             <div>
@@ -172,7 +173,7 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                             <div>
                                 <b>Prices starting at:</b>
                                 <p>EUR: {allPrices.trackProduction.item.EUR}</p>
-                                <p>USD: {allPrices.trackProduction.item.USD}</p>
+                                {/* <p>USD: {allPrices.trackProduction.item.USD}</p> */}
                             </div>
 
                             <div>
