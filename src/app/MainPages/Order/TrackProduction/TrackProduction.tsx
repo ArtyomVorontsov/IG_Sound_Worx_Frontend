@@ -32,6 +32,7 @@ export const TrackProduction = ({ clearFormValues, product, children, formValues
 
     useEffect(() => {
         clearFormValues()
+        window.scrollTo(0,0);
     }, [])
 
     return (

@@ -40,6 +40,7 @@ export const StereoMastering = ({clearFormValues, formValues, setFormValues, pro
 
     useEffect(()=>{
         clearFormValues()
+        window.scrollTo(0,0);
     },[])
 
     return (

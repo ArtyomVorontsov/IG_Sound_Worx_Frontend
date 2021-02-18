@@ -40,6 +40,7 @@ export const MixingAndMastring = ({ clearFormValues, children, formValues, setFo
 
     useEffect(() => {
       clearFormValues();
+      window.scrollTo(0,0);
     }, [])
 
     return (

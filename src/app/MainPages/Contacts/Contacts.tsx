@@ -95,10 +95,14 @@ export const Contacts = ({ }: ContactsProps) => {
 
     }
 
+    useEffect(()=>{
+        window.scrollTo(0,0);
+    })
+
 
     return (
         <>
-            <Section >
+            <Section height={"100vh"} width={"80%"} justify="flex-start">
                 <div style={{ display: "flex", flexDirection: "column", alignItems: 'flex-start', justifyContent: "center", width: "100%", margin: "20px 0 20px 0" }}>
                     <h1 style={{ fontSize: "40px" }}>Contacts</h1>
                 </div>

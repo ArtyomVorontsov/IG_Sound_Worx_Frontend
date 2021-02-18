@@ -10,15 +10,6 @@ import { Header2 } from "../Services/Services"
 
 
 
-const PricingSection = Styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 40px;
-`
-
-
-
 type ownProps = {
     children: React.ReactNode;
 }
@@ -41,7 +32,7 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
     const [selectedMixingAndMasteringId, setSelectedMixingAndMasteringId] = useState(0);
 
     return (
-        <Section>
+        <Section height={"100vh"} width={"80%"} justify={"flex-start"}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: 'flex-start', justifyContent: "center", width: "100%", margin: "25px 0 25px 0" }}>
                 <h1 style={{ fontSize: "40px" }}>Pricing</h1>
             </div>
@@ -50,9 +41,9 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
             {
                 isAllPricesLoaded ?
 
-                    <>
-                        <PricingSection>
-                             <Header2 textAlign="left" color="orange">
+                    <Collapse style={{width: "100%", marginBottom: "50px", border: "none", backgroundColor: "white"}}>
+                        <Panel key={"stereoMastering"} header={"Stereo mastering"} >
+                            <Header2 textAlign="left" color="orange">
                                 Stereo mastering.
                             </Header2>
                             <div>
@@ -74,9 +65,9 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                                     {allPrices.stemMastering.item.features.join(", ")}
                                 </p>
                             </div>
-                        </PricingSection>
+                        </Panel>
 
-                        <PricingSection >
+                        <Panel key={"quantityOfStems"} header={"Quantity of stems"} >
                             <Header2 textAlign="left" color="orange">
                                 Quantity of stems.
                             </Header2>
@@ -93,7 +84,7 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                                             }
                                         </Select>
                                     </div>
-                                    {<div style={{ display: "flex", width: "200px", alignItems: "flex-start", justifyContent: "center", flexDirection: "column",  }}>
+                                    {<div style={{ display: "flex", width: "200px", alignItems: "flex-start", justifyContent: "center", flexDirection: "column", }}>
                                         <p>Quantity: {allPrices.stemMastering.item.quantityOfStems[selectedStemMasteringId].quantity.from} - {allPrices.stemMastering.item.quantityOfStems[selectedStemMasteringId].quantity.to}</p>
                                         <p>EUR: {allPrices.stemMastering.item.quantityOfStems[selectedStemMasteringId].EUR}</p>
                                         <p>USD: {allPrices.stemMastering.item.quantityOfStems[selectedStemMasteringId].USD}</p>
@@ -112,10 +103,10 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                                 </div>
                             </div>
 
-                        </PricingSection>
+                        </Panel>
 
-                        <PricingSection>
-                             <Header2 textAlign="left" color="orange">
+                        <Panel key={"Mixing and mastering"} header={"Mixing and mastering"} >
+                            <Header2 textAlign="left" color="orange">
                                 Mixing and mastering.
                             </Header2>
                             <div style={{ display: "flex", flexWrap: "wrap", flexDirection: "column" }}>
@@ -149,10 +140,10 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                                     </p>
                                 </div>
                             </div>
-                        </PricingSection>
+                        </Panel>
 
-                        <PricingSection >
-                             <Header2 textAlign="left" color="orange">
+                        <Panel key={"productionAssistance"} header={"Production assistance"} >
+                            <Header2 textAlign="left" color="orange">
                                 Production assistance.
                             </Header2>
                             <div>
@@ -171,10 +162,11 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                             <div>
                                 <p><b>For more info:</b> igsw@mail.com</p>
                             </div>
-                        </PricingSection>
+                        </Panel>
 
-                        <PricingSection >
-                             <Header2 textAlign="left" color="orange">
+                        <Panel key={"trackProduction"} header={"Track production"} >
+
+                            <Header2 textAlign="left" color="orange">
                                 Track production.
                             </Header2>
                             <div>
@@ -193,8 +185,9 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                             <div>
                                 <p><b>For more info:</b> igsw@mail.com</p>
                             </div>
-                        </PricingSection>
-                    </>
+
+                        </Panel>
+                    </Collapse>
                     : <Loader />
             }
 

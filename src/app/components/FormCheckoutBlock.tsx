@@ -5,8 +5,8 @@ import { Table} from 'antd';
 import Modal from 'antd/lib/modal/Modal';
 import { renderPayPalButton } from './PayPalButton';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import Styled from "styled-components";
 
-const { Option } = Select;
 
 
 type FormCheckoutProps = {
@@ -18,6 +18,19 @@ type FormCheckoutProps = {
     isCheckoutBlockOpen: boolean
     history
 }
+
+
+const CheckoutBlock = Styled.div`
+    height: 300px; 
+    width: 20%;
+    border: 0;
+    margin: 50px 0 0 50px;
+
+    @media only screen and (max-width: 600px) {
+        margin: 0;
+        width: 100%;
+    }
+`
 
 
 const FormCheckoutBlock: React.FC<RouteComponentProps & FormCheckoutProps> = ({ formValues,
@@ -87,12 +100,12 @@ const FormCheckoutBlock: React.FC<RouteComponentProps & FormCheckoutProps> = ({ 
                 </div>
 
             </Modal>
-            <Card style={{ height: "300px", marginLeft: "50px", width: "300px", border: 0 }}>
+            <CheckoutBlock>
                 <h2>Total: {formValues.total} {`${formValues.currency}`}</h2>
                 <p>Price: {formValues.price}</p>
-                <p>Discount: {formValues.discount}</p>
+               {/*  <p>Discount: {formValues.discount}</p> */}
 
-                <Select
+                {/* <Select
                     defaultValue={"EUR"}
                     style={{ width: "100px" }}
                     onChange={(e) => setFormValues({
@@ -101,13 +114,13 @@ const FormCheckoutBlock: React.FC<RouteComponentProps & FormCheckoutProps> = ({ 
                     })}>
                     <Option default key={"EUR"} value={"EUR"}>EUR</Option>
                     <Option key={"USD"} value={"USD"}>USD</Option>
-                </Select>
+                </Select> */}
 
-                <br />
-                <br />
+                {/* <br />
+                <br /> */}
 
                 <Button onClick={handleOpen} htmlType="submit" type="primary">Checkout</Button>
-            </Card>
+            </CheckoutBlock>
         </>
     )
 }

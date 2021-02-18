@@ -38,16 +38,16 @@ export const FAQ = ({ faq, isFaqLoaded, getFaq }: FAQProps) => {
     return (
         <>
 
-            <Section>
+            <Section height={"100vh"} justify={"flex-start"} width={"80%"}>
                 <div style={{ display: "flex", flexDirection: "column", alignItems: 'flex-start', justifyContent: "center", width: "100%", margin: "20px 0 20px 0" }}>
                     <h1 style={{ fontSize: "40px" }}>FAQ</h1>
                 </div>
 
-                <CollapseWrapper>
+                
 
                     {
                         isFaqLoaded ?
-                            <Collapse style={{ width: "100%", border: "none", backgroundColor: "white" }}>
+                            <Collapse style={{ width: "100%", border: "none", backgroundColor: "white", marginBottom: "50px" }}>
                                 {faq.map((faq) => {
                                     return (
                                         <Panel key={faq.id} header={faq.title}>
@@ -58,7 +58,7 @@ export const FAQ = ({ faq, isFaqLoaded, getFaq }: FAQProps) => {
                                 })}
                             </Collapse> : <Loader />
                     }
-                </CollapseWrapper>
+               
 
             </Section>
         </>

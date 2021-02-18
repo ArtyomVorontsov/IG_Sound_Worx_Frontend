@@ -3,31 +3,10 @@ import Styled from "styled-components";
 //@ts-ignore
 import mixer from "../../../images/mixer.jpg";
 import { Link } from 'react-router-dom';
+import { Section } from '../../components/Section';
 
-console.log(mixer)
 
-type SectionProps = {
-    backgroundImage?: string
-    backgroundPosition?: string
-    backgroundImageSize?: string,
-    height?: string
-}
 
-const Section = Styled.section`
-    overflow: hidden;
-    position: relative;
-    ${(props: SectionProps) => props.backgroundImage ? `background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${props.backgroundImage});` : null}
-    background-position: ${(props: SectionProps) => props.backgroundPosition ? props.backgroundPosition : "center"}; 
-    background-size: ${(props: SectionProps) => props.backgroundImageSize ? props.backgroundImageSize : "cover"};
-    background-color: ${(props) => props.color};
-    height: ${(props: SectionProps) => props.height ? props.height : "80vh"};
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-`
 
 const Header1 = Styled.h1`
     color: white;
@@ -141,31 +120,14 @@ export const Services = () => {
     }, [])
 
     const canvasFunc = () => {
-
-        const colors = [
-            "#5361e0", "#d63838", "#cc31bf", "#ffc226"
-        ]
-
-        const randomColor = () => {
-            const color = colors[Math.floor(Math.random() * colors.length)]
-            return color;
-        }
-
-
-        // const color = ["#5361e0"];
-
-        // setInterval(() => {
-        //     color[0] = randomColor();
-        // }, 1000)
-
-        var c = document.getElementById("canvas"); // Grab canvas object
+        let c = document.getElementById("canvas"); // Grab canvas object
         //@ts-ignore
-        var ctx = c.getContext("2d"); // Define canvas context
+        let ctx = c.getContext("2d"); // Define canvas context
         //@ts-ignore
-        var w = c.width;
+        let w = c.width;
         //@ts-ignore
-        var h = c.height / 2;
-        var f = 1;
+        let h = c.height / 2;
+        let f = 1;
         function calcSineY(x) {
             return h - h * Math.sin(x * 2 * Math.PI * (f / w));
         }
@@ -174,9 +136,9 @@ export const Services = () => {
 
             ctx.beginPath();
             ctx.strokeStyle = "#5361e0"
-            for (var i = 0; i < x; i++) {
+            for (let i = 0; i < x; i++) {
                 if (i / 3 == Math.round(i / 3)) {
-                    var y = calcSineY(i);
+                    let y = calcSineY(i);
                     ctx.moveTo(i, h);
                     ctx.lineTo(i, y);
                 }
@@ -184,9 +146,9 @@ export const Services = () => {
             ctx.stroke();
         }
 
-        var x = 0;
+        let x = 0;
 
-        var interval = setInterval(function () {
+        let interval = setInterval(function () {
             drawSine(x);
             x++;
             if (x > w) {
@@ -204,14 +166,14 @@ export const Services = () => {
                     <StyledSpanWhite>Let us help you at the final stages of music production by delivering a professional sound.</StyledSpanWhite>
                 </MainInSection>
                 <StyledLink color="orange">
-                    <Link to="/order">Order now</Link>
+                    <Link to="/contacts">Contact us</Link>
                 </StyledLink>
             </Section>
 
 
 
 
-            <Section /* backgroundImage={"../../../images/stemMastering.jpg"} */ color="black">
+            <Section color="black">
                 <MainInSection backgroundColor={"white"}>
                     <Header2 color="orange">STEM MASTEING</Header2>
                     <SubtitleBlack>Deep Mastetering with Mixing touches</SubtitleBlack>
@@ -241,8 +203,7 @@ export const Services = () => {
 
             </Section>
 
-            <Section /* backgroundImage={"../../../images/radio.jpg"} */
-                backgroundPosition={"left"} backgroundImageSize={"cover"} color="#5361e0">
+            <Section backgroundPosition={"left"} backgroundImageSize={"cover"} color="#5361e0">
                 <MainInSection backgroundColor={"black"}>
                     <Header2 color="#5361e0">STEREO MASTERING</Header2>
                     <SubtitleWhite>Last touch to make it perfect</SubtitleWhite>
@@ -272,7 +233,7 @@ export const Services = () => {
 
             </Section>
 
-            <Section backgroundPosition={"left"} /* backgroundImageSize={"300px"} backgroundImage={"../../../images/vinil.jpg"} */ color="black">
+            <Section backgroundPosition={"left"} color="black">
 
                 <MainInSection backgroundColor={"white"}>
                     <Header2 color="orange">MIXING AND MASTERING</Header2>

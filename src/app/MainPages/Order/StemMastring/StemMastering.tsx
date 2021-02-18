@@ -12,6 +12,17 @@ import { FormLinkField } from '../../../components/FormLinkField'
 import { Loader } from '../../../components/Loader'
 const { Option } = Select
 
+import Style from "styled-components";
+
+const FieldsWrapper = Style.div`
+    width: 70%; 
+    position: relative;
+
+    @media only screen and (max-width: 600px) {
+        margin: 0;
+        width: 100%;
+    }
+`
 
 type StemMasteringProps = {
     children: React.ReactNode;
@@ -40,6 +51,7 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
 
     useEffect(() => {
         clearFormValues()
+        window.scrollTo(0,0);
     }, [])
 
     return (
@@ -57,7 +69,7 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
                         { name: "description", value: formValues.description },
 
                         { name: "stemMastering", value: formValues.stemMastering.count },
-                        { name: "additionalEdit", value: formValues.additionalEdit.count === 0 ? "" : formValues.additionalEdit.count},
+                        { name: "additionalEdit", value: formValues.additionalEdit.count === 0 ? "" : formValues.additionalEdit.count },
                         { name: "link", value: formValues.link }
                     ]
                 }
@@ -66,7 +78,7 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
                 <FormWrapper>
                     {!product.isLoaded ? <Loader /> :
                         <>
-                            <div style={{ flex: 2 }}>
+                            <FieldsWrapper>
                                 <h1>Stem mastering</h1>
                                 <NameEmailFields setFormValues={setFormValues} />
 
@@ -115,7 +127,10 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
                                 />
 
 
-                            </div>
+                            </FieldsWrapper>
+
+
+
                             <FormCheckoutBlock
                                 close={closeCheckoutBlock}
                                 isCheckoutBlockOpen={isCheckoutBlockOpen}
@@ -124,6 +139,8 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
                                 currentProduct={"stemMastering"}
                                 checkout={checkout}
                             />
+
+
                         </>
                     }
                 </FormWrapper>
