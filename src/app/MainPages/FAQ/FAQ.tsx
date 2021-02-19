@@ -26,19 +26,18 @@ type mapDispatchProps = {
 type FAQProps = ownProps & mapStateProps & mapDispatchProps;
 
 export const FAQ = ({ faq, isFaqLoaded, getFaq }: FAQProps) => {
+
     useEffect(() => {
+        if(!isFaqLoaded)
         getFaq()
+        window.scrollTo(0, 0);
     }, [])
+
 
     return (
         <>
 
-            <Section height={"100vh"} justify={"flex-start"} width={"80%"}>
-                <SectionHeader>
-                    FAQ
-                </SectionHeader>
-
-                
+            <Section paddingTop={"70px"} height={"100vh"} justify={"flex-start"} width={"80%"}> 
 
                     {
                         isFaqLoaded ?

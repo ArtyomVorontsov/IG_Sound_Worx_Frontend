@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { NavigationBar, NavigationLink } from '../../components/NavBar'
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { Order } from '../../MainPages/Order/Order';
 import { StemMastering } from '../../MainPages/Order/StemMastring/StemMastering';
 import { ThemeProvider } from 'styled-components';
@@ -85,18 +85,22 @@ export const Main = ({
     return (
         <>
 
-            <ThemeProvider theme={theme}>
+           
+                <>
                 <main style={{ height: "auto", overflow: "hidden", position: "relative", display: "flex", flexDirection: "column" }}>
                     <NavigationBar>
-                        {/* <NavigationLink to="/">Services</NavigationLink> */}
+                        <NavigationLink to="/services">Services</NavigationLink>
                         <NavigationLink to="/pricing">Pricing</NavigationLink>
                         <NavigationLink to="/faq">FAQ</NavigationLink>
                         <NavigationLink to="/contacts">Contacts</NavigationLink>
                         {/* <NavigationLink to="/order">Order</NavigationLink> */}
                     </NavigationBar>
 
-
                     <Route exact path={"/"}>
+                        <Redirect to="/services" />
+                    </Route>
+
+                    <Route exact path={"/services"}>
                         <Services />
                     </Route>
 
@@ -145,7 +149,8 @@ export const Main = ({
                 </main>
 
                 <Footer />
-            </ThemeProvider>
+                </>
+           
 
         </>
     )

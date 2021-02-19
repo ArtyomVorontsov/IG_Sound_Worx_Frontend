@@ -10,6 +10,8 @@ import Main from "./pages/Main/Main";
 
 import "./Styles/Styles.css"
 import PurchaseFinish from './pages/PurchaseFinish/PurchaseFinish';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './components/theme';
 
 
 
@@ -17,26 +19,24 @@ export const Context = React.createContext(store);
 
 export const App = () => {
 
-    
+
 
     return (
         <Provider store={store}>
             <Router>
                 <Switch>
-                    <Route path={"/admin"}><Admin /></Route>
-                    <Route path={"/signIn"}><SignIn children /></Route>
-                    <Route exact path={"/purchaseFinish"}><PurchaseFinish children /></Route>
-                    <Route path={"/"}><Main children/></Route>
+                    <ThemeProvider theme={theme}>
+                        <Route path={"/admin"}><Admin /></Route>
+                        <Route path={"/signIn"}><SignIn children /></Route>
+                        <Route exact path={"/purchaseFinish"}><PurchaseFinish children /></Route>
+                        <Route path={"/"}><Main children /></Route>
+                    </ThemeProvider>
                 </Switch>
             </Router>
         </Provider>
     )
 }
 
-// store.subscribe(() => {
-//     console.log(store.getState())
-//     ReactDOM.render(<App />, container)
-// });
 
 const container = document.getElementById("container");
 ReactDOM.render(<App />, container);

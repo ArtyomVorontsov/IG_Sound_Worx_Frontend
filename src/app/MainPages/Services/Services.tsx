@@ -4,15 +4,16 @@ import Styled from "styled-components";
 import mixer from "../../../images/mixer.jpg";
 import { Link } from 'react-router-dom';
 import { Section } from '../../components/Section';
+import { canvasFunc } from '../../../utils/canvas';
 
 
 
 
 const Header1 = Styled.h1`
     color: white;
-    width: 50vw;
+    width: 80vw;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: bold;
     z-index: 1;
 
@@ -28,9 +29,9 @@ type Header2Props = {
 }
 
 export const Header2 = Styled.h2`
-    color: ${(props:  Header2Props) => props.color};
+    color: ${(props: Header2Props) => props.color};
     width: 50vw;
-    text-align: ${(props: Header2Props) => props.textAlign ? props.textAlign : "center" };
+    text-align: ${(props: Header2Props) => props.textAlign ? props.textAlign : "center"};
     font-size: 50px;
     font-weight: bold;
 
@@ -106,6 +107,7 @@ const MainInSection = Styled.div`
     align-items: center;
     height: auto;
     padding: 20px;
+    margin: 20px;
     box-sizing:border-box;
     ${(props: { backgroundColor?: string }) => props.backgroundColor ? `background-color: ${props.backgroundColor};` : null}
 `
@@ -114,55 +116,19 @@ const MainInSection = Styled.div`
 
 
 export const Services = () => {
+    
     useEffect(() => {
-        canvasFunc();
-
+        canvasFunc("canvas");
     }, [])
 
-    const canvasFunc = () => {
-        let c = document.getElementById("canvas"); // Grab canvas object
-        //@ts-ignore
-        let ctx = c.getContext("2d"); // Define canvas context
-        //@ts-ignore
-        let w = c.width;
-        //@ts-ignore
-        let h = c.height / 2;
-        let f = 1;
-        function calcSineY(x) {
-            return h - h * Math.sin(x * 2 * Math.PI * (f / w));
-        }
-        function drawSine(x) {
-            ctx.clearRect(0, 0, w, h * 2);
 
-            ctx.beginPath();
-            ctx.strokeStyle = "#5361e0"
-            for (let i = 0; i < x; i++) {
-                if (i / 3 == Math.round(i / 3)) {
-                    let y = calcSineY(i);
-                    ctx.moveTo(i, h);
-                    ctx.lineTo(i, y);
-                }
-            }
-            ctx.stroke();
-        }
-
-        let x = 0;
-
-        let interval = setInterval(function () {
-            drawSine(x);
-            x++;
-            if (x > w) {
-                x = 0; f++;
-            }
-        }, 1);
-    }
 
     return (
         <>
             <Section height={"100vh"} color="black">
                 <canvas style={{ position: "absolute", zIndex: 0 }} id="canvas" width={window.innerWidth} height={"500"} />
                 <MainInSection>
-                    <Header1>ELECTRONIC DANCE MUSIC MIXING / MASTERING AND PRODUCTION SERVICE</Header1>
+                    <Header1>ELECTRONIC DANCE MUSIC <br/> MIXING, MASTERING AND PRODUCTION SERVICE</Header1>
                     <StyledSpanWhite>Let us help you at the final stages of music production by delivering a professional sound.</StyledSpanWhite>
                 </MainInSection>
                 <StyledLink color="orange">

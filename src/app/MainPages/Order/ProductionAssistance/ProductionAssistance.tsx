@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Content } from 'antd/lib/layout/layout'
 import { Form, Select, Divider, Button } from 'antd'
 import { Loader } from '../../../components/Loader'
@@ -16,14 +16,23 @@ type ProductionAssistanceProps = {
     formValues: FormValuesType
     setFormValues: (field: FieldType) => void
     product: { isLoaded: boolean, item: PriceItemType },
-    checkout: () => void
+    checkout: () => any
     clearFormValues: () => void
 }
 
 export const ProductionAssistance = ({ clearFormValues, product, children, formValues, setFormValues, checkout }: ProductionAssistanceProps) => {
 
-    const onFinish = () => {
-        checkout();
+    const [isSubmited, setSubmited] = useState(false);
+
+    const onFinish = async () => {
+        try {
+            checkout().then(() => {
+                setSubmited(true)
+            });
+
+        } catch (error) {
+
+        }
     }
 
     const onFinishFailed = () => {
@@ -32,6 +41,7 @@ export const ProductionAssistance = ({ clearFormValues, product, children, formV
 
     useEffect(() => {
         clearFormValues();
+        window.scrollTo(0, 0);
     }, [])
 
     return (
@@ -53,19 +63,24 @@ export const ProductionAssistance = ({ clearFormValues, product, children, formV
             >
 
                 <FormWrapper>
-                    {!product.isLoaded ? <Loader /> :
-                        <div style={{ flex: 2 }}>
-                            <h1>Production assistance</h1>
-                            <NameEmailFields setFormValues={setFormValues} />
-                            <TextArea setFormValues={setFormValues} />
-                            <FormLinkField setFormValues={setFormValues} />
-                            <Button htmlType="submit">Order now</Button>
-                        </div>
+                    {!product.isLoaded ? <Loader />
+                        : isSubmited ?
+                            <div>
+                                <h1>Your order is received, thank you.</h1>
+                            </div>
+                            :
+                            <div style={{ flex: 2 }}>
+                                <h1>Production assistance</h1>
+                                <NameEmailFields setFormValues={setFormValues} />
+                                <TextArea setFormValues={setFormValues} />
+                                <FormLinkField setFormValues={setFormValues} />
+                                <Button htmlType="submit">Order now</Button>
+                            </div>
                     }
                 </FormWrapper>
 
             </Form>
-            }
+
         </Content>
 
     )

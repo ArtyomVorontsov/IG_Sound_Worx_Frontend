@@ -15,6 +15,7 @@ type FormNumberField = {
     setFormValues: any
     name: string
     label: string
+    required?: boolean
 }
 
 
@@ -40,12 +41,12 @@ type FormNumberField = {
 
 
 
-export const FormNumberField = ({ formData, setFormValues, name, label }: FormNumberField) => {
+export const FormNumberField = ({ formData, setFormValues, name, label, required = true }: FormNumberField) => {
     return (
         <Form.Item
             name={name}
             label={label}
-            rules={[{ required: true, message: "Field is required" }]}>
+            rules={[{ required: required, message: "Field is required" }]}>
             <Input onChange={(e) => setFormValues({
                 key: e.target.id,
                 value: {

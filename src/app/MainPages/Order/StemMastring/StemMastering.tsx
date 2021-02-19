@@ -107,7 +107,7 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
                                         }
                                     })}
                                     name={"stemMastering"}
-                                    label={"Stem mastering"}
+                                    label={"Stems quantity"}
                                 >
 
                                     {
@@ -120,6 +120,7 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
 
 
                                 <FormNumberField
+                                    required={false}
                                     formData={product.item.additionalEdit}
                                     setFormValues={setFormValues}
                                     name={"additionalEdit"}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Collapse, Descriptions, Select } from 'antd';
 const { Option } = Select;
 import { Loader } from '../../components/Loader';
@@ -32,11 +32,13 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
     const [selectedStemMasteringId, setSelectedStemMasteringId] = useState(0);
     const [selectedMixingAndMasteringId, setSelectedMixingAndMasteringId] = useState(0);
 
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    })
+
     return (
-        <Section height={"100vh"} width={"80%"} justify={"flex-start"}>
-            <SectionHeader>
-                Pricing
-            </SectionHeader>
+        <Section paddingTop={"70px"} height={"100vh"} width={"80%"} justify={"flex-start"}>
+          
 
 
             {
@@ -68,9 +70,9 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                             </div>
                         </Panel>
 
-                        <Panel key={"quantityOfStems"} header={"Quantity of stems"} >
+                        <Panel key={"quantityOfStems"} header={"Stem mastering"} >
                             <Header2 textAlign="left" color="orange">
-                                Quantity of stems.
+                                Stem mastering
                             </Header2>
                             <div style={{ display: "flex", flexWrap: "wrap", flexDirection: "column" }}>
                                 <b>Quantity</b>
@@ -143,9 +145,9 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                             </div>
                         </Panel>
 
-                        <Panel key={"productionAssistance"} header={"Production assistance"} >
+                        <Panel key={"productionAssistance"} header={"Production"} >
                             <Header2 textAlign="left" color="orange">
-                                Production assistance.
+                                Production.
                             </Header2>
                             <div>
                                 <b>Prices starting at:</b>
@@ -165,7 +167,7 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                             </div>
                         </Panel>
 
-                        <Panel key={"trackProduction"} header={"Track production"} >
+                        {/* <Panel key={"trackProduction"} header={"Track production"} >
 
                             <Header2 textAlign="left" color="orange">
                                 Track production.
@@ -173,7 +175,7 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                             <div>
                                 <b>Prices starting at:</b>
                                 <p>EUR: {allPrices.trackProduction.item.EUR}</p>
-                                {/* <p>USD: {allPrices.trackProduction.item.USD}</p> */}
+                                 <p>USD: {allPrices.trackProduction.item.USD}</p>
                             </div>
 
                             <div>
@@ -187,7 +189,7 @@ export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
                                 <p><b>For more info:</b> igsw@mail.com</p>
                             </div>
 
-                        </Panel>
+                        </Panel> */}
                     </Collapse>
                     : <Loader />
             }

@@ -92,6 +92,7 @@ export const MixingAndMastring = ({ clearFormValues, children, formValues, setFo
 
                             <Divider />
                             <FormNumberField
+                                required={false}
                                 formData={product.item.additionalEdit}
                                 name="additionalEdit"
                                 label={"Additional edit"}

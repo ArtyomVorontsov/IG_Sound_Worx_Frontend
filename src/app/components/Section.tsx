@@ -1,12 +1,5 @@
 import Styled from "styled-components";
 
-// export const Section = Styled.section`
-//     ${props => props.theme.flexStyles("column", "center", "flex-start")}
-//     min-height: 100vh;
-//     width: 80%;
-//     margin: auto;
-// `
-
 
 type SectionProps = {
     backgroundImage?: string
@@ -15,6 +8,7 @@ type SectionProps = {
     justify?: string
     height?: string
     width?: string
+    paddingTop?: string 
 }
 
 
@@ -29,6 +23,8 @@ export const Section = Styled.section`
     min-height: ${(props: SectionProps) => props.height ? props.height : "80vh"};
     width:  ${(props: SectionProps) => props.width ? props.width : "100%"};
     margin: auto;
-  
+    padding-top: ${(props: SectionProps) => props.paddingTop ? props.paddingTop : "0px"};
+    
+
     z-index: 1;
 `

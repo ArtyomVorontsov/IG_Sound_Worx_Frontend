@@ -32,7 +32,7 @@ const NavBar = Styled.nav`
         ${props => props.theme.flexStyles("column", "center", "center")}
 
         ${
-            (props:NavbarProps) => props.isOpen ? `
+    (props: NavbarProps) => props.isOpen ? `
                 transform: translateX(0);
                 position: fixed;
                
@@ -41,7 +41,7 @@ const NavBar = Styled.nav`
                 position: absolute;
                
             `
-        }
+    }
 
         a div{
             flex: 1;
@@ -57,7 +57,7 @@ const NavBar = Styled.nav`
 `
 
 const NavBarUl = Styled.ul`
-    flex: 7;
+    flex: 6;
     ${props => props.theme.flexStyles("row", "center", "space-between")}
     padding: 0;
     height: 100%;
@@ -110,7 +110,15 @@ const activeStyle = {
 
 export const Logo = Styled.div`
     ${props => props.theme.flexStyles("row", "center", "flex-start")}
-    flex: 3;
+    cursor: pointer;
+`
+
+const LinkWrapper = Styled.div`
+    flex: 5;
+
+    @media only screen and (max-width: 600px) {
+        flex: 0;
+    }
 `
 
 export const NavigationLink = ({ to, children }: { to: string, children: React.ReactNode }) => {
@@ -131,20 +139,22 @@ export const NavigationBar = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <>
-        <Burger style={{width: 50, height: 50}} onClick={() => isOpen ? setOpen(false) : setOpen(true)} id="burger">
-            <img width={30} src={menu} alt=""/>
-        </Burger>
-       
-        <NavBar isOpen={isOpen}>
-            <Link to="/">
-                <Logo onClick={() => setOpen(false)}>
-                    <img width="150" src={logo} alt="logo" />
-                </Logo>
-            </Link>
-            <NavBarUl onClick={() => setOpen(false)}>
-                {children}
-            </NavBarUl>
-        </NavBar>
+            <Burger style={{ width: 50, height: 50 }} onClick={() => isOpen ? setOpen(false) : setOpen(true)} id="burger">
+                <img width={30} src={menu} alt="" />
+            </Burger>
+
+            <NavBar isOpen={isOpen}>
+                <LinkWrapper>
+                    <Link to="/">
+                        <Logo onClick={() => setOpen(false)}>
+                            <img width="150" src={logo} alt="logo" />
+                        </Logo>
+                    </Link>
+                </LinkWrapper>
+                <NavBarUl onClick={() => setOpen(false)}>
+                    {children}
+                </NavBarUl>
+            </NavBar>
         </>
     )
 }

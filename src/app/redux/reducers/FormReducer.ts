@@ -114,6 +114,7 @@ export const checkoutThunk = () => async (dispatch: any, getState: () => StateTy
         const res = await API.addPurchase(purchase);
         dispatch(setPurchaseAC([res.purchase]))
         console.log(res);
+        return res
     } catch (error) {
         throw error;
     }

@@ -103,10 +103,8 @@ export const Contacts = ({ }: ContactsProps) => {
 
     return (
         <>
-            <Section height={"100vh"} width={"80%"} justify="flex-start">
-                <SectionHeader>
-                    Contacts
-                </SectionHeader>
+            <Section paddingTop={"70px"} height={"100vh"} width={"80%"} justify="flex-start">
+               
 
                 <div id="fieldGroup">
 
@@ -142,7 +140,7 @@ export const Contacts = ({ }: ContactsProps) => {
                                     <Input type="text" />
                                 </Form.Item>
                             </FieldGroup>
-                            <Form.Item rules={[{ required: true }]} name={"message"} label={"Body"} style={{ width: "100%" }}>
+                            <Form.Item rules={[{ required: true }]} name={"message"} label={"Your message"} style={{ width: "100%" }}>
                                 <TextArea />
                             </Form.Item>
                             <Button htmlType={"submit"} type={"primary"}>Submit</Button>
