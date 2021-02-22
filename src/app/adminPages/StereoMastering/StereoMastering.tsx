@@ -8,6 +8,7 @@ import { getPricesSelector, getPricesErrorsSelector, getPricesSuccessSelector } 
 import { removePricesErrorAC, removePricesSuccessAC } from '../../redux/actionCreators/actionCreators';
 import { PlusOutlined } from '@ant-design/icons';
 import { Loader } from '../../components/Loader';
+import TextArea from 'antd/lib/input/TextArea';
 
 
 
@@ -52,6 +53,7 @@ const StereoMastering = ({ stereoMastering, getPrices, setPrices,
 
 
     const onFinish = (values: PriceItemType) => {
+        console.log(values)
         values.additionalEdit.features = values.additionalEdit.features.toString().split(",");
         values.features = values.features.toString().split(",");
         setPrices(values, "/stereoMastering");
@@ -102,10 +104,10 @@ const StereoMastering = ({ stereoMastering, getPrices, setPrices,
                                             { name: "EUR", value: stereoMastering.EUR },
                                             { name: "USD", value: stereoMastering.USD },
                                             { name: "features", value: stereoMastering.features },
-                                            { name: ["additionalEdit","EUR"], value: stereoMastering.EUR },
-                                            { name: ["additionalEdit","USD"], value: stereoMastering.USD },
+                                            { name: "description", value: stereoMastering.description },
+                                            { name: ["additionalEdit","EUR"], value: stereoMastering.additionalEdit.EUR },
+                                            { name: ["additionalEdit","USD"], value: stereoMastering.additionalEdit.USD },
                                             { name: ["additionalEdit","features"], value: stereoMastering.additionalEdit.features },
-                                            
                                         ]
                                     }
                                     name={"prices"}
@@ -148,6 +150,12 @@ const StereoMastering = ({ stereoMastering, getPrices, setPrices,
                                         name={["additionalEdit","features"]}
                                         label={"Additional Edit Features"}>
                                         <Input type="text" />
+                                    </Form.Item>
+
+                                    <Form.Item
+                                        name={"description"}
+                                        label={"Description"}>
+                                        <TextArea />
                                     </Form.Item>
                                     
 

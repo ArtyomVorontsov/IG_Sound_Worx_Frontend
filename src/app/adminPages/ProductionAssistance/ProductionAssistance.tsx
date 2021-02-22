@@ -7,6 +7,7 @@ import { getPricesThunk, setPricesThunk } from '../../redux/reducers/PricesReduc
 import { getPricesSelector, getPricesErrorsSelector, getPricesSuccessSelector } from '../../selectors/selectors';
 import { removePricesErrorAC, removePricesSuccessAC } from '../../redux/actionCreators/actionCreators';
 import { Loader } from '../../components/Loader';
+import TextArea from 'antd/lib/input/TextArea';
 
 
 
@@ -33,7 +34,7 @@ type ProductionAssistanceProps = ownProps & mapStateProps & mapDispatchProps;
 
 const ProductionAssistance = ({ productionAssistance, getPrices, setPrices,
     children, errors, successes, removePricesError,
-    removePricesSuccess, isLoaded }:ProductionAssistanceProps) => {
+    removePricesSuccess, isLoaded }: ProductionAssistanceProps) => {
 
     useEffect(() => {
         if (!isLoaded)
@@ -86,7 +87,7 @@ const ProductionAssistance = ({ productionAssistance, getPrices, setPrices,
 
 
                 {
-                    !isLoaded ? <Loader/> :
+                    !isLoaded ? <Loader /> :
 
 
                         <CardWrapper>
@@ -98,7 +99,8 @@ const ProductionAssistance = ({ productionAssistance, getPrices, setPrices,
                                         [
                                             { name: "EUR", value: productionAssistance.EUR },
                                             { name: "USD", value: productionAssistance.USD },
-                                            { name: "features", value: productionAssistance.features },  
+                                            { name: "features", value: productionAssistance.features },
+                                            { name: "description", value: productionAssistance.description },
                                         ]
                                     }
                                     name={"prices"}
@@ -124,7 +126,13 @@ const ProductionAssistance = ({ productionAssistance, getPrices, setPrices,
                                         <Input type="text" />
                                     </Form.Item>
 
-                                    
+                                    <Form.Item
+                                        name={"description"}
+                                        label={"Description"}>
+                                        <TextArea/>
+                                    </Form.Item>
+
+
 
                                     <Button htmlType="submit" type="primary">Submit changes</Button>
                                 </Form>

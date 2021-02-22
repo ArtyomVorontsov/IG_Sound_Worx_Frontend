@@ -7,6 +7,7 @@ import { getPricesThunk, setPricesThunk } from '../../redux/reducers/PricesReduc
 import { getPricesSelector, getPricesErrorsSelector, getPricesSuccessSelector } from '../../selectors/selectors';
 import { removePricesErrorAC, removePricesSuccessAC } from '../../redux/actionCreators/actionCreators';
 import { Loader } from '../../components/Loader';
+import TextArea from 'antd/lib/input/TextArea';
 
 
 
@@ -99,6 +100,8 @@ const TrackProduction = ({ trackProduction, getPrices, setPrices,
                                             { name: "EUR", value: trackProduction.EUR },
                                             { name: "USD", value: trackProduction.USD },
                                             { name: "features", value: trackProduction.features },  
+                                            { name: "description", value: trackProduction.description },  
+                                            
                                         ]
                                     }
                                     name={"prices"}
@@ -122,6 +125,12 @@ const TrackProduction = ({ trackProduction, getPrices, setPrices,
                                         name={"features"}
                                         label={"Features"}>
                                         <Input type="text" />
+                                    </Form.Item>
+
+                                    <Form.Item
+                                        name={"description"}
+                                        label={"Description"}>
+                                        <TextArea/>
                                     </Form.Item>
 
                                     

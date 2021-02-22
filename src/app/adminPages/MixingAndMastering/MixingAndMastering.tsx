@@ -10,6 +10,7 @@ import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { StemField } from '../components/StemField';
 import { stemFieldFiller } from '../utils/stemFieldFiller';
 import { Loader } from '../../components/Loader';
+import TextArea from 'antd/lib/input/TextArea';
 
 
 
@@ -124,6 +125,7 @@ const MixingAndMastering = ({ mixingAndMastering, getPrices, setPrices,
                                     fields={
                                         [
                                             ...stemFieldFiller(fields),
+                                            { name: "description", value: mixingAndMastering.description },
                                             { name: "features", value: mixingAndMastering.features },
                                             { name: ["additionalEdit", "features"], value: mixingAndMastering.additionalEdit.features },
                                             { name: ["additionalEdit", "EUR"], value: mixingAndMastering.additionalEdit.EUR },
@@ -177,6 +179,12 @@ const MixingAndMastering = ({ mixingAndMastering, getPrices, setPrices,
                                             name={["additionalEdit", "features"]}
                                             label={"Additional Edit Features"}>
                                             <Input type="text" />
+                                        </Form.Item>
+
+                                        <Form.Item
+                                            name={"description"}
+                                            label={"Description"}>
+                                            <TextArea/>
                                         </Form.Item>
                                     </div>
 

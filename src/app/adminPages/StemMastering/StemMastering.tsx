@@ -10,6 +10,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { StemField } from '../components/StemField';
 import { stemFieldFiller } from '../utils/stemFieldFiller';
 import { Loader } from '../../components/Loader';
+import TextArea from 'antd/lib/input/TextArea';
 
 
 
@@ -40,6 +41,8 @@ const MixingAndMastering = ({ stemMastering, getPrices, setPrices,
 
 
     const onFinish = (values: PriceItemType) => {
+
+        
 
         console.log(values)
         //stems id correction
@@ -138,9 +141,11 @@ const MixingAndMastering = ({ stemMastering, getPrices, setPrices,
                                         [
                                             ...stemFieldFiller(quantityOfStemsFields),
                                             { name: "features", value: stemMastering.features },
+                                            { name: "description", value: stemMastering.description },
                                             { name: ["additionalEdit", "features"], value: stemMastering.additionalEdit.features },
                                             { name: ["additionalEdit", "EUR"], value: stemMastering.additionalEdit.EUR },
-                                            { name: ["additionalEdit", "USD"], value: stemMastering.additionalEdit.USD }
+                                            { name: ["additionalEdit", "USD"], value: stemMastering.additionalEdit.USD },
+                                            
                                         ]
                                     }
                                     name={"prices"}
@@ -152,7 +157,7 @@ const MixingAndMastering = ({ stemMastering, getPrices, setPrices,
                                     <div>
                                         <h3>Quantity of stems</h3>
 
-                                        {quantityOfStemsFields.map((stem, index) => {
+                                        {quantityOfStemsFields.map((stem: StemType, index) => {
                                             return <StemField key={stem.id} remove={removeField} stem={stem} />
                                         })}
 
@@ -190,6 +195,12 @@ const MixingAndMastering = ({ stemMastering, getPrices, setPrices,
                                             name={["additionalEdit", "features"]}
                                             label={"Additional Edit Features"}>
                                             <Input type="text" />
+                                        </Form.Item>
+
+                                        <Form.Item
+                                            name={"description"}
+                                            label={"Description"}>
+                                            <TextArea/>
                                         </Form.Item>
                                     </div>
 

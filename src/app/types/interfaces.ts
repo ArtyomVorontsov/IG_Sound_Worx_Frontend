@@ -15,7 +15,8 @@ export type AllPricesType = {
 
 export type PriceItemType = {
     title?: string,
-    name?: string
+    name?: string,
+    description: string,
 
     quantityOfStems?: Array<StemType>,
     EUR?: number,

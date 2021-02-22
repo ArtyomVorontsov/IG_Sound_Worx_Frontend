@@ -115,8 +115,9 @@ export const setPricesThunk = (prices: PriceItemType, path: PricesPathType) => a
     try {
 
         const response = await API.setPrices(newPrices, path);
+        
         console.log(response);
-        const prices: Array<PriceItemType> = [response];
+        const prices: Object = {[response.name]:response};
         dispatch(setPricesAC(prices));
 
         const successMessage: SuccessType = {
