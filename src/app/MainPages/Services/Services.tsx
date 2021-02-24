@@ -5,6 +5,7 @@ import mixer from "../../../images/mixer.jpg";
 import { Link } from 'react-router-dom';
 import { Section } from '../../components/Section';
 import { canvasFunc } from '../../../utils/canvas';
+//import { AnimatedArrow } from '../../components/animatedArrow';
 
 
 
@@ -111,12 +112,39 @@ const MainInSection = Styled.div`
     box-sizing:border-box;
     ${(props: { backgroundColor?: string }) => props.backgroundColor ? `background-color: ${props.backgroundColor};` : null}
 `
+//@ts-ignore
+import arrow from "../../icons/arrow.svg";
+
+const StyledImg = Styled.img`
+    
+    @keyframes jump {
+        from {
+            transform: translateX(10px);
+        }
+        to {
+            transform: translateX(0px);
+        }
+    }
+
+    width: 30px;
+    height: 30px;
+
+    animation: jump 0.5s ease-in-out 0s infinite alternate;
+`
+
+export const AnimatedArrow = () => {
+    return (
+        <div style={{transform: "rotate(90deg)"}}>
+            <StyledImg src={arrow} />
+        </div>
+    )
+}
 
 
 
 
 export const Services = () => {
-    
+
     useEffect(() => {
         canvasFunc("canvas");
     }, [])
@@ -125,15 +153,16 @@ export const Services = () => {
 
     return (
         <>
-            <Section height={"100vh"} color="black">
+            <Section justify="space-around" height={"100vh"} color="black">
                 <canvas style={{ position: "absolute", zIndex: 0 }} id="canvas" width={window.innerWidth} height={"500"} />
                 <MainInSection>
-                    <Header1>ELECTRONIC DANCE MUSIC <br/> MIXING, MASTERING AND PRODUCTION SERVICE</Header1>
+                    <Header1>ELECTRONIC DANCE MUSIC <br /> MIXING, MASTERING AND PRODUCTION SERVICE</Header1>
                     <StyledSpanWhite>Let us help you at the final stages of music production by delivering a professional sound.</StyledSpanWhite>
                 </MainInSection>
-                <StyledLink color="orange">
+               {/*  <StyledLink color="orange">
                     <Link to="/contacts">Contact us</Link>
-                </StyledLink>
+                </StyledLink> */}
+                <AnimatedArrow />
             </Section>
 
 

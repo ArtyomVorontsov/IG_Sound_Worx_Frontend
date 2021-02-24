@@ -29,9 +29,6 @@ type PricingProps = ownProps & mapStateProps & mapDispatchProps;
 
 export const Pricing = ({ allPrices, isAllPricesLoaded }: PricingProps) => {
 
-    const [selectedStemMasteringId, setSelectedStemMasteringId] = useState(0);
-    const [selectedMixingAndMasteringId, setSelectedMixingAndMasteringId] = useState(0);
-
     useEffect(() => {
         window.scrollTo(0, 0);
     })

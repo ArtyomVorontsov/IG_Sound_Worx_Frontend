@@ -1,9 +1,9 @@
 export const canvasFunc = (canvasId) => {
 
-    debugger
+    
     let c = document.getElementById(canvasId); // Grab canvas object
 
-    debugger
+    
     //@ts-ignore
     let ctx = c.getContext("2d"); // Define canvas context
     //@ts-ignore
