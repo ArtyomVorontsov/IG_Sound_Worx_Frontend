@@ -2,26 +2,31 @@ import React from 'react';
 import Styled from "styled-components";
 import { Logo } from './NavBar';
 //@ts-ignore
-import logo from "../components/logo/IGLogo.jpg";
+import instagram from "../components/logo/ic_instagram.svg";
+//@ts-ignore
+import facebook from "../components/logo/ic_facebook.svg";
+
+
+import { SocialButton } from './SocialButton';
 
 const FooterStyled = Styled.footer`
     width: 100%;
-    padding: 10%;
     box-sizing: border-box;
-    height: 30vh;
     background-color: black;
-
+    height: 150px;
     color: white;
 
-    ${props => props.theme.flexStyles("column", "center", "space-around")}
+    ${props => props.theme.flexStyles("row", "center", "space-around")}
 `
 
 export const Footer = () => {
     return (
         <FooterStyled>
-            <Logo>
-                <img width="100" src={logo} alt="logo" />
-            </Logo>
+            <span style={{ color: "white" }}>IG Sound Worx 2021</span>
+            <div style={{display: "flex", flexDirection: "row", width: "120px", alignItems: "center", justifyContent: "space-around"}}>
+                <SocialButton color="red" icon={instagram} />
+                <SocialButton color="blue" icon={facebook} />
+            </div>
         </FooterStyled>
     )
 }

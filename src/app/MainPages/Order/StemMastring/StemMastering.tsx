@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Form, Input, Switch, Divider, Button, Card, Select } from 'antd'
 import { Content, Footer } from 'antd/lib/layout/layout'
 import { FormWrapper, FieldGroup } from '../../../components/FormComponents'
-import TextArea from 'antd/lib/input/TextArea'
+import { TextArea } from '../../../components/TextArea'
 import { FormValuesType, FieldType, PriceItemType } from '../../../types/interfaces'
 import FormCheckoutBlock from '../../../components/FormCheckoutBlock'
 import { FormNumberField } from '../../../components/FormNumberField'
@@ -118,13 +118,14 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
                                     label={"Additional edit"}
                                 />
 
-                                <Form.Item
+                                {/* <Form.Item
                                     name={"description"}
                                     label={"Description"}
                                     rules={[{ required: true, message: "Field is required" }]}>
-                                    <TextArea onChange={(e) => setFormValues({ key: e.target.id, value: e.target.value })} />
-                                </Form.Item>
-
+                                    <TextArea onChange=
+                                    {(e) => setFormValues({ key: e.target.id, value: e.target.value })} />
+                                </Form.Item> */}
+                                <TextArea setFormValues={setFormValues} />
 
                             </FieldsWrapper>
 

@@ -79,7 +79,7 @@ export const MixingAndMastring = ({ clearFormValues, children, formValues, setFo
                                     }
                                 })}
                                 name={"mixingAndMastering"}
-                                label={"Mixing and mastering"}
+                                label={"Quantity of stems"}
                             >
                                 {
                                     product.item.quantityOfStems.map((stem, index) => {

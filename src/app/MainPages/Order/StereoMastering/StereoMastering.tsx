@@ -77,7 +77,7 @@ export const StereoMastering = ({ clearFormValues, formValues, setFormValues, pr
                                 formData={product.item}
                                 setFormValues={setFormValues}
                                 name={"stereoMastering"}
-                                label={"Quantity of songs"} />
+                                label={"Quantity of tracks"} />
 
                             <Divider />
 
@@ -85,7 +85,7 @@ export const StereoMastering = ({ clearFormValues, formValues, setFormValues, pr
                                 formData={product.item.additionalEdit}
                                 setFormValues={setFormValues}
                                 name={"additionalEdit"}
-                                label={"Additional editing"}
+                                label={"Additional edit"}
                             />
 
                             <TextArea setFormValues={setFormValues} />
