@@ -21,10 +21,10 @@ type StereoMasteringProps = {
     clearFormValues: () => void
 }
 
-export const StereoMastering = ({clearFormValues, formValues, setFormValues, product, checkout }: StereoMasteringProps) => {
+export const StereoMastering = ({ clearFormValues, formValues, setFormValues, product, checkout }: StereoMasteringProps) => {
 
     const [isCheckoutBlockOpen, setIsCheckoutBlockOpen] = useState(false);
-    
+
 
     const closeCheckoutBlock = () => {
         setIsCheckoutBlockOpen(false)
@@ -38,10 +38,10 @@ export const StereoMastering = ({clearFormValues, formValues, setFormValues, pro
         setIsCheckoutBlockOpen(false)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         clearFormValues()
-        window.scrollTo(0,0);
-    },[])
+        window.scrollTo(0, 0);
+    }, [])
 
     return (
 
@@ -61,7 +61,7 @@ export const StereoMastering = ({clearFormValues, formValues, setFormValues, pro
                             { name: "description", value: formValues.description },
                             { name: "link", value: formValues.link },
 
-                            { name: "stereoMastering", value: formValues.stereoMastering.count === 0 ? "" : formValues.stereoMastering.count},
+                            { name: "stereoMastering", value: formValues.stereoMastering.count === 0 ? "" : formValues.stereoMastering.count },
                             { name: "additionalEdit", value: formValues.additionalEdit.count === 0 ? "" : formValues.additionalEdit.count },
                         ]
                     }
@@ -71,7 +71,6 @@ export const StereoMastering = ({clearFormValues, formValues, setFormValues, pro
                             <h1>Stereo mastring</h1>
                             <NameEmailFields setFormValues={setFormValues} />
 
-                            <TextArea setFormValues={setFormValues} />
                             <FormLinkField setFormValues={setFormValues} />
 
                             <FormNumberField
@@ -88,6 +87,8 @@ export const StereoMastering = ({clearFormValues, formValues, setFormValues, pro
                                 name={"additionalEdit"}
                                 label={"Additional editing"}
                             />
+
+                            <TextArea setFormValues={setFormValues} />
                         </div>
                         <FormCheckoutBlock
                             formValues={formValues}

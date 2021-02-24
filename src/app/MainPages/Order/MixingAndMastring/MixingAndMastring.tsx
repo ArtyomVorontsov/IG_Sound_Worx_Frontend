@@ -65,7 +65,6 @@ export const MixingAndMastring = ({ clearFormValues, children, formValues, setFo
                         <div style={{ flex: 2 }}>
                             <h1>Mixing and mastring</h1>
                             <NameEmailFields setFormValues={setFormValues} />
-                            <TextArea setFormValues={setFormValues} />
                             <FormLinkField setFormValues={setFormValues} />
 
                             <FormSelectField setFormValues={(e: string) => setFormValues(
@@ -98,6 +97,7 @@ export const MixingAndMastring = ({ clearFormValues, children, formValues, setFo
                                 label={"Additional edit"}
                                 setFormValues={setFormValues}
                             />
+                             <TextArea setFormValues={setFormValues} />
                         </div>
                         <FormCheckoutBlock
                             setFormValues={setFormValues}

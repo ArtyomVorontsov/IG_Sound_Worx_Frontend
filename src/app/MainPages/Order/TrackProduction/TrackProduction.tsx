@@ -68,8 +68,8 @@ export const TrackProduction = ({ clearFormValues, product, children, formValues
                             <div style={{ flex: 2 }}>
                                 <h1>Track production</h1>
                                 <NameEmailFields setFormValues={setFormValues} />
-                                <TextArea setFormValues={setFormValues} />
                                 <FormLinkField setFormValues={setFormValues} />
+                                <TextArea setFormValues={setFormValues} />
                                 <Button htmlType="submit">Order now</Button>
                             </div>
                     }

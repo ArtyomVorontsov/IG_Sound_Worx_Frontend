@@ -4,28 +4,28 @@ import Styled from "styled-components";
 //@ts-ignore
 import arrow from "../icons/arrow.svg";
 
+
 const StyledImg = Styled.img`
-    transform: rotate(90deg);
+    
     @keyframes jump {
         from {
-            transform: translateY(100px);
+            transform: translateX(10px);
         }
         to {
-            transform: translateY(0px);
+            transform: translateX(0px);
         }
     }
 
-    width: 100px;
-    height: 100px;
+    width: 30px;
+    height: 30px;
 
-    animation: jump 2s linear 0s infinite alternate;
+    animation: jump 0.5s ease-in-out 0s infinite alternate;
 `
 
 export const AnimatedArrow = () => {
     return (
-        <div style={{transform: "rotate(90deg)", backgroundColor: "red"}}>
+        <div style={{transform: "rotate(90deg)"}}>
             <StyledImg src={arrow} />
         </div>
-
     )
 }

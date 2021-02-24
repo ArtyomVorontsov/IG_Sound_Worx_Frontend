@@ -11,7 +11,7 @@ import { PriceItemType, FieldType } from '../types/interfaces';
 // }
 
 type FormNumberField = {
-    formData: PriceItemType
+    formData: any
     setFormValues: any
     name: string
     label: string

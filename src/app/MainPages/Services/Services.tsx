@@ -5,7 +5,7 @@ import mixer from "../../../images/mixer.jpg";
 import { Link } from 'react-router-dom';
 import { Section } from '../../components/Section';
 import { canvasFunc } from '../../../utils/canvas';
-//import { AnimatedArrow } from '../../components/animatedArrow';
+import { AnimatedArrow } from '../../components/animatedArrow';
 
 
 
@@ -112,33 +112,6 @@ const MainInSection = Styled.div`
     box-sizing:border-box;
     ${(props: { backgroundColor?: string }) => props.backgroundColor ? `background-color: ${props.backgroundColor};` : null}
 `
-//@ts-ignore
-import arrow from "../../icons/arrow.svg";
-
-const StyledImg = Styled.img`
-    
-    @keyframes jump {
-        from {
-            transform: translateX(10px);
-        }
-        to {
-            transform: translateX(0px);
-        }
-    }
-
-    width: 30px;
-    height: 30px;
-
-    animation: jump 0.5s ease-in-out 0s infinite alternate;
-`
-
-export const AnimatedArrow = () => {
-    return (
-        <div style={{transform: "rotate(90deg)"}}>
-            <StyledImg src={arrow} />
-        </div>
-    )
-}
 
 
 

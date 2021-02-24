@@ -51,7 +51,7 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
 
     useEffect(() => {
         clearFormValues()
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }, [])
 
     return (
@@ -82,18 +82,9 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
                                 <h1>Stem mastering</h1>
                                 <NameEmailFields setFormValues={setFormValues} />
 
-                                <Form.Item
-                                    name={"description"}
-                                    label={"Description"}
-                                    rules={[{ required: true, message: "Field is required" }]}>
-                                    <TextArea onChange={(e) => setFormValues({ key: e.target.id, value: e.target.value })} />
-                                </Form.Item>
-
                                 <FormLinkField setFormValues={setFormValues} />
 
                                 <Divider />
-
-
 
                                 <FormSelectField setFormValues={(e: string) => setFormValues(
                                     {
@@ -126,6 +117,13 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
                                     name={"additionalEdit"}
                                     label={"Additional edit"}
                                 />
+
+                                <Form.Item
+                                    name={"description"}
+                                    label={"Description"}
+                                    rules={[{ required: true, message: "Field is required" }]}>
+                                    <TextArea onChange={(e) => setFormValues({ key: e.target.id, value: e.target.value })} />
+                                </Form.Item>
 
 
                             </FieldsWrapper>

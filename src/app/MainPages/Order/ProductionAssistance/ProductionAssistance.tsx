@@ -46,8 +46,6 @@ export const ProductionAssistance = ({ clearFormValues, product, children, formV
 
     return (
         <Content>
-
-
             <Form
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
@@ -72,8 +70,8 @@ export const ProductionAssistance = ({ clearFormValues, product, children, formV
                             <div style={{ flex: 2 }}>
                                 <h1>Production assistance</h1>
                                 <NameEmailFields setFormValues={setFormValues} />
-                                <TextArea setFormValues={setFormValues} />
                                 <FormLinkField setFormValues={setFormValues} />
+                                <TextArea setFormValues={setFormValues} />
                                 <Button htmlType="submit">Order now</Button>
                             </div>
                     }
