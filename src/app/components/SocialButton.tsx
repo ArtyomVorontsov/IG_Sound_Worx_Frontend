@@ -1,7 +1,7 @@
 import React from 'react'
 import Styled from "styled-components";
 
-const SocialButtonStyled = Styled.button`
+const SocialButtonStyled = Styled.a`
     ${props => props.theme.flexStyles("row", "center", "center")}
     margin: 0;
     padding: 0;
@@ -39,9 +39,9 @@ const SocialButtonStyled = Styled.button`
    
 `
 
-export const SocialButton = ({icon, color}) => {
+export const SocialButton = ({icon, color, to="#"}) => {
     return (
-        <SocialButtonStyled color={color}>
+        <SocialButtonStyled href={to} color={color}>
             <img draggable={false} src={icon} alt=""/>
         </SocialButtonStyled>
     )

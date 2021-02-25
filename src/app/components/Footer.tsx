@@ -24,8 +24,8 @@ export const Footer = () => {
         <FooterStyled>
             <span style={{ color: "white" }}>IG Sound Worx 2021</span>
             <div style={{display: "flex", flexDirection: "row", width: "120px", alignItems: "center", justifyContent: "space-around"}}>
-                <SocialButton color="red" icon={instagram} />
-                <SocialButton color="blue" icon={facebook} />
+                <SocialButton color="red" to="https://www.instagram.com/igsoundworx" icon={instagram} />
+                <SocialButton color="blue" to="https://www.facebook.com/igsoundworx" icon={facebook} />
             </div>
         </FooterStyled>
     )

@@ -49,60 +49,65 @@ export const StereoMastering = ({ clearFormValues, formValues, setFormValues, pr
         <Content>
 
 
-            {!product.isLoaded ? <Loader /> :
-                <Form
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                    layout="vertical"
-                    fields={
-                        [
-                            { name: "full_name", value: formValues.full_name },
-                            { name: "email", value: formValues.email },
-                            { name: "description", value: formValues.description },
-                            { name: "link", value: formValues.link },
 
-                            { name: "stereoMastering", value: formValues.stereoMastering.count === 0 ? "" : formValues.stereoMastering.count },
-                            { name: "additionalEdit", value: formValues.additionalEdit.count === 0 ? "" : formValues.additionalEdit.count },
-                        ]
-                    }
-                >
-                    <FormWrapper>
-                        <div style={{ flex: 2 }}>
-                            <h1>Stereo mastring</h1>
-                            <NameEmailFields setFormValues={setFormValues} />
+            <Form
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                layout="vertical"
+                fields={
+                    [
+                        { name: "full_name", value: formValues.full_name },
+                        { name: "email", value: formValues.email },
+                        { name: "description", value: formValues.description },
+                        { name: "link", value: formValues.link },
 
-                            <FormLinkField setFormValues={setFormValues} />
+                        { name: "stereoMastering", value: formValues.stereoMastering.count === 0 ? "" : formValues.stereoMastering.count },
+                        { name: "additionalEdit", value: formValues.additionalEdit.count === 0 ? "" : formValues.additionalEdit.count },
+                    ]
+                }
+            >
+                <FormWrapper>
+                    {!product.isLoaded ? <Loader /> :
+                        <>
+                            <div style={{ flex: 2 }}>
 
-                            <FormNumberField
-                                formData={product.item}
+                                <h1>Stereo mastring</h1>
+                                <NameEmailFields setFormValues={setFormValues} />
+
+                                <FormLinkField setFormValues={setFormValues} />
+
+                                <FormNumberField
+                                    formData={product.item}
+                                    setFormValues={setFormValues}
+                                    name={"stereoMastering"}
+                                    label={"Quantity of tracks"} />
+
+                                <Divider />
+
+                                <FormNumberField
+                                    formData={product.item.additionalEdit}
+                                    setFormValues={setFormValues}
+                                    name={"additionalEdit"}
+                                    label={"Additional edit"}
+                                    required={false}
+                                />
+
+                                <TextArea setFormValues={setFormValues} />
+                            </div>
+                            <FormCheckoutBlock
+                                formValues={formValues}
                                 setFormValues={setFormValues}
-                                name={"stereoMastering"}
-                                label={"Quantity of tracks"} />
-
-                            <Divider />
-
-                            <FormNumberField
-                                formData={product.item.additionalEdit}
-                                setFormValues={setFormValues}
-                                name={"additionalEdit"}
-                                label={"Additional edit"}
-                                required={false}
+                                close={closeCheckoutBlock}
+                                isCheckoutBlockOpen={isCheckoutBlockOpen}
+                                currentProduct={"stereoMastering"}
+                                checkout={checkout}
                             />
+                        </>
+                    }
+                </FormWrapper>
 
-                            <TextArea setFormValues={setFormValues} />
-                        </div>
-                        <FormCheckoutBlock
-                            formValues={formValues}
-                            setFormValues={setFormValues}
-                            close={closeCheckoutBlock}
-                            isCheckoutBlockOpen={isCheckoutBlockOpen}
-                            currentProduct={"stereoMastering"}
-                            checkout={checkout}
-                        />
+            </Form>
 
-                    </FormWrapper>
-                </Form>
-            }
         </Content>
     )
 }
