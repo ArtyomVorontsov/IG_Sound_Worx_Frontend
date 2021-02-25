@@ -86,6 +86,9 @@ const FormCheckoutBlock: React.FC<RouteComponentProps & FormCheckoutProps> = ({ 
                     <Descriptions.Item span={1} label={`Total (${formValues.currency})`}>
                         {formValues.total}
                     </Descriptions.Item>
+                    <Descriptions.Item span={1} label={`Paypal fee (${formValues.currency})`}>
+                        {formValues.paypalFee}
+                    </Descriptions.Item>
                     <Descriptions.Item span={10} label="Description">
                         {formValues.description}
                     </Descriptions.Item>
@@ -103,6 +106,7 @@ const FormCheckoutBlock: React.FC<RouteComponentProps & FormCheckoutProps> = ({ 
             <CheckoutBlock>
                 <h2>Total: {formValues.total} {`${formValues.currency}`}</h2>
                 <p>Price: {formValues.price}</p>
+    <p>Paypal fee: {formValues.paypalFee}</p>
                {/*  <p>Discount: {formValues.discount}</p> */}
 
                 {/* <Select

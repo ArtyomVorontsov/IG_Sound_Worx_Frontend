@@ -16,6 +16,7 @@ const defaultState: FormValuesType = {
     discount: 0,
     price: 0,
     total: 0,
+    paypalFee: 0,
     currency: "EUR",
     note_to_payer: "",
     stereoMastering: { price: {EUR: 0, USD: 0}, count: 0 },
@@ -49,16 +50,19 @@ export const FormReducer = (state = defaultState, action: ActionTypes) => {
 const countTotal = (formValues: FormValuesType, currency: CurrencyType) => {
 
     const price = { key: "price", value: 0 };
+    
     price.value = formValues.stereoMastering.price[currency] +
         formValues.mixingAndMastering.price[currency] + 
         formValues.stemMastering.price[currency] +
         formValues.additionalEdit.price[currency] +
         formValues.productionAssistance.price[currency] +
         formValues.trackProduction.price[currency]
+        
 
-    const total = { key: "total", value: price.value }
+    const paypalFee = { key: "paypalFee", value: Number(parseFloat(((price.value / 100) * 6.5).toString()).toFixed(2))}
+    const total = { key: "total", value: price.value + paypalFee.value }
 
-    return { total, price }
+    return { total, price, paypalFee }
 
 }
 
@@ -69,9 +73,10 @@ export const setFormValuesThunk = (field: FieldType) => (dispatch: Dispatch<SetF
     dispatch(setFormValuesAC(field))
 
     const { FormReducer, PricesReducer } = getState()
-    const { total, price } = countTotal(FormReducer, FormReducer.currency)
+    const { total, price, paypalFee } = countTotal(FormReducer, FormReducer.currency)
     dispatch(setFormValuesAC(total))
     dispatch(setFormValuesAC(price))
+    dispatch(setFormValuesAC(paypalFee))
 }
 
 
@@ -83,7 +88,7 @@ export const checkoutThunk = () => async (dispatch: any, getState: () => StateTy
         note_to_payer, stereoMastering,
         stemMastering, mixingAndMastering,
         additionalEdit, productionAssistance,
-        trackProduction, link} = getState().FormReducer;
+        trackProduction, link, paypalFee} = getState().FormReducer;
 
     const fieldItems = {
         stereoMastering,
@@ -108,7 +113,8 @@ export const checkoutThunk = () => async (dispatch: any, getState: () => StateTy
         price,
         currency,
         note_to_payer,
-        link
+        link,
+        paypalFee
     }
     try {
         const res = await API.addPurchase(purchase);

@@ -86,6 +86,7 @@ export const StereoMastering = ({ clearFormValues, formValues, setFormValues, pr
                                 setFormValues={setFormValues}
                                 name={"additionalEdit"}
                                 label={"Additional edit"}
+                                required={false}
                             />
 
                             <TextArea setFormValues={setFormValues} />

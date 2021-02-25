@@ -164,7 +164,7 @@ export const Services = () => {
                     </StyledSpanBlack>
 
                     <StyledLink color="orange">
-                        <Link to="/order/stemMastering">Order now</Link>
+                        <Link to="/stemMastering">Order now</Link>
                     </StyledLink>
                 </MainInSection>
 
@@ -193,7 +193,7 @@ export const Services = () => {
                     </StyledSpanWhite>
 
                     <StyledLink color="#5361e0">
-                        <Link to="/order/stereoMastering">Order now</Link>
+                        <Link to="/stereoMastering">Order now</Link>
                     </StyledLink>
 
                 </MainInSection>
@@ -224,7 +224,7 @@ export const Services = () => {
                         Finalizing
                     </StyledSpanBlack>
                     <StyledLink color="orange">
-                        <Link to="/order/mixingAndMastering">Order now</Link>
+                        <Link to="/mixingAndMastering">Order now</Link>
                     </StyledLink>
                 </MainInSection>
 
@@ -254,7 +254,7 @@ export const Services = () => {
                 </StyledSpanWhite>
                 </MainInSection>
                 <StyledLink color="orange">
-                    <Link to="/order/productionAssistance">Order now</Link>
+                    <Link to="/productionAssistance">Order now</Link>
                 </StyledLink>
             </Section>
         </>

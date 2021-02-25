@@ -126,23 +126,23 @@ export const Main = ({
                     </Route>
 
 
-                    <Route exact path={"/order/stereoMastering"}>
+                    <Route exact path={"/stereoMastering"}>
                         <StereoMastering {...RouteProps} children product={allPrices.stereoMastering} />
                     </Route>
 
-                    <Route exact path={"/order/stemMastering"}>
+                    <Route exact path={"/stemMastering"}>
                         <StemMastering {...RouteProps} children product={allPrices.stemMastering} />
                     </Route>
 
-                    <Route exact path={"/order/mixingAndMastering"}>
+                    <Route exact path={"/mixingAndMastering"}>
                         <MixingAndMastring {...RouteProps} children product={allPrices.mixingAndMastering} />
                     </Route>
 
-                    <Route exact path={"/order/productionAssistance"}>
+                    <Route exact path={"/productionAssistance"}>
                         <ProductionAssistance {...RouteProps} children product={allPrices.productionAssistance} />
                     </Route>
 
-                    <Route exact path={"/order/trackProduction"}>
+                    <Route exact path={"/trackProduction"}>
                         <TrackProduction {...RouteProps} children product={allPrices.trackProduction} />
                     </Route>
 

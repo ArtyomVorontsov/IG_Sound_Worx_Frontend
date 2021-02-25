@@ -153,6 +153,8 @@ export type FormValuesType = {
     additionalEdit: { price: { EUR: number, USD: number }, count: number }
     mixingAndMastering: { price: { EUR: number, USD: number }, count: number }
 
+    paypalFee: number
+
     description: string,
     link: string,
     promocode: string,
