@@ -11,3 +11,7 @@ p {
 h1, span {
     font-family: 'Jura', sans-serif;
 }
+
+html {
+    scroll-behavior: smooth;
+}

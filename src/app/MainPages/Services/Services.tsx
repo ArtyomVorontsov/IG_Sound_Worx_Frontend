@@ -1,13 +1,30 @@
 import React, { useEffect } from 'react'
 import Styled from "styled-components";
-//@ts-ignore
-import mixer from "../../../images/mixer.jpg";
+
+
 import { Link } from 'react-router-dom';
 import { Section } from '../../components/Section';
 import { canvasFunc } from '../../../utils/canvas';
 import { AnimatedArrow } from '../../components/animatedArrow';
 
-
+//@ts-ignore
+import armada from "../../components/logo/armada.png"
+//@ts-ignore
+import AVR from "../../components/logo/AVR.png"
+//@ts-ignore
+import Axtone from "../../components/logo/Axtone.png"
+//@ts-ignore
+import Bob_Sinclar from "../../components/logo/Bob_Sinclar.png"
+//@ts-ignore
+import David_Tort from "../../components/logo/David_Tort.png"
+//@ts-ignore
+import EDM_logo from "../../components/logo/EDM_logo.png"
+//@ts-ignore
+import Future_House_Music from "../../components/logo/Future_House_Music.png"
+//@ts-ignore
+import Hotl from "../../components/logo/Hotl.png"
+//@ts-ignore
+import Spinnin from "../../components/logo/Spinnin.png"
 
 
 const Header1 = Styled.h1`
@@ -91,12 +108,24 @@ const StyledSpanWhite = Styled.span`
 const StyledLink = Styled.div`
 margin: 40px;
 z-index: 2;
+
+
 a{
     color: ${(props) => props.color};
     border: solid 2px ${(props) => props.color};
     border-radius: 5px;
     padding: 10px;
+    transition: all 0.2s ;
    
+}
+
+a:hover{
+    color: white;
+    border: solid 2px ${(props) => props.color};
+    border-radius: 5px;
+    padding: 10px;
+
+    background-color: ${(props) => props.color};
 }
    
 `
@@ -113,7 +142,11 @@ const MainInSection = Styled.div`
     ${(props: { backgroundColor?: string }) => props.backgroundColor ? `background-color: ${props.backgroundColor};` : null}
 `
 
-
+const LogoWrapper = Styled.div`
+    ${props => props.theme.flexStyles("column", "center", "center")}
+    width: 300px;
+    height: 200px;
+`
 
 
 export const Services = () => {
@@ -132,16 +165,19 @@ export const Services = () => {
                     <Header1>ELECTRONIC DANCE MUSIC <br /> MIXING, MASTERING AND PRODUCTION SERVICE</Header1>
                     <StyledSpanWhite>Let us help you at the final stages of music production by delivering a professional sound.</StyledSpanWhite>
                 </MainInSection>
-               {/*  <StyledLink color="orange">
+                {/*  <StyledLink color="orange">
                     <Link to="/contacts">Contact us</Link>
                 </StyledLink> */}
-                <AnimatedArrow />
+                <a href="#section1">
+                    <AnimatedArrow />
+                </a>
+
             </Section>
 
 
 
 
-            <Section color="black">
+            <Section id='section1' color="black">
                 <MainInSection backgroundColor={"white"}>
                     <Header2 color="orange">STEM MASTEING</Header2>
                     <SubtitleBlack>Deep Mastetering with Mixing touches</SubtitleBlack>
@@ -256,6 +292,21 @@ export const Services = () => {
                 <StyledLink color="orange">
                     <Link to="/productionAssistance">Order now</Link>
                 </StyledLink>
+            </Section>
+            <Section color="white">
+                <div style={{ display: "flex", paddingBottom: 100, paddingTop: 100 , flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "center", width: "80%", margin: "auto" }}>
+                    <LogoWrapper><img width={200} src={armada} alt="armada" /></LogoWrapper>
+                    <LogoWrapper><img width={200} src={AVR} alt="AVR" /></LogoWrapper>
+                    <LogoWrapper><img width={200} src={Axtone} alt="axtone" /></LogoWrapper>
+
+                    <LogoWrapper><img width={150} src={Bob_Sinclar} alt="Bob_Sinclar" /></LogoWrapper>
+                    <LogoWrapper><img width={150} src={David_Tort} alt="David_Tort" /></LogoWrapper>
+                    <LogoWrapper><img width={150} src={EDM_logo} alt="EDM_logo" /></LogoWrapper>
+
+                    <LogoWrapper><img width={150} src={Future_House_Music} alt="Future_House_Music" /></LogoWrapper>
+                    <LogoWrapper><img width={150} src={Hotl} alt="Hotl" /></LogoWrapper>
+                    <LogoWrapper><img width={150} src={Spinnin} alt="Spinnin" /></LogoWrapper>
+                </div >
             </Section>
         </>
     )
