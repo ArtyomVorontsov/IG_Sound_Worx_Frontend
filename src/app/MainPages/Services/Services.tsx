@@ -25,7 +25,8 @@ import Future_House_Music from "../../components/logo/Future_House_Music.png"
 import Hotl from "../../components/logo/Hotl.png"
 //@ts-ignore
 import Spinnin from "../../components/logo/Spinnin.png"
-
+//@ts-ignore
+import logo from "../../components/logo/IGLogo.jpg";
 
 const Header1 = Styled.h1`
     color: white;
@@ -159,6 +160,14 @@ const LogoWrapper = Styled.div`
     }
 `
 
+const MobileLogo = Styled.div`
+    display: none;
+    
+    @media only screen and (max-width: 600px) {
+        display: block;
+    }
+`
+
 
 export const Services = () => {
 
@@ -172,6 +181,9 @@ export const Services = () => {
         <>
             <Section justify="space-around" height={"100vh"} color="black">
                 <canvas style={{ position: "absolute", zIndex: 0 }} id="canvas" width={window.innerWidth} height={"500"} />
+                <MobileLogo>
+                    <img width={150} src={logo} alt="logo" />
+                </MobileLogo>
                 <MainInSection>
                     <Header1>ELECTRONIC DANCE MUSIC <br /> MIXING, MASTERING AND PRODUCTION SERVICE</Header1>
                     <StyledSpanWhite>Let us help you at the final stages of music production by delivering a professional sound.</StyledSpanWhite>

@@ -124,17 +124,7 @@ const LinkWrapper = Styled.div`
     }
 `
 
-const MobileLogo = Styled.div`
-    display: none;
-    
-    @media only screen and (max-width: 600px) {
-        display: block;
-        z-index: 10;
-        position: absolute;
-        top: 35px;
-        left: 30px;
-    }
-`
+
 
 export const NavigationLink = ({ to, children }: { to: string, children: React.ReactNode }) => {
     return (
@@ -158,9 +148,7 @@ export const NavigationBar = ({ children }: { children: React.ReactNode }) => {
                 <img width={30} src={menu} alt="logo" />
             </Burger>
 
-            <MobileLogo>
-                <img width={150} src={logo} alt="logo" />
-            </MobileLogo>
+            
 
             <NavBar isOpen={isOpen}>
                 <LinkWrapper>
