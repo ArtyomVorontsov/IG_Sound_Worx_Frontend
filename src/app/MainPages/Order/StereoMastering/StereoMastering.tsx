@@ -40,8 +40,22 @@ export const StereoMastering = ({ clearFormValues, formValues, setFormValues, pr
 
     useEffect(() => {
         clearFormValues()
+
+
+        //initial value dispatch
+        if(product.item) setFormValues({
+            key: "stereoMastering",
+            value: {
+                count: 1,
+                price: {
+                    EUR: Number(product.item.EUR),
+                    USD: Number(product.item.USD),
+                }
+            }}
+        ) 
+
         window.scrollTo(0, 0);
-    }, [])
+    }, [product])
 
     return (
 

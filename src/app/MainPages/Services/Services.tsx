@@ -144,8 +144,19 @@ const MainInSection = Styled.div`
 
 const LogoWrapper = Styled.div`
     ${props => props.theme.flexStyles("column", "center", "center")}
-    width: 300px;
-    height: 200px;
+    width: 15%;
+    height: 15%;
+    
+    overflow: hidden;
+
+    img{
+        width: 100%;
+    }
+
+    @media only screen and (max-width: 600px) {
+        width: 30%;
+        height: 30%;
+    }
 `
 
 
@@ -178,16 +189,16 @@ export const Services = () => {
 
 
             <Section id='section1' color="black">
-                <MainInSection backgroundColor={"white"}>
+                <MainInSection backgroundColor={"black"}>
                     <Header2 color="orange">STEM MASTEING</Header2>
-                    <SubtitleBlack>Deep Mastetering with Mixing touches</SubtitleBlack>
+                    <SubtitleWhite>Deep Mastetering with Mixing touches</SubtitleWhite>
 
-                    <StyledSpanBlack>
+                    <StyledSpanWhite>
                         Turnaround time: 2 working days <br />
                     Revisions included: 2 <br />
                     Mastering to a reference track <br />
-                    </StyledSpanBlack>
-                    <StyledSpanBlack>
+                    </StyledSpanWhite>
+                    <StyledSpanWhite>
                         Advanced M/S EQ
                         Compression
                         Multiband compression
@@ -197,7 +208,7 @@ export const Services = () => {
                         Mono compatibility
                         Loudness control
                         Finalizing
-                    </StyledSpanBlack>
+                    </StyledSpanWhite>
 
                     <StyledLink color="orange">
                         <Link to="/stemMastering">Order now</Link>
@@ -207,7 +218,7 @@ export const Services = () => {
 
             </Section>
 
-            <Section backgroundPosition={"left"} backgroundImageSize={"cover"} color="#5361e0">
+            <Section backgroundPosition={"left"} backgroundImageSize={"cover"} color="black">
                 <MainInSection backgroundColor={"black"}>
                     <Header2 color="#5361e0">STEREO MASTERING</Header2>
                     <SubtitleWhite>Last touch to make it perfect</SubtitleWhite>
@@ -239,16 +250,16 @@ export const Services = () => {
 
             <Section backgroundPosition={"left"} color="black">
 
-                <MainInSection backgroundColor={"white"}>
+                <MainInSection backgroundColor={"black"}>
                     <Header2 color="orange">MIXING AND MASTERING</Header2>
                     <SubtitleBlack>Full mixing and mastering. From A to Z.</SubtitleBlack>
 
-                    <StyledSpanBlack>
+                    <StyledSpanWhite>
                         Turnaround time: 4 working days <br />
-                    Revisions included: UNLIMITED <br />
-                    Mixing Mastering to a reference track <br />
-                    </StyledSpanBlack>
-                    <StyledSpanBlack>
+                        Revisions included: UNLIMITED <br />
+                        Mixing Mastering to a reference track <br />
+                    </StyledSpanWhite>
+                    <StyledSpanWhite>
                         Advanced M/S EQ
                         Compression
                         Multiband compression
@@ -258,7 +269,7 @@ export const Services = () => {
                         Mono compatibility
                         Loudness control
                         Finalizing
-                    </StyledSpanBlack>
+                    </StyledSpanWhite>
                     <StyledLink color="orange">
                         <Link to="/mixingAndMastering">Order now</Link>
                     </StyledLink>
@@ -294,18 +305,26 @@ export const Services = () => {
                 </StyledLink>
             </Section>
             <Section color="white">
-                <div style={{ display: "flex", paddingBottom: 100, paddingTop: 100 , flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "center", width: "80%", margin: "auto" }}>
-                    <LogoWrapper><img width={200} src={armada} alt="armada" /></LogoWrapper>
-                    <LogoWrapper><img width={200} src={AVR} alt="AVR" /></LogoWrapper>
-                    <LogoWrapper><img width={200} src={Axtone} alt="axtone" /></LogoWrapper>
+                <div style={{ display: "flex", paddingBottom: 100, paddingTop: 100, flexDirection: "row", flexWrap: "wrap", alignItems: "space-around", justifyContent: "space-around", width: "80%", margin: "auto" }}>
+                    <div style={{ height: "100%", display: "flex", flexDirection: "row", width: "100%", alignContent: "space-around", justifyContent: "space-around", alignItems: "space-around" }}>
+                        <LogoWrapper><img src={armada} alt="armada" /></LogoWrapper>
+                        <LogoWrapper><img src={AVR} alt="AVR" /></LogoWrapper>
+                        <LogoWrapper><img src={Axtone} alt="axtone" /></LogoWrapper>
+                    </div>
 
-                    <LogoWrapper><img width={150} src={Bob_Sinclar} alt="Bob_Sinclar" /></LogoWrapper>
-                    <LogoWrapper><img width={150} src={David_Tort} alt="David_Tort" /></LogoWrapper>
-                    <LogoWrapper><img width={150} src={EDM_logo} alt="EDM_logo" /></LogoWrapper>
 
-                    <LogoWrapper><img width={150} src={Future_House_Music} alt="Future_House_Music" /></LogoWrapper>
-                    <LogoWrapper><img width={150} src={Hotl} alt="Hotl" /></LogoWrapper>
-                    <LogoWrapper><img width={150} src={Spinnin} alt="Spinnin" /></LogoWrapper>
+
+                    <div style={{ height: "100%", display: "flex", flexDirection: "row", width: "100%", alignContent: "space-around", justifyContent: "space-around", alignItems: "space-around" }}>
+                        <LogoWrapper><img src={Bob_Sinclar} alt="Bob_Sinclar" /></LogoWrapper>
+                        <LogoWrapper><img src={David_Tort} alt="David_Tort" /></LogoWrapper>
+                        <LogoWrapper><img src={EDM_logo} alt="EDM_logo" /></LogoWrapper>
+                    </div>
+                    <div style={{ height: "100%", display: "flex", flexDirection: "row", width: "100%", alignContent: "space-around", justifyContent: "space-around", alignItems: "space-around" }}>
+                        <LogoWrapper><img src={Future_House_Music} alt="Future_House_Music" /></LogoWrapper>
+                        <LogoWrapper><img src={Hotl} alt="Hotl" /></LogoWrapper>
+                        <LogoWrapper><img src={Spinnin} alt="Spinnin" /></LogoWrapper>
+                    </div>
+
                 </div >
             </Section>
         </>

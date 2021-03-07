@@ -29,7 +29,7 @@ const NavBar = Styled.nav`
         overflow: hidden;
         position: relative;
 
-        ${props => props.theme.flexStyles("column", "center", "center")}
+        ${props => props.theme.flexStyles("column", "center", "flex-start")}
 
         ${
     (props: NavbarProps) => props.isOpen ? `
@@ -43,16 +43,6 @@ const NavBar = Styled.nav`
             `
     }
 
-        a div{
-            flex: 1;
-            height: 200px;
-        }
-
-
-        ul{
-            ${props => props.theme.flexStyles("column", "center", "space-between")}
-            flex: 1;
-        } 
     }
 `
 
@@ -60,8 +50,12 @@ const NavBarUl = Styled.ul`
     flex: 6;
     ${props => props.theme.flexStyles("row", "center", "space-between")}
     padding: 0;
-    height: 100%;
     margin: 0;
+
+    @media only screen and (max-width: 600px) {
+        ${props => props.theme.flexStyles("column", "center", "flex-start")}
+        flex: 10;
+    }
 `
 
 export const NavBarLi = Styled.li`
@@ -86,6 +80,8 @@ export const NavBarLi = Styled.li`
     }
 
     @media only screen and (max-width: 600px) {
+
+        height: 100px;
         font-size: 20px;
     }
 `
@@ -111,13 +107,32 @@ const activeStyle = {
 export const Logo = Styled.div`
     ${props => props.theme.flexStyles("row", "center", "flex-start")}
     cursor: pointer;
+
+    @media only screen and (max-width: 600px) {
+        flex: 1;
+        height: 150px;
+    }
+    
+    
 `
 
 const LinkWrapper = Styled.div`
     flex: 5;
 
     @media only screen and (max-width: 600px) {
-        flex: 0;
+        flex: 1;
+    }
+`
+
+const MobileLogo = Styled.div`
+    display: none;
+    
+    @media only screen and (max-width: 600px) {
+        display: block;
+        z-index: 10;
+        position: absolute;
+        top: 35px;
+        left: 30px;
     }
 `
 
@@ -140,8 +155,12 @@ export const NavigationBar = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
             <Burger style={{ width: 50, height: 50 }} onClick={() => isOpen ? setOpen(false) : setOpen(true)} id="burger">
-                <img width={30} src={menu} alt="" />
+                <img width={30} src={menu} alt="logo" />
             </Burger>
+
+            <MobileLogo>
+                <img width={150} src={logo} alt="logo" />
+            </MobileLogo>
 
             <NavBar isOpen={isOpen}>
                 <LinkWrapper>

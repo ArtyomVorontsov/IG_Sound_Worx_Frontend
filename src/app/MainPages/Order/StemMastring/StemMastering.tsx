@@ -37,7 +37,7 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
 
     const [isCheckoutBlockOpen, setIsCheckoutBlockOpen] = useState(false);
 
-    const onFinish = (formValues: FormValuesType) => {
+    const onFinish = () => {
         setIsCheckoutBlockOpen(true)
     }
 
@@ -51,8 +51,23 @@ export const StemMastering = ({ clearFormValues, setFormValues, formValues, prod
 
     useEffect(() => {
         clearFormValues()
+
+        //initial value dispatch
+        if(product.item) setFormValues({
+            key: "stemMastering",
+            value: {
+                count: Number(product.item.quantityOfStems[0].quantity.to),
+                price: {
+                    EUR: Number(product.item.quantityOfStems[0].EUR),
+                    USD: Number(product.item.quantityOfStems[0].USD),
+                }
+            }}
+        ) 
+
         window.scrollTo(0, 0);
-    }, [])
+    }, [product])
+
+    console.log(formValues)
 
     return (
 
